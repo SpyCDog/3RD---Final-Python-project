@@ -1,19 +1,20 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import Product from "./components/Product";
 import Navbar from "./components/Navbar";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import NoPage from "./components/NoPage";
 import Footer from "./components/Footer";
 import Register from "./components/Register";
 import Cart from "./components/Cart";
 import AddProduct from "./components/AddProduct";
+
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 
 function App() {
   // "https://django-rest-product.onrender.com/product?category="
-  const HOST_URL = "https://django-rest-product.onrender.com";
+  const HOST_URL = "http://127.0.0.1:8000";
   const [categories, setCategories] = useState([]);
   const [currentCategory, setCurrentCategory] = useState(1);
   const [products, setProducts] = useState([]);

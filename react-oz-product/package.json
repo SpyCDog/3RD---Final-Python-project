@@ -16,11 +16,15 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
+
+  "homepage": "https://SpyCDog.github.io/3RD---Final-Python-project.git",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -40,8 +44,7 @@
       "last 1 safari version"
     ]
   },
-
-    "devDependencies": {
-      "gh-pages": "^6.1.0"
-    }
+  "devDependencies": {
+    "gh-pages": "^6.1.0"
+  }
 }

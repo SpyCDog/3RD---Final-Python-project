@@ -15,7 +15,8 @@ function Product({ product }) {
               {product.name} - category:{product.category}
             </h5>
             <p className="card-text">{product.price}</p>
-            <button className="btn btn-primary">Go somewhere</button>
+            <button className="btn btn-primary">Details</button>
+            <button className="btn btn-primary">Add to cart</button>
           </div>
         </div>
       </>
