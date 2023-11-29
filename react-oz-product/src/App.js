@@ -81,7 +81,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/3RD---Final-Python-project">
         {showAlert && (
           <Alert
             variant="success"
