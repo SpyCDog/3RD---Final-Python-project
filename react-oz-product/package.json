@@ -17,7 +17,7 @@
     "web-vitals": "^2.1.4"
   },
 
-  "homepage": "https://SpyCDog.github.io/3RD---Final-Python-project",
+  "homepage": "https://SpyCDog.github.io",
 
   "scripts": {
     "start": "react-scripts start",
