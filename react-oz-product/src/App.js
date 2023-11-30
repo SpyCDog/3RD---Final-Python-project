@@ -13,6 +13,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 
 function App() {
+  // "https://django-rest-product.onrender.com/"
   const HOST_URL = "https://oz-products-web.onrender.com";
   const [categories, setCategories] = useState([]);
   const [currentCategory, setCurrentCategory] = useState(1);
