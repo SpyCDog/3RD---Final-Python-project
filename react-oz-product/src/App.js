@@ -14,7 +14,7 @@ import { Alert } from "react-bootstrap";
 
 function App() {
   // "https://django-rest-product.onrender.com/"
-  const HOST_URL = "https://django-rest-product.onrender.com";
+  const HOST_URL = "https://localhost:8000";
   const [categories, setCategories] = useState([]);
   const [currentCategory, setCurrentCategory] = useState(1);
   const [products, setProducts] = useState([]);
