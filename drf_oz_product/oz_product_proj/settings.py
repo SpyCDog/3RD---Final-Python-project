@@ -52,7 +52,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500",
     "http://127.0.0.1:3000",
     "http://localhost:3000",
-    "https://SpyCDog.github.io"
+    "https://SpyCDog.github.io/3RD---Final-Python-project"
     
 ]
 
