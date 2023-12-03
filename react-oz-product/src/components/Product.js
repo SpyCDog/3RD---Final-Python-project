@@ -1,6 +1,42 @@
-function Product({ product, onAddToCart }) {
+import React from "react";
+import axios from "axios";
+import "./styles/Product.css";
+import { TbCurrencyShekel } from "react-icons/tb";
+
+function Product({ product, userToken }) {
+  // Define handleAddToCart function inside the Product component
+  const handleAddToCart = () => {
+    axios
+      .post(
+        "https://oz-products-web.onrender.com",
+        {
+          // Make sure the URL is correct
+          product_id: product.id,
+          quantity: 1,
+        },
+        {
+          headers: {
+            // Include the JWT token in the authorization header
+            // Ensure that userToken is passed down from the parent component or managed via context or redux
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+      )
+      .then((response) => {
+        // Handle the success
+        console.log("Product added to cart:", response.data);
+        // Optionally, trigger any UI update or notification
+      })
+      .catch((error) => {
+        // Handle the error
+        console.error("Error adding product to cart:", error);
+        // Optionally, display an error message to the user
+      });
+  };
+
+  // Render the product card with an "Add to Cart" button
   return (
-    <div className="card" style={{ width: "18rem" }}>
+    <div className="card product-card" style={{ width: "20rem" }}>
       <img
         src={"https://picsum.photos/268/180?random=" + product.id}
         className="card-img-top"
@@ -8,11 +44,17 @@ function Product({ product, onAddToCart }) {
       />
       <div className="card-body">
         <h5 className="card-title">
-          {product.name} - category: {product.category}
+          {product.name} <br></br>
+          {product.price}
+          <TbCurrencyShekel/>
         </h5>
-        <p className="card-text">{product.price}</p>
-        <button className="btn btn-primary">Details</button>
-        <button className="btn btn-primary" onClick={onAddToCart}>Add to cart</button>
+        <p className="card-text"></p>
+        <button style={{ marginRight: "8px" }} className="btn btn-primary">
+          Details
+        </button>
+        <button className="btn btn-primary" onClick={() => handleAddToCart()}>
+          Add to cart
+        </button>
       </div>
     </div>
   );

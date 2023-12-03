@@ -12,9 +12,35 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 # @permission_classes([IsAuthenticated])
 # def myorders()
 @api_view(['GET', 'POST'])
-def cartitems(request):
-    # replace this with real cart items (you need a model, serializer, look at products for example)
-    return Response({'cart_items':[1,2,3]}) 
+def add_to_cart(request):
+    # This view expects 'product_id' and 'quantity' in the request.data
+    product_id = request.data.get('product_id')
+    quantity = request.data.get('quantity', 1)
+    
+    try:
+        # Get the product that we want to add to the cart
+        product = Product.objects.get(pk=product_id)
+    except Product.DoesNotExist:
+        return Response({'detail': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+    # Get or create a cart for the user
+    cart, _ = Cart.objects.get_or_create(user=request.user)
+    
+    # Get or create a cart item for this product in the user's cart
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+    
+    if not created:
+        # If the item already exists in the cart, increment the quantity
+        cart_item.quantity += int(quantity)
+    else:
+        # If it's a new item, set the initial quantity
+        cart_item.quantity = int(quantity)
+
+    cart_item.save()
+
+    return Response({'detail': 'Item added to cart.'}, status=status.HTTP_201_CREATED)
+    
+    
     
 @api_view(['GET', 'POST'])
 # @authentication_classes([JWTAuthentication])

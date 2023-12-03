@@ -43,7 +43,7 @@ function Navbar({ categories, clickButton, searchProduct }) {
         {location.pathname === "/login" ? null : (
           <li className="nav-item">
             <Link className="mx-1 btn btn-success" to="/login">
-              Login
+              Login / Register
             </Link>
           </li>
         )}
