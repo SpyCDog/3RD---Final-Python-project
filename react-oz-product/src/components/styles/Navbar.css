@@ -1,0 +1,92 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 0.5rem 1rem;
+  }
+  
+  .navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .navbar-nav {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .nav-item {
+    margin: 0 1rem;
+  }
+  
+  .nav-link {
+    font-size: 1.1rem;
+    color: #007bff;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .nav-link:hover {
+    color: #0056b3;
+  }
+  
+  .search-form {
+    position: relative;
+  }
+  
+  .search-input {
+    font-size: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    width: 250px;
+  }
+  
+  .search-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    padding: 0 1rem;
+    border-radius: 0 0.25rem 0.25rem 0;
+    font-size: 1rem;
+  }
+  
+  .search-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .navbar-buttons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .btn {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+  }
+  
+  .cart-icon {
+    color: #007bff;
+    margin-left: 1rem;
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .navbar-nav {
+      display: none; /* or convert to a dropdown for smaller screens */
+    }
+    .search-input {
+      width: 100%; /* Adjust search bar width for small screens */
+    }
+    .search-button {
+      width: 100%;
+    }
+  }
+  

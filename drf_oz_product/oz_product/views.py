@@ -1,7 +1,7 @@
 from rest_framework import status
 from django.shortcuts import render
-from .models import Category, Product
-from .serializers import ProductSerializer, CategorySerializer
+from .models import Cart, Category, Product, CartItem
+from .serializers import CartSerializer, ProductSerializer, CategorySerializer, CartItemSerializer
 # from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
@@ -85,3 +85,29 @@ def categories(request):
         all_categories = all_categories.filter(name__contains=search)
     all_categories_json = CategorySerializer(all_categories, many=True).data
     return Response(all_categories_json)
+
+
+@api_view(['GET', 'POST'])
+def cartitems(request):
+    if request.method == 'GET':
+        # Assuming each user has a cart, retrieve it here
+        cart = Cart.objects.get(user=request.user)
+        serializer = CartSerializer(cart)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        # Assuming the request.data contains 'product_id' and 'quantity'
+        product_id = request.data.get('product_id')
+        quantity = request.data.get('quantity', 1)
+        try:
+            product = Product.objects.get(pk=product_id)
+        except Product.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        # The underscore represend boolian artibute if cart exist in the database "_=False", If doesn't "_=True" and new cart will create.
+        cart, _ = Cart.objects.get_or_create(user=request.user) 
+        cart_item, _ = CartItem.objects.get_or_create(cart=cart, product=product)
+        cart_item.quantity += int(quantity)  # Update quantity if item already exists
+        cart_item.save()
+
+        return Response(status=status.HTTP_201_CREATED)

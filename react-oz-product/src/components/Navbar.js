@@ -21,7 +21,7 @@ function Navbar({ categories, clickButton, searchProduct }) {
               className="nav-link"
               onClick={() => clickButton(category.id)}
             >
-              {category.name} -({category.id})
+              {category.name}
             </Link>
           </li>
         ))}
