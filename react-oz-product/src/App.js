@@ -21,6 +21,7 @@ function App() {
   const [message, setMessage] = useState("");
   const [showAlert, setShowAlert] = useState(false);
 
+
   useEffect(getProducts, [currentCategory]); // when loading the page for the first time - getProducts()
   useEffect(getCategories, []); // when loading the page for the first time - getCategories()
   // when category is clicked
@@ -96,8 +97,10 @@ function App() {
           categories={categories}
           clickButton={clickButton}
           searchProduct={searchProduct}
+
         />
         <Routes>
+
           <Route
             path="/"
             element={
@@ -113,6 +116,7 @@ function App() {
               </>
             }
           />
+
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
