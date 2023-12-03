@@ -53,6 +53,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:3000",
     "https://spycdog.github.io"
+    "http://192.168.68.116:3000"
     
 ]
 
