@@ -10,7 +10,7 @@ function Product({ product}) {
     const jwtToken = localStorage.getItem('token');
     axios
       .post(
-        "https://oz-products-web.onrender.com/cart/",
+        "https://oz-products-web.onrender.com/add_to_cart/",
 
         {
           product_id: product.id,

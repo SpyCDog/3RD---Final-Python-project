@@ -13,7 +13,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 
 function App() {
-  // "https://django-rest-product.onrender.com/"
   const HOST_URL = "https://oz-products-web.onrender.com";
   const [categories, setCategories] = useState([]);
   const [currentCategory, setCurrentCategory] = useState(1);
@@ -24,6 +23,7 @@ function App() {
   useEffect(getProducts, [currentCategory]); // when loading the page for the first time - getProducts()
   useEffect(getCategories, []); // when loading the page for the first time - getCategories()
   // when category is clicked
+
   function productAdded() {
     setCurrentCategory("asgasgasg");
     setCurrentCategory("");
@@ -48,7 +48,7 @@ function App() {
   }
 
   function getProducts(searchText = null) {
-    console.log("!!!!!!!!!!!!!!", searchText);
+    console.log("get product app.js function", searchText);
     let url = HOST_URL + "/product?category=" + currentCategory;
     if (searchText) {
       url = HOST_URL + "/product?search=" + searchText;
