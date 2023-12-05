@@ -48,7 +48,7 @@ function App() {
   }
 
   function getProducts(searchText = null) {
-    console.log("get product app.js function", searchText);
+    console.log("get products 'app.js' function", searchText);
     let url = HOST_URL + "product?category=" + currentCategory;
     if (searchText) {
       url = HOST_URL + "product?search=" + searchText;
