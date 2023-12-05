@@ -3,10 +3,11 @@ import axios from "axios";
 import "./styles/Product.css";
 import { TbCurrencyShekel } from "react-icons/tb";
 
-function Product({ product, userToken }) {
+function Product({ product}) {
 
   // Define handleAddToCart function
   const handleAddToCart = () => {
+    const jwtToken = localStorage.getItem('token');
     axios
       .post(
         "https://oz-products-web.onrender.com/cart/",
@@ -19,7 +20,7 @@ function Product({ product, userToken }) {
           headers: {
             // Include the JWT token in the authorization header
             // Ensure that userToken is passed down from the parent component or managed via context or redux
-            Authorization: `Bearer ${userToken}`,
+            Authorization: `Bearer ${jwtToken}`,
           },
         }
       )

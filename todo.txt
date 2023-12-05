@@ -6,6 +6,7 @@ ToDo list:
 - updating footer
 - style nav bar with logo
 - adding animations styles
+- add loading animation
 
 
 screens:
