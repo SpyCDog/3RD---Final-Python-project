@@ -68,7 +68,7 @@ def product_detail(request, id):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-@api_view()
+@api_view(['GET', 'POST'])
 def categories(request):
     search = request.GET.get('search')
     all_categories = Category.objects.all()
