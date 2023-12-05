@@ -24,7 +24,7 @@ function Cart() {
     }, []);
 
     const handleRemoveItem = (itemId) => {
-        axios.delete(`https://oz-products-web.onrender.com/delete_from_cart/${itemId}`)
+        axios.delete(`https://oz-products-web.onrender.com/delete_from_cart/${itemId}/`)
             .then(() => {
                 setCart(currentItems => currentItems.filter(item => item.id !== itemId));
             })
