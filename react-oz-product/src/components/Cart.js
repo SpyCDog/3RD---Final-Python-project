@@ -12,19 +12,32 @@ import {
 
 function Cart() {
     const [cart, setCart] = useState([]);
-
+    
+    
     useEffect(() => {
-        axios.get("https://oz-products-web.onrender.com/cart/")
-            .then(response => {
-                setCart(response.data.cart_items || []);
-            })
-            .catch(error => {
-                console.error("Error fetching cart data:", error);
-            });
+        const jwtToken = localStorage.getItem('token');
+       // Retrieve the token again for this request
+        axios.get("https://oz-products-web.onrender.com/cart/", {
+          headers: {
+              Authorization: `Bearer ${jwtToken}`
+            }
+        })
+        .then(response => {
+            setCart(response.data.cart_items || []);
+        })
+        .catch(error => {
+              console.error("Error fetching cart data:", error);
+        });
     }, []);
 
     const handleRemoveItem = (itemId) => {
-        axios.delete(`https://oz-products-web.onrender.com/delete_from_cart/${itemId}/`)
+        const jwtToken = localStorage.getItem('token');
+        axios.delete(`https://oz-products-web.onrender.com/delete_from_cart/${itemId}/`, {
+          headers: {
+              Authorization: `Bearer ${jwtToken}`
+          }
+      })
+  
             .then(() => {
                 setCart(currentItems => currentItems.filter(item => item.id !== itemId));
             })
