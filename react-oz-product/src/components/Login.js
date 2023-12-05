@@ -18,7 +18,7 @@ function Login() {
                 username,
                 password
             });
-            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('accessToken', response.data.access);
             console.log('Logged in successfully:', response.data);
             // Handle successful login
         } catch (error) {

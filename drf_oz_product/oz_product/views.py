@@ -100,18 +100,19 @@ def cart(request):
 def add_to_cart(request):
     product_id = request.data.get('product_id')
     quantity = request.data.get('quantity', 1)
-    try:
-        product = Product.objects.get(pk=product_id)
-        cart, _ = Cart.objects.get_or_create(user=request.user)
-        cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
-        if not created:
-            cart_item.quantity += int(quantity)
-        else:
-            cart_item.quantity = int(quantity)
-        cart_item.save()
-        return Response({'detail': 'Item added to cart.'}, status=status.HTTP_201_CREATED)
-    except Product.DoesNotExist:
-        return Response({'detail': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'POST':
+        try:
+            product = Product.objects.get(pk=product_id)
+            cart, _ = Cart.objects.get_or_create(user=request.user)
+            cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+            if not created:
+                cart_item.quantity += int(quantity)
+            else:
+                cart_item.quantity = int(quantity)
+            cart_item.save()
+            return Response({'detail': 'Item added to cart.'}, status=status.HTTP_201_CREATED)
+        except Product.DoesNotExist:
+            return Response({'detail': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
         
         
         
