@@ -37,7 +37,7 @@ function App() {
   }
   function getCategories() {
     axios
-      .get(HOST_URL + "/category")
+      .get(HOST_URL + "category")
       .then((response) => {
         console.log("categories are:", response.data);
         setCategories(response.data);
@@ -49,9 +49,9 @@ function App() {
 
   function getProducts(searchText = null) {
     console.log("get product app.js function", searchText);
-    let url = HOST_URL + "/product?category=" + currentCategory;
+    let url = HOST_URL + "product?category=" + currentCategory;
     if (searchText) {
-      url = HOST_URL + "/product?search=" + searchText;
+      url = HOST_URL + "product?search=" + searchText;
     }
     axios
       .get(url)
