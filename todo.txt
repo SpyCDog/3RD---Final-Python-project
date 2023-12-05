@@ -1,0 +1,18 @@
+ToDo list:
+
+- docomentation of every line that is not fully understood
+- add console log for manuall debuging
+- add next the console log, front messages if needed.
+- updating footer
+- style nav bar with logo
+- adding animations styles
+
+
+screens:
+home -with products on sale and big header of welcome
+products for each category 
+single product page
+login
+register - after register succsesfull go to login 
+add product - only for super user
+cart

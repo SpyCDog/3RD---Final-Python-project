@@ -1,30 +1,69 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import CartItem from './CartItem';
+import CartSummary from './CartSummary';
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCol,
+  MDBContainer,
+  MDBRow,
+} from 'mdb-react-ui-kit';
 
 function Cart() {
-  const [cart, setCart] = useState([]);
-  function getCart() {
-    console.log("!!! get cart !!!");
-    axios
-      .get("http://localhost:8000/cartitems")
-      .then((response) => {
-        console.log(response.data);
-        console.log(response.data.cart_items);
-        setCart(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }
-  useEffect(getCart, []); // get cart when loading this page
+    const [cart, setCart] = useState([]);
 
-  return (
-    <>
-      <h2>Cart</h2>
-      {cart.cart_items &&
-        cart.cart_items.map((item, index) => <li key={index}>{item}</li>)}
-    </>
-  );
+    useEffect(() => {
+        axios.get("https://oz-products-web.onrender.com/cart/")
+            .then(response => {
+                setCart(response.data.cart_items || []);
+            })
+            .catch(error => {
+                console.error("Error fetching cart data:", error);
+            });
+    }, []);
+
+    const handleRemoveItem = (itemId) => {
+        axios.delete(`https://oz-products-web.onrender.com/delete_from_cart/${itemId}`)
+            .then(() => {
+                setCart(currentItems => currentItems.filter(item => item.id !== itemId));
+            })
+            .catch(error => {
+                console.error("Error removing cart item:", error);
+            });
+    };
+
+    const subtotal = cart.reduce((total, item) => total + (item.quantity * item.product.price), 0);
+
+    return (
+        <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
+            <MDBContainer className="py-5 h-100">
+                <MDBRow className="justify-content-center align-items-center h-100">
+                    <MDBCol>
+                        <MDBCard>
+                            <MDBCardBody className="p-4">
+                                <MDBRow>
+                                    <MDBCol lg="7">
+                                        {/* Cart Items */}
+                                        {cart.map((item) => (
+                                            <CartItem 
+                                                key={item.id} 
+                                                item={item} 
+                                                onRemoveItem={() => handleRemoveItem(item.id)} 
+                                            />
+                                        ))}
+                                    </MDBCol>
+                                    <MDBCol lg="5">
+                                        <CartSummary subtotal={subtotal} />
+                                    </MDBCol>
+                                </MDBRow>
+                            </MDBCardBody>
+                        </MDBCard>
+                    </MDBCol>
+                </MDBRow>
+            </MDBContainer>
+        </section>
+    );
 }
 
 export default Cart;

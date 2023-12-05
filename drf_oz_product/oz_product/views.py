@@ -8,43 +8,10 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-# @authentication_classes([JWTAuthentication])
-# @permission_classes([IsAuthenticated])
-# def myorders()
+
 @api_view(['GET', 'POST'])
-def add_to_cart(request):
-    # This view expects 'product_id' and 'quantity' in the request.data
-    product_id = request.data.get('product_id')
-    quantity = request.data.get('quantity', 1)
-    
-    try:
-        # Get the product that we want to add to the cart
-        product = Product.objects.get(pk=product_id)
-    except Product.DoesNotExist:
-        return Response({'detail': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
-
-    # Get or create a cart for the user
-    cart, _ = Cart.objects.get_or_create(user=request.user)
-    
-    # Get or create a cart item for this product in the user's cart
-    cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
-    
-    if not created:
-        # If the item already exists in the cart, increment the quantity
-        cart_item.quantity += int(quantity)
-    else:
-        # If it's a new item, set the initial quantity
-        cart_item.quantity = int(quantity)
-
-    cart_item.save()
-
-    return Response({'detail': 'Item added to cart.'}, status=status.HTTP_201_CREATED)
-    
-    
-    
-@api_view(['GET', 'POST'])
-# @authentication_classes([JWTAuthentication])
-# @permission_classes([IsAuthenticated])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 def products(request):
     if request.method == 'GET':
         search = request.GET.get('search')
@@ -113,27 +80,52 @@ def categories(request):
     return Response(all_categories_json)
 
 
-@api_view(['GET', 'POST'])
-def cartitems(request):
-    if request.method == 'GET':
-        # Assuming each user has a cart, retrieve it here
-        cart = Cart.objects.get(user=request.user)
-        serializer = CartSerializer(cart)
-        return Response(serializer.data)
 
-    elif request.method == 'POST':
-        # Assuming the request.data contains 'product_id' and 'quantity'
-        product_id = request.data.get('product_id')
-        quantity = request.data.get('quantity', 1)
+@api_view()
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
+
+def cart(request):
         try:
-            product = Product.objects.get(pk=product_id)
-        except Product.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            cart = Cart.objects.get(user=request.user)
+            serializer = CartSerializer(cart)
+            return Response(serializer.data)
+        except Cart.DoesNotExist:
+            return Response({'detail': 'Cart not found.'}, status=status.HTTP_404_NOT_FOUND)
+    
+    
+    
+@api_view(['POST'])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 
-        # The underscore represend boolian artibute if cart exist in the database "_=False", If doesn't "_=True" and new cart will create.
-        cart, _ = Cart.objects.get_or_create(user=request.user) 
-        cart_item, _ = CartItem.objects.get_or_create(cart=cart, product=product)
-        cart_item.quantity += int(quantity)  # Update quantity if item already exists
+def add_to_cart(request):
+    product_id = request.data.get('product_id')
+    quantity = request.data.get('quantity', 1)
+    try:
+        product = Product.objects.get(pk=product_id)
+        cart, _ = Cart.objects.get_or_create(user=request.user)
+        cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+        if not created:
+            cart_item.quantity += int(quantity)
+        else:
+            cart_item.quantity = int(quantity)
         cart_item.save()
+        return Response({'detail': 'Item added to cart.'}, status=status.HTTP_201_CREATED)
+    except Product.DoesNotExist:
+        return Response({'detail': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
+        
+        
+        
+@api_view(['DELETE'])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 
-        return Response(status=status.HTTP_201_CREATED)
+def delete_from_cart(request):
+    item_id = request.data.get('item_id')  # Or get this from the URL path
+    try:
+        cart_item = CartItem.objects.get(id=item_id, cart__user=request.user)
+        cart_item.delete()
+        return Response({'detail': 'Cart item removed.'}, status=status.HTTP_204_NO_CONTENT)
+    except CartItem.DoesNotExist:
+            return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)

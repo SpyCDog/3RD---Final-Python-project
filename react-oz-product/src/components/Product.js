@@ -4,13 +4,14 @@ import "./styles/Product.css";
 import { TbCurrencyShekel } from "react-icons/tb";
 
 function Product({ product, userToken }) {
-  // Define handleAddToCart function inside the Product component
+
+  // Define handleAddToCart function
   const handleAddToCart = () => {
     axios
       .post(
-        "https://oz-products-web.onrender.com",
+        "https://oz-products-web.onrender.com/cart/",
+
         {
-          // Make sure the URL is correct
           product_id: product.id,
           quantity: 1,
         },
@@ -45,8 +46,7 @@ function Product({ product, userToken }) {
       <div className="card-body">
         <h5 className="card-title">
           {product.name} <br></br>
-          {product.price}
-          <TbCurrencyShekel/>
+          {product.price}<TbCurrencyShekel/>
         </h5>
         <p className="card-text"></p>
         <button style={{ marginRight: "8px" }} className="btn btn-primary">
