@@ -34,12 +34,11 @@ function Login() {
             
            // Handle login failed
         } catch (error) {
-            console.log(error)
-            if (error.response) {
-                setErrorMessage(error.response.data.message);
-            } else {
-                setErrorMessage('Login failed. Please try again.');
-            }
+            console.log("LOGIN FAILED:",error)
+            const errorMessage = error.response && error.response.data && error.response.data.message
+                ? error.response.data.message
+                :'Login failed. Please try again.';
+            setErrorMessage(errorMessage);
         }
     };
 

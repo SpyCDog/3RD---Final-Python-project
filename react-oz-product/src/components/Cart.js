@@ -55,8 +55,21 @@ function Cart() {
             });
     };
     
-
-    const subtotal = cart.reduce((total, item) => total + (item.quantity * item.product.price), 0);
+    const subtotal = cart.reduce((total, item) => {
+        // Check if the quantity is a number; if not, use 0 as a fallback
+        const quantity = typeof item.quantity === 'number' ? item.quantity : 0;
+        
+        // Check if the product exists and has a price that's a number; if not, use 0 as a fallback
+        const price = item.product && typeof item.product.price === 'number' ? item.product.price : 0;
+        
+        // Calculate the subtotal for the current item
+        const itemTotal = quantity * price;
+      
+        // Add the current item's total to the running total
+        return total + itemTotal;
+      }, 0);
+      
+    // const subtotal = cart.reduce((total, item) => total + (item.quantity * item.product.price), 0);
    
     if (loading) {
         return (

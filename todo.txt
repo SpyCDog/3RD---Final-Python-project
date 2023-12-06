@@ -8,6 +8,13 @@ ToDo list:
 - adding animations styles
 - add loading animation
 - add ui quntety chnge to the cart
+- CHECK IF I GET EROR LOGIN FAILED
+- MAKE ACCESS CART ONLY TO LOGED IN user SO IF NOT AUTENTICETED SHOW MODAL TO LOGIN/REGISTER
+- ADD PICS
+- STYLE IN PALETE CSS SEARCH FOR IT ONLINE
+-ADD logo
+- CHECK IF IS THERE EASY OPTION TO LOG IN WOTH FACEBOOK/GOOGLE
+- while remove from cart remove only one quantity
 
 
 screens:
