@@ -10,22 +10,22 @@ import {
   MDBRow,
 } from 'mdb-react-ui-kit';
 
-const TKN = localStorage.getItem('accessToken');
 
 function Cart() {
     const [cart, setCart] = useState([]);
     
     
     useEffect(() => {
-        
+        const TKN = localStorage.getItem('accessToken');
        // Retrieve the token again for this request
         axios.get("https://oz-products-web.onrender.com/cart/", {
           headers: {
-              Authorization: `Token ${TKN}`
+              Authorization: `Bearer ${TKN}`
             }
         })
         .then(response => {
-            setCart(response.data.cart_items || []);
+            setCart(response.data.items || []);
+            console.log("CART:", response.data)
         })
         .catch(error => {
               console.error("Error fetching cart data:", error);
@@ -33,9 +33,10 @@ function Cart() {
     }, []);
 
     const handleRemoveItem = (itemId) => {
+        const TKN = localStorage.getItem('accessToken');
         axios.delete(`https://oz-products-web.onrender.com/delete_from_cart/${itemId}/`, {
           headers: {
-              Authorization: `Token ${TKN}`
+              Authorization: `Bearer ${TKN}`
           }
       })
   

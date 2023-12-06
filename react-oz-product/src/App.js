@@ -31,9 +31,9 @@ function App() {
     setShowAlert(true);
   }
 
-  function clickButton(id) {
-    console.log("click!", id);
-    setCurrentCategory(id);
+  function clickButton(name) {
+    console.log("click!", name);
+    setCurrentCategory(name);
   }
   function getCategories() {
     axios
@@ -98,9 +98,7 @@ function App() {
           searchProduct={searchProduct}
         />
         <Routes>
-          <Route
-            path="/"
-            element={
+          <Route path="/" element={
               <>
                 <div className="row row-cols-1 row-cols-md-3 row-cols-lg-6 g-4">
                   {products.map((product) => (
@@ -117,10 +115,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
-          <Route
-            path="/add_product"
-            element={<AddProduct productAdded={productAdded} />}
-          />
+          <Route path="/add_product" element={<AddProduct productAdded={productAdded} />}/>
           <Route path="*" element={<NoPage />} />
         </Routes>
         <Footer />

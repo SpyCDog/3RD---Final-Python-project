@@ -19,7 +19,7 @@ function Product({product}) {
           headers: {
             // Include the JWT token in the authorization header
             // Ensure that userToken is passed down from the parent component or managed via context or redux
-            Authorization: `Token ${tkn}`,
+            Authorization: `Bearer ${tkn}`,
           },
         }
       )

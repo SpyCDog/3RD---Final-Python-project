@@ -79,7 +79,7 @@ def categories(request):
 
 
 
-@api_view(['GET', 'POST'])
+@api_view()
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
 
