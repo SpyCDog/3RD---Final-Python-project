@@ -46,8 +46,8 @@ function CartItem({ item, onRemoveItem }) {
                             </MDBTypography>
                         </div>
                         <div style={{ width: "80px" }}>
-                            <MDBTypography tag="h5" className="mb-0">
-                            <TbCurrencyShekel/>{item.product.price}
+                            <MDBTypography tag="h" className="mb-0">
+                            <TbCurrencyShekel/>{productDetails?.price}
                             </MDBTypography>
                         </div>
                         <a href="#!" style={{ color: "#cecece" }} onClick={onRemoveItem}>
