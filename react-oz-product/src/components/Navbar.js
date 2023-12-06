@@ -46,26 +46,25 @@ function Navbar({ categories, clickButton, searchProduct }) {
         </li>
         {location.pathname === "/login" ? null : (
           <li className="nav-item">
-            <Link className="mx-1 btn btn-success" to="/login">
-              Login / Register
-            </Link>
+            {user ? (
+              <>
+                <span>Welcome, {user.username}!</span>
+                <button onClick={logout}>Logout</button>
+              </>
+              ) : (
+                <Link className="mx-1 btn btn-success" to="/login">Login / Register</Link>
+                )
+            }
           </li>
-        )}
+          )
+        }
         <li className="nav-item">
           <Link className="mx-1 nav-link" to="/add_product">
             Add Product
           </Link>
         </li>
-        <li>
-        {user ? (
-                <>
-                    <span>Welcome, {user.username}!</span>
-                    <button onClick={logout}>Logout</button>
-                </>
-            ) : (
-                <Link to="/login">Login / Register</Link>
-            )}
-        </li>
+
+        
         <li className="nav-item">
           <Link to="/cart">
             <BsCart3 style={{ fontSize: "2.5em", color: "black" }} />
