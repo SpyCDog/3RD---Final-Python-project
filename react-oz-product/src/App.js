@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Register from "./components/Register";
 import Cart from "./components/Cart";
 import AddProduct from "./components/AddProduct";
+import { UserProvider } from "./components/UserContext";
 
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -81,6 +82,7 @@ function App() {
 
   return (
     <>
+    <UserProvider>
       <BrowserRouter basename="/3RD---Final-Python-project">
         {showAlert && (
           <Alert
@@ -120,7 +122,9 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
+      </UserProvider>
     </>
+    
   );
 }
 

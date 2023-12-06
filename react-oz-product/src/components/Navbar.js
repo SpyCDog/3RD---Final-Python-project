@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { BsCart3 } from "react-icons/bs";
+import { UserContext } from './UserContext';
+
 
 function Navbar({ categories, clickButton, searchProduct }) {
   const [searchText, setSearchText] = useState(""); // this is the value of the search field
   const location = useLocation();
+  const { user, logout } = useContext(UserContext);
+
 
   return (
     <>
@@ -51,6 +55,16 @@ function Navbar({ categories, clickButton, searchProduct }) {
           <Link className="mx-1 nav-link" to="/add_product">
             Add Product
           </Link>
+        </li>
+        <li>
+        {user ? (
+                <>
+                    <span>Welcome, {user.username}!</span>
+                    <button onClick={logout}>Logout</button>
+                </>
+            ) : (
+                <Link to="/login">Login / Register</Link>
+            )}
         </li>
         <li className="nav-item">
           <Link to="/cart">

@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState , useContext} from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Form, Button, Alert, Container, Row, Col, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './styles/Login.css';
+import { UserContext } from './UserContext';
+
 
 
 
@@ -10,6 +13,9 @@ function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const history = useNavigate();
+    const { login } = useContext(UserContext);
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -21,7 +27,11 @@ function Login() {
             });
             localStorage.setItem('accessToken', response.data.access);
             localStorage.setItem('refreshToken', response.data.refresh);
+            localStorage.setItem('username', username);
+            login({ username: username, ...response.data });
+            history.push('/');
             console.log('Logged in successfully:', response.data);
+            
             // Handle successful login
         } catch (error) {
             if (error.response) {

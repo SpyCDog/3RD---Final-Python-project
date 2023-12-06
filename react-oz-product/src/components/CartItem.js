@@ -38,21 +38,23 @@ function CartItem({ item, onRemoveItem }) {
                             alt={item.product.name} />
                         <div className="ms-3">
                         <MDBTypography tag="h5">{productDetails?.name}</MDBTypography>
-                            <p className="small mb-0"></p>
+                            <p className="small mb-0">{productDetails?.description}</p>
                         </div>
+                      
                     </div>
                     <div className="d-flex flex-row align-items-center">
                         <div style={{ width: "50px" }}>
-                            <MDBTypography tag="h5" className="fw-normal mb-0">
-                                {item.quantity}
+                            <MDBTypography tag="h" className="fw-normal mb-0">
                             </MDBTypography>
                         </div>
                         <div style={{ width: "80px" }}>
                             <MDBTypography tag="h" className="mb-0">
                             <TbCurrencyShekel/>{productDetails?.price}
+                            <p className="small mb-0">Qty: {item.quantity}</p>
                             </MDBTypography>
                         </div>
-                        <a href="#!" style={{ color: "#cecece" }} onClick={onRemoveItem}>
+                        
+                        <a href="#!" style={{ color: "#cecece",fontSize: "2em"}} onClick={onRemoveItem}>
                         <FaTrashAlt />
                         </a>
                     </div>
