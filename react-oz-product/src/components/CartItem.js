@@ -5,9 +5,11 @@ import {
   MDBCardBody,
   MDBCardImage,
   MDBTypography,
-  MDBIcon
+//   MDBIcon
 } from 'mdb-react-ui-kit';
 import { TbCurrencyShekel } from "react-icons/tb";
+import { FaTrashAlt } from "react-icons/fa";
+
 
 
 function CartItem({ item, onRemoveItem }) {
@@ -51,7 +53,7 @@ function CartItem({ item, onRemoveItem }) {
                             </MDBTypography>
                         </div>
                         <a href="#!" style={{ color: "#cecece" }} onClick={onRemoveItem}>
-                            <MDBIcon fas icon="trash-alt" />
+                        <FaTrashAlt />
                         </a>
                     </div>
                 </div>

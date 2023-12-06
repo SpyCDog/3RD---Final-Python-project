@@ -120,10 +120,10 @@ def add_to_cart(request):
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
 
-def delete_from_cart(request):
-    item_id = request.data.get('item_id')  # Or get this from the URL path
+def delete_from_cart(request, id):
+    # item_id = request.data.get(id)  # Or get this from the URL path
     try:
-        cart_item = CartItem.objects.get(id=item_id, cart__user=request.user)
+        cart_item = CartItem.objects.get(id=id, cart__user=request.user)
         cart_item.delete()
         return Response({'detail': 'Cart item removed.'}, status=status.HTTP_204_NO_CONTENT)
     except CartItem.DoesNotExist:
