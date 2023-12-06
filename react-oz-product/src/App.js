@@ -7,11 +7,12 @@ import Register from "./components/Register";
 import Cart from "./components/Cart";
 import AddProduct from "./components/AddProduct";
 import { UserProvider } from "./components/UserContext";
-
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Alert } from "react-bootstrap";
+import LoadingSpinner from './components/LoadingSpinner';
+
 
 function App() {
   const HOST_URL = "https://oz-products-web.onrender.com/";
@@ -20,6 +21,8 @@ function App() {
   const [products, setProducts] = useState([]);
   const [message, setMessage] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); 
+
 
   useEffect(getProducts, [currentCategory]); // when loading the page for the first time - getProducts()
   useEffect(getCategories, []); // when loading the page for the first time - getCategories()
@@ -37,6 +40,7 @@ function App() {
     setCurrentCategory(name);
   }
   function getCategories() {
+    setIsLoading(true);// Start loading-spinner
     axios
       .get(HOST_URL + "category")
       .then((response) => {
@@ -45,10 +49,15 @@ function App() {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+      })
+      .finally(() => {
+        setIsLoading(false); // End loading-spinner
       });
+      
   }
 
   function getProducts(searchText = null) {
+    setIsLoading(true); // Start loading-spinner
     console.log("get products 'app.js' function", searchText);
     let url = HOST_URL + "product?category=" + currentCategory;
     if (searchText) {
@@ -62,6 +71,9 @@ function App() {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+      })
+      .finally(() => {
+        setIsLoading(false); // End loading-spinner
       });
   }
 
@@ -84,6 +96,7 @@ function App() {
     <>
     <UserProvider>
       <BrowserRouter basename="/3RD---Final-Python-project">
+      
         {showAlert && (
           <Alert
             variant="success"
@@ -102,6 +115,11 @@ function App() {
         <Routes>
           <Route path="/" element={
               <>
+              {isLoading ? (
+                <div className="spinner-container">
+                  <LoadingSpinner /> 
+                  </div>
+                ) : (
                 <div className="row row-cols-1 row-cols-md-3 row-cols-lg-6 g-4">
                   {products.map((product) => (
                     <div key={product.id} className="col">
@@ -109,10 +127,10 @@ function App() {
                     </div>
                   ))}
                 </div>
+                )}
                 <br />
               </>
-            }
-          />
+            }/>
 
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

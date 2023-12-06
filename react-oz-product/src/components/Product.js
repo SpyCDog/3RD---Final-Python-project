@@ -3,6 +3,7 @@ import axios from "axios";
 import "./styles/Product.css";
 import { TbCurrencyShekel } from "react-icons/tb";
 
+
 function Product({product}) {
 
   // Define handleAddToCart function
@@ -25,7 +26,7 @@ function Product({product}) {
       )
       .then((response) => {
         // Handle the success
-        console.log("Product added to cart:", response.data);
+        console.log("Product added to cart:", response.data.detail);
         // Optionally, trigger any UI update or notification
       })
       .catch((error) => {
@@ -45,6 +46,7 @@ function Product({product}) {
       />
       <div className="card-body">
         <h5 className="card-title">
+          
           {product.name} <br></br>
           {product.price}<TbCurrencyShekel/>
         </h5>

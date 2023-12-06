@@ -3,6 +3,20 @@ import { Link, useLocation } from "react-router-dom";
 import { BsCart3 } from "react-icons/bs";
 import { UserContext } from './UserContext';
 
+function getTimeBasedGreeting(username) {
+  const hour = new Date().getHours(); // Get the current hour
+  let greeting = "Welcome";
+
+  if (hour < 12) {
+      greeting = "Good morning";
+  } else if (hour < 18) {
+      greeting = "Good afternoon";
+  } else {
+      greeting = "Good evening";
+  }
+
+  return `${greeting} ${username}`;
+}
 
 function Navbar({ categories, clickButton, searchProduct }) {
   const [searchText, setSearchText] = useState(""); // this is the value of the search field
@@ -48,8 +62,8 @@ function Navbar({ categories, clickButton, searchProduct }) {
           <li className="nav-item">
             {user ? (
               <>
-                <span>Welcome, {user.username}!</span>
-                <button onClick={logout}>Logout</button>
+                <span><span>{getTimeBasedGreeting(user.username)}</span></span>
+                <button className="mx-1 btn btn-danger" onClick={logout}>Logout</button>
               </>
               ) : (
                 <Link className="mx-1 btn btn-success" to="/login">Login / Register</Link>

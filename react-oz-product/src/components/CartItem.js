@@ -15,6 +15,7 @@ import { FaTrashAlt } from "react-icons/fa";
 function CartItem({ item, onRemoveItem }) {
     const [productDetails, setProductDetails] = useState(null);
 
+
     useEffect(() => {
         fetchProductDetails(item.product);
     }, [item.product]);
@@ -23,10 +24,14 @@ function CartItem({ item, onRemoveItem }) {
         try {
             const response = await axios.get(`https://oz-products-web.onrender.com/product/${productId}/`);
             setProductDetails(response.data);
-        } catch (error) {
+            }
+         catch (error) {
             console.error("Error fetching product details:", error);
-        }
-    };
+
+        }};
+
+   
+      
     return (
         <MDBCard className="mb-3">
             <MDBCardBody>

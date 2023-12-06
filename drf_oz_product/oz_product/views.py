@@ -110,9 +110,9 @@ def add_to_cart(request):
             else:
                 cart_item.quantity = int(quantity)
             cart_item.save()
-            return Response({'detail': 'Item added to cart.'}, status=status.HTTP_201_CREATED)
+            return Response(cart_item_serializer.data, status=status.HTTP_201_CREATED)
         except Product.DoesNotExist:
-            return Response({'detail': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'Product not found.(backend - add_to_cart)'}, status=status.HTTP_404_NOT_FOUND)
         
         
         

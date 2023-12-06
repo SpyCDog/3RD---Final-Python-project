@@ -7,6 +7,7 @@ ToDo list:
 - style nav bar with logo
 - adding animations styles
 - add loading animation
+- add ui quntety chnge to the cart
 
 
 screens:

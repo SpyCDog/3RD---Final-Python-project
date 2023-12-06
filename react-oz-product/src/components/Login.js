@@ -13,13 +13,13 @@ function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    const history = useNavigate();
+    const navigate = useNavigate();
     const { login } = useContext(UserContext);
 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+        // Handle successful login
         try {
             const response = await axios.post('https://oz-products-web.onrender.com/token/', {
                 username,
@@ -29,11 +29,12 @@ function Login() {
             localStorage.setItem('refreshToken', response.data.refresh);
             localStorage.setItem('username', username);
             login({ username: username, ...response.data });
-            history.push('/');
+            navigate('/');
             console.log('Logged in successfully:', response.data);
             
-            // Handle successful login
+           // Handle login failed
         } catch (error) {
+            console.log(error)
             if (error.response) {
                 setErrorMessage(error.response.data.message);
             } else {
