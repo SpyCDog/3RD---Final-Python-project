@@ -93,7 +93,7 @@ def cart(request):
     
     
     
-@api_view(['GET, POST'])
+@api_view(['POST'])
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
 

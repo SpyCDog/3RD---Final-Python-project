@@ -7,7 +7,7 @@ function Product({product}) {
 
   // Define handleAddToCart function
   const handleAddToCart = () => {
-    const accessToken = localStorage.getItem('accessToken');
+    const tkn = localStorage.getItem('accessToken');
     console.log("retrived token....")
     axios.post("https://oz-products-web.onrender.com/add_to_cart/",
 
@@ -19,7 +19,7 @@ function Product({product}) {
           headers: {
             // Include the JWT token in the authorization header
             // Ensure that userToken is passed down from the parent component or managed via context or redux
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `Token ${tkn}`,
           },
         }
       )

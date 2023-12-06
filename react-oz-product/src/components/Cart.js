@@ -10,16 +10,18 @@ import {
   MDBRow,
 } from 'mdb-react-ui-kit';
 
+const TKN = localStorage.getItem('accessToken');
+
 function Cart() {
     const [cart, setCart] = useState([]);
     
     
     useEffect(() => {
-        const jwtToken = localStorage.getItem('token');
+        
        // Retrieve the token again for this request
         axios.get("https://oz-products-web.onrender.com/cart/", {
           headers: {
-              Authorization: `Bearer ${jwtToken}`
+              Authorization: `Token ${TKN}`
             }
         })
         .then(response => {
@@ -31,10 +33,9 @@ function Cart() {
     }, []);
 
     const handleRemoveItem = (itemId) => {
-        const jwtToken = localStorage.getItem('token');
         axios.delete(`https://oz-products-web.onrender.com/delete_from_cart/${itemId}/`, {
           headers: {
-              Authorization: `Bearer ${jwtToken}`
+              Authorization: `Token ${TKN}`
           }
       })
   
