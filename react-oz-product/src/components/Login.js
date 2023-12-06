@@ -19,6 +19,7 @@ function Login() {
                 password
             });
             localStorage.setItem('accessToken', response.data.access);
+            localStorage.setItem('refreshToken', response.data.refresh);
             console.log('Logged in successfully:', response.data);
             // Handle successful login
         } catch (error) {

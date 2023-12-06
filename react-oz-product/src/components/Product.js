@@ -3,14 +3,13 @@ import axios from "axios";
 import "./styles/Product.css";
 import { TbCurrencyShekel } from "react-icons/tb";
 
-function Product({ product}) {
+function Product({product}) {
 
   // Define handleAddToCart function
   const handleAddToCart = () => {
     const accessToken = localStorage.getItem('accessToken');
-    axios
-      .post(
-        "https://oz-products-web.onrender.com/add_to_cart/",
+    console.log("retrived token....")
+    axios.post("https://oz-products-web.onrender.com/add_to_cart/",
 
         {
           product_id: product.id,
