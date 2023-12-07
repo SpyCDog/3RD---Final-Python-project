@@ -38,9 +38,9 @@ function CartItem({ item, onRemoveItem }) {
                 <div className="d-flex justify-content-between">
                     <div className="d-flex flex-row align-items-center">
                         <MDBCardImage
-                            // src={item.product.image_url} 
+                            src={`https://oz-products-web.onrender.com${productDetails?.image}`} 
                             fluid className="rounded-3" style={{ width: "65px" }}
-                            alt={item.product.name} />
+                            alt={productDetails?.name} />
                         <div className="ms-3">
                         <MDBTypography tag="h5">{productDetails?.name}</MDBTypography>
                             <p className="small mb-0">{productDetails?.description}</p>
