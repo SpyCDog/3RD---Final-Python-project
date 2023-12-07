@@ -15,6 +15,14 @@ ToDo list:
 -ADD logo
 - CHECK IF IS THERE EASY OPTION TO LOG IN WOTH FACEBOOK/GOOGLE
 - while remove from cart remove only one quantity
+- add login gif 
+- add welcome gif
+- add to greetng image based on the function
+- get the cart option to choose quntity based on the stock
+-get stock alert for each product
+- add product only for autorized user
+- make register
+- add 
 
 
 screens:

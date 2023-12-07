@@ -12,8 +12,7 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__' 
-        # example of how to filter fields. remove line 7 __all__ and replace with line 9:
-        # fields = ['name','price']
+    
         
 class CartItemSerializer(serializers.ModelSerializer):
     product = ProductSerializer(many=False, read_only=True)
