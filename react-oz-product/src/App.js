@@ -19,7 +19,7 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [currentCategory, setCurrentCategory] = useState(1);
   const [products, setProducts] = useState([]);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("Default massege!!!");
   const [showAlert, setShowAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(false); 
 
@@ -61,7 +61,7 @@ function App() {
     console.log("get products 'app.js' function", searchText);
     let url = HOST_URL + "product?category=" + currentCategory;
     if (searchText) {
-      url = HOST_URL + "product?search=" + searchText;
+      url = HOST_URL + "product?search=" + searchText;// TODO: Sould i add it to 'let'??
     }
     axios
       .get(url)
