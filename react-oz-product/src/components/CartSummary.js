@@ -5,6 +5,8 @@ import {
 import { TbCurrencyShekel } from "react-icons/tb";
 
 function CartSummary({ subtotal }) {
+    console.log("Subtotal in CartSummary:", subtotal);
+
     return (
         <div className="cart-summary">
             <MDBTypography tag="h5">Subtotal: <TbCurrencyShekel/> {subtotal.toFixed(2)}</MDBTypography>
