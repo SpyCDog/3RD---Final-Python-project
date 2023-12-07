@@ -36,11 +36,14 @@ function Product({product}) {
       });
   };
 
+  const imageUrl = product.image ? `${"https://oz-products-web.onrender.com"}${product.image}` : "default-fallback-image-url";
+
+
   // Render the product card with an "Add to Cart" button
   return (
     <div className="card product-card" style={{ width: "20rem" }}>
       <img
-        src={"https://picsum.photos/268/180?random=" + product.id}
+        src={imageUrl}
         className="card-img-top"
         alt={product.name}
       />
