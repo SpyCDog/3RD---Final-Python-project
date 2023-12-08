@@ -32,7 +32,7 @@ function Footer() {
           </ul>
           <p className="text-center text-muted">©OZ PRODUCTS INC.</p>
           {/* local image in public folder example */}
-          <img src={process.env.PUBLIC_URL + "/ozlogo.png"} alt="logo" className="logo-footer" />
+          <img src={process.env.PUBLIC_URL + "/ozlogo.png"} alt="footerLogo" className="logo-footer" />
         </footer>
       </div>
     </>
