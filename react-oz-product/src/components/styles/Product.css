@@ -10,3 +10,38 @@
   z-index: 10; /* Ensure it's above other cards */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds shadow for better effect */
 }
+
+/* Product.css */
+
+.product-card img {
+  width: 100%; /* Full width of the card */
+  height: 12rem; /* Fixed height for the image */
+  object-fit: contain; /* This will ensure the image fits within the given dimensions */
+  margin-bottom: 0.5rem; /* Add a bit of margin below the image */
+}
+
+/* Product.css */
+
+.product-card .card-title {
+  font-size: 1rem; /* Adjust font size as needed */
+  white-space: nowrap; /* Keep the title in a single line */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add an ellipsis to titles that are too long */
+}
+
+/* Product.css */
+
+/* Product.css */
+
+.product-card .card-text {
+  font-size: 0.9rem; /* Adjust font size as needed */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4; /* Limit the text block to four lines */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2; /* Adjust line height to ensure text fits and is readable */
+  margin-bottom: 0.5rem; /* Add some margin to the bottom */
+  height: calc(1.2em * 4); /* Calculate height based on line-height and number of lines */
+}
+

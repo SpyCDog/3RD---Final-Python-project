@@ -38,7 +38,7 @@ function Login() {
              // Set a timeout to navigate after the animation has had time to play
              setTimeout(() => {
                  navigate('/');
-             }, 3000); // Delay the navigation for 3 seconds
+             }, 2350); // Delay the navigation for 3 seconds
             
             console.log('Logged in successfully:', response.data);
             
@@ -52,15 +52,21 @@ function Login() {
         }
     };
 
-    return (
-        <Container className="login-container">
-            {showSuccessAnimation && (
+    if (showSuccessAnimation) {
+        // Only show the animation and nothing else
+        return (
+            <div className="animation-container">
                 <Lottie
                     animationData={successAnimationData}
                     play
-                    style={{ width: 150, height: 150 }}
+                    className="lottie-animation" // Apply the CSS class here
                 />
-            )}
+            </div>
+        );
+    }
+
+    return (
+        <Container className="login-container">
             <Row className="justify-content-md-center">
                 <Col md={6}>
                     <Card>

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./styles/Footer.css";
 
 function Footer() {
   return (
@@ -6,38 +7,32 @@ function Footer() {
       <div className="container">
         <footer className="py-3 my-4">
           <ul className="nav justify-content-center border-bottom pb-3 mb-3">
+          <li className="nav-item">
+              <a href="/" className="nav-link px-2 text-muted">
+                ABOUT
+              </a>
+            </li>
             <li className="nav-item">
               <Link to="/" className="nav-link px-2 text-muted">
-                Home
+                FACEBOOK
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/login" className="nav-link px-2 text-muted">
-                Login
+                INSTGRAM
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/register" className="nav-link px-2 text-muted">
-                Register
+                REGISTER
               </Link>
             </li>
-            <li className="nav-item">
-              <a
-                href="https://www.google.com"
-                className="nav-link px-2 text-muted"
-              >
-                Google
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="/" className="nav-link px-2 text-muted">
-                About
-              </a>
-            </li>
+            
+            
           </ul>
-          <p className="text-center text-muted">© 2022 Company, Inc</p>
+          <p className="text-center text-muted">©OZ PRODUCTS INC.</p>
           {/* local image in public folder example */}
-          <img src={process.env.PUBLIC_URL + "/logo192.png"} alt="logo" />
+          <img src={process.env.PUBLIC_URL + "/ozlogo.png"} alt="logo" className="logo-footer" />
         </footer>
       </div>
     </>

@@ -47,6 +47,9 @@ function Product({product}) {
 
   const imageUrl = product.image ? `${"https://oz-products-web.onrender.com"}${product.image}` : "default-fallback-image-url";
 
+  // const productDetailUrl = `/product/${product.id}`; // Adjust this URL as needed
+
+
 
   // Render the product card with an "Add to Cart" button
   return (
@@ -62,7 +65,9 @@ function Product({product}) {
           {product.name} <br></br>
           {product.price}<TbCurrencyShekel/>
         </h5>
-        <p className="card-text"></p>
+        <p className="card-text">
+          {product.description}
+        </p>
         <button style={{ marginRight: "8px" }} className="btn btn-primary">
           Details
         </button>
@@ -74,7 +79,7 @@ function Product({product}) {
         <Lottie animationData={seccessAnimation}
           play={showSuccessAnimation}
           onComplete={showSuccessAnimation}
-          style={{ width: 150, height: 150 ,zIndex: 1}}
+          style={{ width: 150, height: 150, position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
           />
           )}
 

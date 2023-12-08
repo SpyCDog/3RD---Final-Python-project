@@ -90,9 +90,39 @@
     }
   }
   
-  .greeting-container {
-    height: 150px; /* Adjust the height as needed */
-    position: relative;
-    overflow: hidden; /* This ensures the animation does not overflow the container */
-  }
+
   
+
+
+  /* Assuming the file is Navbar.css */
+
+.greeting-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.greeting-animation {
+  position: absolute;
+  right: 28px;
+  z-index: -1;
+  width: 100px; /* Adjust width as needed */
+  height: 100px; /* Adjust height as needed */
+}
+
+.greeting-text {
+  z-index: 1;
+  /* Add any additional styling for the text here */
+  /* For example, if you want a nice font: */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  /* Adjust the font properties as needed */
+}
+
+
+
+.logo-navbar {
+  width: 100px; /* Adjust the width as needed */
+  height: auto; /* This will maintain the aspect ratio */
+}

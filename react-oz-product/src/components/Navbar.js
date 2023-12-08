@@ -1,11 +1,13 @@
 import { useState, useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { BsCart3 } from "react-icons/bs";
 import { UserContext } from './UserContext';
 import Lottie from 'lottie-react';
 import morningAnimationData from './styles/lottie/morning.json';
 import afternoonAnimationData from './styles/lottie/noon.json';
 import eveningAnimationData from './styles/lottie/evening.json';
+import './styles/Navbar.css';
+
 
 
 function getTimeBasedGreeting(username) {
@@ -23,15 +25,17 @@ function getTimeBasedGreeting(username) {
       greetingText = "Good evening";
       animationData = eveningAnimationData;
   }
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-      <div style={{ position: 'absolute', right: 28, zIndex: -1 }}>
+ return (
+    <div className="greeting-container">
+      <div className="greeting-animation">
         <Lottie
           animationData={animationData}
-          style={{ width: '100px', height: '100px' }}
+          play
+          loop
         />
       </div>
-      <p style={{ zIndex: 1 }}>{greetingText}, {username}</p>
+      <p className="greeting-text">{greetingText}, {username}</p>
+      {/* Applied the CSS class for styling */}
     </div>
   );
 }
@@ -44,21 +48,24 @@ function Navbar({ categories, clickButton, searchProduct }) {
 
   return (
     <>
+    
       <ul className="nav my-4">
+
         <li className="nav-item">
-          <Link to="/" className="nav-link" onClick={() => clickButton("")}>
-            All Products
-          </Link>
+          <NavLink to="/" className="nav-Navlink" onClick={() => clickButton("")}>
+          <img src={process.env.PUBLIC_URL + "/ozlogo.png"} alt="logo" className="logo-navbar" />
+          </NavLink>
         </li>
+       
         {categories.map((category) => (
           <li key={category.id} className="nav-item">
-            <Link
+            <NavLink
               to="/"
-              className="nav-link"
+              className="nav-Navlink"
               onClick={() => clickButton(category.id)}
             >
               {category.name}
-            </Link>
+            </NavLink>
           </li>
         ))}
         <li className="nav-item">
@@ -68,13 +75,13 @@ function Navbar({ categories, clickButton, searchProduct }) {
           />
         </li>
         <li className="nav-item">
-          <Link
+          <NavLink
             to="/"
             className="mx-1 btn btn-info"
             onClick={() => searchProduct(searchText)}
           >
             Search
-          </Link>
+          </NavLink>
         </li>
         {location.pathname === "/login" ? null : (
           <li className="nav-item">
@@ -87,24 +94,24 @@ function Navbar({ categories, clickButton, searchProduct }) {
 
               </>
               ) : (
-                <Link className="mx-1 btn btn-success" to="/login">Login / Register</Link>
+                <NavLink className="mx-1 btn btn-success" to="/login">Login / Register</NavLink>
                 )
             }
           </li>
           )
         }
         <li className="nav-item">
-          <Link className="mx-1 nav-link" to="/add_product">
+          <NavLink className="mx-1 nav-Navlink" to="/add_product">
             Add Product
-          </Link>
+          </NavLink>
         </li>
 
         
         <li className="nav-item">
-          <Link to="/cart">
+          <NavLink to="/cart">
             <BsCart3 style={{ fontSize: "2.5em", color: "black" }} />
 
-          </Link> 
+          </NavLink> 
           
 
         </li>
