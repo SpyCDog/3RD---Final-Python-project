@@ -8,51 +8,40 @@ import afternoonAnimationData from './styles/lottie/noon.json';
 import eveningAnimationData from './styles/lottie/evening.json';
 
 
-// function getTimeBasedGreeting(username) {
-//   const hour = new Date().getHours(); // Get the current hour
-//   let greeting = "Welcome";
+function getTimeBasedGreeting(username) {
+  const hour = new Date().getHours(); // Get the current hour
+  let greetingText = "Welcome";
+  let animationData = morningAnimationData; // Default to morning animation
 
-//   if (hour < 12) {
-//       greeting = "Good morning";
-//   } else if (hour < 18) {
-//       greeting = "Good afternoon";
-//   } else {
-//       greeting = "Good evening";
-//   }
-  
-
-//   return `${greeting} ${username}`;
-// }
+  if (hour < 12) {
+      greetingText = "Good morning";
+      animationData = morningAnimationData;
+  } else if (hour < 18) {
+      greetingText = "Good afternoon";
+      animationData = afternoonAnimationData;
+  } else {
+      greetingText = "Good evening";
+      animationData = eveningAnimationData;
+  }
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
+      <div style={{ position: 'absolute', right: 28, zIndex: -1 }}>
+        <Lottie
+          animationData={animationData}
+          style={{ width: '100px', height: '100px' }}
+        />
+      </div>
+      <p style={{ zIndex: 1 }}>{greetingText}, {username}</p>
+    </div>
+  );
+}
 
 function Navbar({ categories, clickButton, searchProduct }) {
   const [searchText, setSearchText] = useState(""); // this is the value of the search field
   const location = useLocation();
   const { user, logout } = useContext(UserContext);
-  
-  const getGreetingAnimation = (username) => {
-    const hour = new Date().getHours(); // Get the current hour
-    let greetingAnimationData = morningAnimationData; // Default to morning animation
 
-    if (hour < 12) {
-      greetingAnimationData = morningAnimationData;
-    } else if (hour < 18) {
-      greetingAnimationData = afternoonAnimationData;
-    } else {
-      greetingAnimationData = eveningAnimationData;
-    }
 
-    const defaultOptions = {
-      loop: true,
-      autoplay: true, 
-      animationData: greetingAnimationData,
-      rendererSettings: {
-        preserveAspectRatio: 'xMidYMid slice'
-      }
-    };
-    return (
-      <Lottie options={defaultOptions} height={120} width={120} />
-      );
-    };
   return (
     <>
       <ul className="nav my-4">
@@ -91,8 +80,11 @@ function Navbar({ categories, clickButton, searchProduct }) {
           <li className="nav-item">
             {user ? (
               <>
-                <span><span>{getGreetingAnimation(user.username)}</span></span>
-                <button className="mx-1 btn btn-danger" onClick={logout}>Logout</button>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  {getTimeBasedGreeting(user.username)}
+                  <button className="mx-1 btn btn-danger" onClick={logout}>Logout</button>
+                </div>
+
               </>
               ) : (
                 <Link className="mx-1 btn btn-success" to="/login">Login / Register</Link>
@@ -111,7 +103,10 @@ function Navbar({ categories, clickButton, searchProduct }) {
         <li className="nav-item">
           <Link to="/cart">
             <BsCart3 style={{ fontSize: "2.5em", color: "black" }} />
-          </Link>
+
+          </Link> 
+          
+
         </li>
       </ul>
     </>

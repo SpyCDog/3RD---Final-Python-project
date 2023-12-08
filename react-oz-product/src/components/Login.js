@@ -5,6 +5,8 @@ import { Form, Button, Alert, Container, Row, Col, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import './styles/Login.css';
 import { UserContext } from './UserContext';
+import Lottie from 'lottie-react';
+import successAnimationData from './styles/lottie/check.json';
 
 
 
@@ -15,6 +17,8 @@ function Login() {
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
     const { login } = useContext(UserContext);
+    const [showSuccessAnimation, setShowSuccessAnimation] = useState(false); // New state variable for controlling the animation
+
 
 
     const handleSubmit = async (event) => {
@@ -29,7 +33,13 @@ function Login() {
             localStorage.setItem('refreshToken', response.data.refresh);
             localStorage.setItem('username', username);
             login({ username: username, ...response.data });
-            navigate('/');
+             // Show the success animation
+             setShowSuccessAnimation(true);
+             // Set a timeout to navigate after the animation has had time to play
+             setTimeout(() => {
+                 navigate('/');
+             }, 3000); // Delay the navigation for 3 seconds
+            
             console.log('Logged in successfully:', response.data);
             
            // Handle login failed
@@ -44,6 +54,13 @@ function Login() {
 
     return (
         <Container className="login-container">
+            {showSuccessAnimation && (
+                <Lottie
+                    animationData={successAnimationData}
+                    play
+                    style={{ width: 150, height: 150 }}
+                />
+            )}
             <Row className="justify-content-md-center">
                 <Col md={6}>
                     <Card>

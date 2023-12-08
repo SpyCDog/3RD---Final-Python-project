@@ -26,6 +26,12 @@ ToDo list:
 - taking care of while setion of acces token ends it will logout and move to home page
 
 
+
+- HOW TO CONECT STOCK AND QUNTITY TOGETHER IN THE BACKND . ??PK FK??
+
+
+
+
 screens:
 home -with products on sale and big header of welcome
 products for each category 

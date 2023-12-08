@@ -90,3 +90,9 @@
     }
   }
   
+  .greeting-container {
+    height: 150px; /* Adjust the height as needed */
+    position: relative;
+    overflow: hidden; /* This ensures the animation does not overflow the container */
+  }
+  
