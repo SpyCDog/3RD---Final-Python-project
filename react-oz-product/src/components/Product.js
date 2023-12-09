@@ -4,6 +4,7 @@ import "./styles/Product.css";
 import { TbCurrencyShekel } from "react-icons/tb";
 import Lottie from 'lottie-react';
 import seccessAnimation from './styles/lottie/success.json';
+import {URL} from '../constants.js';
 
 
 function Product({product}) {
@@ -19,7 +20,7 @@ function Product({product}) {
     }, 3000);
     const tkn = localStorage.getItem('accessToken');
     console.log("retrived token....")
-    axios.post("https://oz-products-web.onrender.com/add_to_cart/",
+    axios.post(`${URL}/add_to_cart/`,
 
         {
           product_id: product.id,
@@ -45,7 +46,7 @@ function Product({product}) {
       });
   };
 
-  const imageUrl = product.image ? `${"https://oz-products-web.onrender.com"}${product.image}` : "default-fallback-image-url";
+  const imageUrl = product.image ? `${URL}${product.image}` : "default-fallback-image-url";
 
   // const productDetailUrl = `/product/${product.id}`; // Adjust this URL as needed
 
@@ -63,7 +64,7 @@ function Product({product}) {
         <h5 className="card-title">
           
           {product.name} <br></br>
-          {product.price}<TbCurrencyShekel/>
+          {parseFloat(product.price).toLocaleString()}<TbCurrencyShekel/>
         </h5>
         <p className="card-text">
           {product.description}

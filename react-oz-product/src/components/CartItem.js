@@ -55,7 +55,7 @@ function CartItem({ item, onRemoveItem }) {
                         </div>
                         <div style={{ width: "80px" }}>
                             <MDBTypography tag="h" className="mb-0">
-                            <TbCurrencyShekel/>{item.product.price}
+                            <TbCurrencyShekel/>{parseFloat(item.product.price).toLocaleString()}
                             <p className="small mb-0">Qty: {item.quantity}</p>
                             </MDBTypography>
                         </div>

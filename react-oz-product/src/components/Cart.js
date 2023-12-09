@@ -63,7 +63,6 @@ function Cart() {
         return total + (quantity * price);
       }, 0);
       
-   
     if (loading) {
         return (
             <div className="spinner-container">
@@ -91,6 +90,7 @@ function Cart() {
                                         ))}
                                     </MDBCol>
                                     <MDBCol lg="5">
+                                        
                                         <CartSummary subtotal={subtotal} />
                                     </MDBCol>
                                 </MDBRow>

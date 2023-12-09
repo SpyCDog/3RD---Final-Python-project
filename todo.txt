@@ -24,6 +24,7 @@ ToDo list:
 - make register
 - taking care of adding',' after 3 digit price
 - taking care of while setion of acces token ends it will logout and move to home page
+- ADDING CONSTANTS FILE
 
 
 
