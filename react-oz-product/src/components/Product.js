@@ -21,7 +21,7 @@ function Product({product}) {
     }, 3000);
     const tkn = localStorage.getItem('accessToken');
     console.log("retrived token....")
-    axios.post(`${HOST_URL}/add_to_cart/`,
+    axios.post(`${HOST_URL}/add_to_cart`,
 
         {
           product_id: product.id,

@@ -22,7 +22,7 @@ function Cart() {
         setLoading(true);
         const TKN = localStorage.getItem('accessToken');
        // Retrieve the token again for this request
-        axios.get("https://oz-products-web.onrender.com/cart/", {
+        axios.get("https://oz-products-web.onrender.com/cart", {
           headers: {
               Authorization: `Bearer ${TKN}`
             }

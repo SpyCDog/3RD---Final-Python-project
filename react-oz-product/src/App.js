@@ -40,7 +40,7 @@ function App() {
   function getCategories() {
     setIsLoading(true); // Start loading-spinner
     axios
-      .get(HOST_URL + "/category/")
+      .get(HOST_URL + "/category")
       .then((response) => {
         console.log("categories are:", response.data);
         setCategories(response.data);
