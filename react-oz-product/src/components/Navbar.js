@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { BsCart3 } from "react-icons/bs";
-import Nav from "react-bootstrap/Nav";
 import { UserContext } from "./UserContext";
 import Lottie from "lottie-react";
 import morningAnimationData from "./styles/lottie/morning.json";
@@ -46,7 +45,7 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
   return (
     <>
       <ul className="nav my-4">
-        <Nav.Item className="nav-item">
+        <li className="nav-item">
           <NavLink
             to="/"
             className="nav-Navlink"
@@ -58,10 +57,10 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
               className="logo-navbar"
             />
           </NavLink>
-        </Nav.Item>
+        </li>
 
         {categories.map((category) => (
-          <Nav.Item key={category.id}>
+          <li key={category.id}>
             <NavLink
               to="/"
               className="nav-Navlink"
@@ -69,7 +68,7 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
             >
               {category.name}
             </NavLink>
-          </Nav.Item>
+          </li>
         ))}
         <li className="nav-item">
           <input
@@ -78,13 +77,13 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
           />
         </li>
         <li className="nav-item">
-          <button
+          <NavLink
             to="/"
             className="mx-1 btn btn-info"
             onClick={() => searchProduct(searchText)}
           >
             Search
-          </button>
+          </NavLink>
         </li>
         {location.pathname === "/login" ? null : (
           <li className="nav-item">
