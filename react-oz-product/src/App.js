@@ -40,7 +40,7 @@ function App() {
   function getCategories() {
     setIsLoading(true); // Start loading-spinner
     axios
-      .get(HOST_URL + "category")
+      .get(HOST_URL + "/category")
       .then((response) => {
         console.log("categories are:", response.data);
         setCategories(response.data);
@@ -56,9 +56,9 @@ function App() {
   function getProducts(searchText = null) {
     setIsLoading(true); // Start loading-spinner
     console.log("get products 'app.js' function", searchText);
-    let url = HOST_URL + "product?category=" + currentCategory;
+    let url = HOST_URL + "/product?category=" + currentCategory;
     if (searchText) {
-      url = HOST_URL + "product?search=" + searchText; // TODO: Sould i add it to 'let'??
+      url = HOST_URL + "/product?search=" + searchText; // TODO: Sould i add it to 'let'??
     }
     axios
       .get(url)
