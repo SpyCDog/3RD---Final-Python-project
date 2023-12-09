@@ -1,13 +1,9 @@
 .navbar {
-    position: sticky;
-    position: -webkit-sticky;
-    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #f8f9fa;
     padding: 0.5rem 1rem;
-    z-index: 10000;
   }
   
   
@@ -18,40 +14,45 @@
   .nav-link {
     font-size: 1.1rem;
     color: #092237;
-    transition: 0.3s ease;
+    transition: color 0.2s ease-in-out;
   }
   
   .nav-link:hover {
-    transform: scale(1.1);
+    color: #103959
     ;
   }
   
   .search-form {
     position: relative;
-    
   }
   
   .search-input {
     font-size: 1rem;
     padding: 0.5rem;
-    background-color: #103959;
-    border: 1px solid #8c8c94;
-    border-radius: 20px;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
     width: 250px;
-    
-    
   }
- 
+  
   .search-button {
-    position: absolute; 
+    position: absolute;
+    right: 1;
+    top: 1;
+    bottom:1;
+    border: none;
+    background-color: #092237;
     color: #8c8c94;
     padding: 0 1rem;
+    border-radius: 0 0.25rem 0.25rem 0;
     font-size: 1rem;
-    transition: transform 0.3s ease;
   }
   
   .search-button:hover {
-    transform: scale(1.25);
+    background-color: #8c8c94;
+    color:#092237;
+    
+
+
   }
   
   .navbar-buttons {
@@ -69,10 +70,6 @@
     color: #092237;
     margin-left: 1rem;
     font-size: 2.5em;
-    transition: transform 0.3s ease;
-  }
-  .cart-icon:hover {
-    transform: scale(1.25);
   }
   
   /* Responsiveness */
@@ -101,9 +98,8 @@
 }
 
 .greeting-animation {
-  
   position: absolute;
-  /* right: 1; */
+  right: 28px;
   z-index: -1;
   width: 100px; /* Adjust width as needed */
   height: 100px; /* Adjust height as needed */
@@ -124,30 +120,4 @@
 .logo-navbar {
   width: 100px; /* Adjust the width as needed */
   height: auto; /* This will maintain the aspect ratio */
-  transition: transform 0.4s ease-in-out;
-  display: inline-block; /* necessary for transform to work */
-  animation: swing-and-spin 2s ease-in-out 1;
-  
-}
-
-.logo-navbar:hover {
-  animation: swing-and-spin 2s ease-in-out 0.1s;
-}
-
-@keyframes swing-and-spin {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(-45deg); /* Swing to the left by 45 degrees */
-  }
-  80% {
-    transform: rotate(360deg); /* Spin right 360 degrees */
-  }
-}
-
-
-
-ul {
-  list-style-type: none; /* This removes the bullet points */
 }

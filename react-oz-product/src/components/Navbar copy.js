@@ -5,7 +5,6 @@ import Lottie from "lottie-react";
 import { MdShoppingCart } from "react-icons/md";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
-
 import morningAnimationData from "./styles/lottie/morning.json";
 import afternoonAnimationData from "./styles/lottie/noon.json";
 import eveningAnimationData from "./styles/lottie/evening.json";
@@ -51,7 +50,7 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
         <li className="nav-item">
           <NavLink
             to="/"
-            className="logo-navbar"
+            className="nav-link"
             onClick={() => navClickButtom("")}
           >
             <img
@@ -75,8 +74,6 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
         ))}
         <li className="search-input">
           <input
-            type="text"
-            placeholder="Search products..."
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           /><NavLink
