@@ -58,7 +58,7 @@ function App() {
     console.log("get products 'app.js' function", searchText);
     let url = HOST_URL + "/product?category=" + currentCategory;
     if (searchText) {
-      url = HOST_URL + "/product?search=" + searchText; 
+      url = HOST_URL + "/product?search=" + searchText;
       console.log("URL-serach:", url); // Add this line to check the URL
     }
     axios

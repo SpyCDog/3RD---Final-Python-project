@@ -4,7 +4,8 @@ import "./styles/Product.css";
 import { TbCurrencyShekel } from "react-icons/tb";
 import Lottie from 'lottie-react';
 import seccessAnimation from './styles/lottie/success.json';
-import {HOST_URL} from '../constants.js';
+import { HOST_URL } from '../constants.js';
+
 
 
 function Product({product}) {
