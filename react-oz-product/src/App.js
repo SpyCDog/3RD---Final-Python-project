@@ -58,8 +58,9 @@ function App() {
     console.log("get products 'app.js' function", searchText);
     let url = HOST_URL + "/product?category=" + currentCategory;
     if (searchText) {
-      url = HOST_URL + "/product?search=" + searchText; // TODO: Sould i add it to 'let'??
+      url = HOST_URL + "/product?search=" + searchText; 
     }
+    console.log("URL being requested:", url); // Add this line to check the URL
     axios
       .get(url)
       .then((response) => {
@@ -68,6 +69,7 @@ function App() {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+        console.log(error.response);
       })
       .finally(() => {
         setIsLoading(false); // End loading-spinner
