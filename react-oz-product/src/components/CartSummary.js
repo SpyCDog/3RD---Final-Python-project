@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   MDBTypography,
-  MDBBtn
+  MDBBtn,
 } from 'mdb-react-ui-kit';
 import { TbCurrencyShekel } from "react-icons/tb";
 
@@ -13,7 +13,6 @@ function CartSummary({ subtotal }) {
             <MDBTypography tag="h5">Total: <TbCurrencyShekel/> {parseFloat(subtotal.toFixed(2)).toLocaleString()} </MDBTypography>
             <MDBBtn color="info" block size="lg">
                       <div className="d-flex justify-content-between">
-                        <span>$4818.00</span>
                         <span>
                           Checkout{" "}
                           <i className="fas fa-long-arrow-alt-right ms-2"></i>

@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { BsCart3 } from "react-icons/bs";
+import { BsCart3} from "react-icons/bs";
 import { UserContext } from './UserContext';
 import Lottie from 'lottie-react';
 import morningAnimationData from './styles/lottie/morning.json';
@@ -70,6 +70,7 @@ function Navbar({ categories, clickButton, searchProduct }) {
         ))}
         <li className="nav-item">
           <input
+          
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />

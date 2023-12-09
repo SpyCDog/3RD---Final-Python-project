@@ -4,7 +4,7 @@ import "./styles/Product.css";
 import { TbCurrencyShekel } from "react-icons/tb";
 import Lottie from 'lottie-react';
 import seccessAnimation from './styles/lottie/success.json';
-import {URL} from '../constants.js';
+import {HOST_URL} from '../constants.js';
 
 
 function Product({product}) {
@@ -20,7 +20,7 @@ function Product({product}) {
     }, 3000);
     const tkn = localStorage.getItem('accessToken');
     console.log("retrived token....")
-    axios.post(`${URL}/add_to_cart/`,
+    axios.post(`${HOST_URL}/add_to_cart/`,
 
         {
           product_id: product.id,
@@ -46,7 +46,7 @@ function Product({product}) {
       });
   };
 
-  const imageUrl = product.image ? `${URL}${product.image}` : "default-fallback-image-url";
+  const imageUrl = product.image ? `${HOST_URL}${product.image}` : "default-fallback-image-url";
 
   // const productDetailUrl = `/product/${product.id}`; // Adjust this URL as needed
 
