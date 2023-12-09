@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/3RD---Final-Python-project/static/css/main.3ae3472b.css",
-    "main.js": "/3RD---Final-Python-project/static/js/main.c5ec866b.js",
+    "main.js": "/3RD---Final-Python-project/static/js/main.799f853f.js",
     "static/js/787.6a252f38.chunk.js": "/3RD---Final-Python-project/static/js/787.6a252f38.chunk.js",
     "index.html": "/3RD---Final-Python-project/index.html",
     "main.3ae3472b.css.map": "/3RD---Final-Python-project/static/css/main.3ae3472b.css.map",
-    "main.c5ec866b.js.map": "/3RD---Final-Python-project/static/js/main.c5ec866b.js.map",
+    "main.799f853f.js.map": "/3RD---Final-Python-project/static/js/main.799f853f.js.map",
     "787.6a252f38.chunk.js.map": "/3RD---Final-Python-project/static/js/787.6a252f38.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3ae3472b.css",
-    "static/js/main.c5ec866b.js"
+    "static/js/main.799f853f.js"
   ]
 }
