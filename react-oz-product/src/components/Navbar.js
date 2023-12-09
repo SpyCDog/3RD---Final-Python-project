@@ -111,7 +111,7 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
 
         <li className="nav-item">
           <NavLink to="/cart">
-            <BsCart3 style={{ fontSize: "2.5em", color: "black" }} />
+            <BsCart3 style={{ fontSize: "2.5em", color: "#157cb8" }} />
           </NavLink>
         </li>
       </ul>
