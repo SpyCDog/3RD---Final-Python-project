@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 import LoadingSpinner from "./components/LoadingSpinner";
-import { HOST_URL } from "./constants";
+import { HOST_URL } from "./constants.js";
 
 function App() {
   const [categories, setCategories] = useState([]);

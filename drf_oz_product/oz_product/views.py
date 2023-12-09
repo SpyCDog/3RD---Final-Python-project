@@ -18,7 +18,7 @@ def products(request):
         all_products = Product.objects.all()
         # search all product that name contains search parameter
         if search:
-            all_products = all_products.filter(name__contains=search)
+            all_products = all_products.filter(name__icontains=search)
         # search all product that price <= maxprice (price__lte=maxprice)
         if maxprice:
             all_products = all_products.filter(price__lte=maxprice)
