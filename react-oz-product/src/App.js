@@ -11,9 +11,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Alert } from "react-bootstrap";
-import LoadingSpinner from './components/LoadingSpinner';
+import LoadingSpinner from "./components/LoadingSpinner";
 import { HOST_URL } from "./constants";
-
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -21,8 +20,7 @@ function App() {
   const [products, setProducts] = useState([]);
   const [message, setMessage] = useState("Default massege!!!");
   const [showAlert, setShowAlert] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); 
-
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(getProducts, [currentCategory]); // when loading the page for the first time - getProducts()
   useEffect(getCategories, []); // when loading the page for the first time - getCategories()
@@ -35,12 +33,12 @@ function App() {
     setShowAlert(true);
   }
 
-  function clickButton(name) {
+  function navClickButtom(name) {
     console.log("click!", name);
     setCurrentCategory(name);
   }
   function getCategories() {
-    setIsLoading(true);// Start loading-spinner
+    setIsLoading(true); // Start loading-spinner
     axios
       .get(HOST_URL + "category")
       .then((response) => {
@@ -53,7 +51,6 @@ function App() {
       .finally(() => {
         setIsLoading(false); // End loading-spinner
       });
-      
   }
 
   function getProducts(searchText = null) {
@@ -61,7 +58,7 @@ function App() {
     console.log("get products 'app.js' function", searchText);
     let url = HOST_URL + "product?category=" + currentCategory;
     if (searchText) {
-      url = HOST_URL + "product?search=" + searchText;// TODO: Sould i add it to 'let'??
+      url = HOST_URL + "product?search=" + searchText; // TODO: Sould i add it to 'let'??
     }
     axios
       .get(url)
@@ -94,55 +91,59 @@ function App() {
 
   return (
     <>
-    <UserProvider>
-      <BrowserRouter basename="/3RD---Final-Python-project">
-      
-        {showAlert && (
-          <Alert
-            variant="success"
-            onClose={() => setShowAlert(false)}
-            dismissible
-          >
-            {message}
-          </Alert>
-        )}
+      <UserProvider>
+        <BrowserRouter basename="/3RD---Final-Python-project">
+          {showAlert && (
+            <Alert
+              variant="success"
+              onClose={() => setShowAlert(false)}
+              dismissible
+            >
+              {message}
+            </Alert>
+          )}
 
-        <Navbar
-          categories={categories}
-          clickButton={clickButton}
-          searchProduct={searchProduct}
-        />
-        <Routes>
-          <Route path="/" element={
-              <>
-              {isLoading ? (
-                <div className="spinner-container">
-                  <LoadingSpinner /> 
-                  </div>
-                ) : (
-                <div className="row row-cols-1 row-cols-md-3 row-cols-lg-6 g-4">
-                  {products.map((product) => (
-                    <div key={product.id} className="col">
-                      <Product product={product} />
+          <Navbar
+            categories={categories}
+            navClickButtom={navClickButtom}
+            searchProduct={searchProduct}
+          />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  {isLoading ? (
+                    <div className="spinner-container">
+                      <LoadingSpinner />
                     </div>
-                  ))}
-                </div>
-                )}
-                <br />
-              </>
-            }/>
+                  ) : (
+                    <div className="row row-cols-1 row-cols-md-3 row-cols-lg-6 g-4">
+                      {products.map((product) => (
+                        <div key={product.id} className="col">
+                          <Product product={product} />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <br />
+                </>
+              }
+            />
 
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/add_product" element={<AddProduct productAdded={productAdded} />}/>
-          <Route path="*" element={<NoPage />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route
+              path="/add_product"
+              element={<AddProduct productAdded={productAdded} />}
+            />
+            <Route path="*" element={<NoPage />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
       </UserProvider>
     </>
-    
   );
 }
 
