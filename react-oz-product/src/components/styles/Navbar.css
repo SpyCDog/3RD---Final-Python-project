@@ -33,22 +33,25 @@
   }
   
   .search-input {
+    
+    right: 0;
     font-size: 1.18rem;
     padding: 0.5rem;
     width: 250px;
-    background-color: #f8f9fa;
-    color: #f8f9fa;
+    background-color: #ffffff;
+    color: #ffffff;
+    z-index: 100000;
   
     
     
   }
  
   .search-button {
-    position: absolute; 
+position:fixed;
     color: #8c8c94;
-    padding: 0 1rem;
-    font-size: 1rem;
+    /* font-size: 1rem; */
     transition: transform 0.3s ease;
+   
     
   }
   
@@ -76,6 +79,7 @@
   }
   .cart-icon:hover {
     transform: scale(1.25);
+    position: sticky;
   }
   
   /* Responsiveness */

@@ -71,6 +71,9 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
             </NavLink>
           </li>
         ))}
+        
+        
+      
         <li className="search-input">
           <input
             type="text"
@@ -78,18 +81,31 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
-          <NavLink
+            
+            <NavLink
             to="/"
             className="search-button"
             onClick={() => searchProduct(searchText)}
           >
             <FaMagnifyingGlass />
           </NavLink>
-        </li>
+          
+        </li>   
+        {/* <li className="nav-item">
+          <NavLink className="mx-1 nav-Navlink" to="/add_product">
+            Add Product
+          </NavLink>
+          </li> */}
+        <li className="cart-icon">
+          <NavLink to="/cart">
+            <MdShoppingCart />
+          </NavLink>
+        </li>  
         {location.pathname === "/login" ? null : (
           <li className="btn">
             {user ? (
               <>
+              
                 <div style={{ display: "flex", alignItems: "center" }}>
                   {getTimeBasedGreeting(user.username)}
                   <button className="btn" onClick={logout}>
@@ -103,19 +119,11 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
               </NavLink>
             )}
           </li>
-        )}
-        <li className="nav-item">
-          <NavLink className="mx-1 nav-Navlink" to="/add_product">
-            Add Product
-          </NavLink>
-        </li>
-
-        <li className="cart-icon">
-          <NavLink to="/cart">
-            <MdShoppingCart />
-          </NavLink>
-        </li>
+        )}   
+        
       </ul>
+      
+       
     </>
   );
 }
