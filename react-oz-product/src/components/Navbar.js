@@ -5,12 +5,10 @@ import Lottie from "lottie-react";
 import { MdShoppingCart } from "react-icons/md";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
-
 import morningAnimationData from "./styles/lottie/morning.json";
 import afternoonAnimationData from "./styles/lottie/noon.json";
 import eveningAnimationData from "./styles/lottie/evening.json";
 import "./styles/Navbar.css";
-
 
 function getTimeBasedGreeting(username) {
   const hour = new Date().getHours(); // Get the current hour
@@ -79,17 +77,14 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
             placeholder="Search products..."
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-          /><NavLink
+          />
+          <NavLink
             to="/"
             className="search-button"
             onClick={() => searchProduct(searchText)}
           >
             <FaMagnifyingGlass />
-
           </NavLink>
-        </li>
-        <li className="nav-item">
-          
         </li>
         {location.pathname === "/login" ? null : (
           <li className="btn">
@@ -97,7 +92,7 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
               <>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   {getTimeBasedGreeting(user.username)}
-                  <button className="mx-1 btn btn-danger" onClick={logout}>
+                  <button className="btn" onClick={logout}>
                     Logout
                   </button>
                 </div>

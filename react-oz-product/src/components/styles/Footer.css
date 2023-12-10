@@ -1,7 +1,13 @@
 /* Footer.css */
 
 .logo-footer {
-    width: 100px; /* Adjust the width as needed */
-    height: auto; /* This will maintain the aspect ratio */
-  }
-  
+  width: 100px; /* Adjust the width as needed */
+  height: auto; /* This will maintain the aspect ratio */
+}
+
+.footer {
+  position: relative;
+  text-align: center;
+  background-color: #f8f9fa;
+
+}

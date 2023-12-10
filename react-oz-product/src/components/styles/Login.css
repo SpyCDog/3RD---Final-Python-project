@@ -1,12 +1,14 @@
 .login-container {
     padding-top: 50px;
     padding-bottom: 50px;
+    
 }
 
 .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     border-radius: 5px; 
+    background-color: #f8f9fa;
 }
 
 .card:hover {
@@ -26,15 +28,25 @@
     border-radius: 5px;
     border: 1px solid #ced4da;
 }
+/* #dbe5e9
+#09253b
+#40a5d7
+#157cb8
+#2f6082
+#4b5c63
+#8c8c94 */
 
 .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #40a5d7;
+    border-color: #40a5d7
+    
+;
 }
 
 .btn-primary:hover {
-    background-color: #0069d9;
-    border-color: #0062cc;
+    background-color: #2f6082
+    ;
+    border-color: #2f6082;
 }
 
 .link, .link:hover {

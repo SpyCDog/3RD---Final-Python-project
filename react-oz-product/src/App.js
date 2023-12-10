@@ -14,6 +14,7 @@ import { Alert } from "react-bootstrap";
 import LoadingSpinner from "./components/LoadingSpinner";
 import { HOST_URL } from "./constants.js";
 
+
 function App() {
   const [categories, setCategories] = useState([]);
   const [currentCategory, setCurrentCategory] = useState(1);
@@ -24,6 +25,17 @@ function App() {
 
   useEffect(getProducts, [currentCategory]); // when loading the page for the first time - getProducts()
   useEffect(getCategories, []); // when loading the page for the first time - getCategories()
+  useEffect(() => {
+    // Set a timeout
+    const timer = setTimeout(() => {
+        // Refresh the page
+        window.location.reload();
+    }, 10 * 60 * 1000); // 10 minutes in milliseconds
+
+    // Cleanup the timer on component unmount
+    return () => clearTimeout(timer);
+}, []); // The empty dependency array ensures this effect runs only once after the initial render
+
   // when category is clicked
 
   function productAdded() {
@@ -91,10 +103,16 @@ function App() {
     setCurrentCategory("stamsadgfsadhgdshrfdrah"); // setting the category so that the last category will work if clicked again.
   }
 
+
+
   return (
     <>
-      <UserProvider>
+     
+        <UserProvider>
+     
+
         <BrowserRouter basename="/3RD---Final-Python-project">
+
           {showAlert && (
             <Alert
               variant="success"
@@ -104,12 +122,13 @@ function App() {
               {message}
             </Alert>
           )}
-
+ 
           <Navbar
             categories={categories}
             navClickButtom={navClickButtom}
             searchProduct={searchProduct}
           />
+          
           <Routes>
             <Route
               path="/"
@@ -143,7 +162,9 @@ function App() {
             <Route path="*" element={<NoPage />} />
           </Routes>
           <Footer />
+          
         </BrowserRouter>
+       
       </UserProvider>
     </>
   );
