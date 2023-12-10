@@ -133,7 +133,7 @@ def delete_from_cart(request, id):
             return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
         
         
-@api_view(['DELETE'])
+@api_view(['DELETE', 'GET'])
 def delete_cart(request):
     # Assuming you have a way to identify the user's cart
     # You might need to adjust this depending on how you're handling user carts

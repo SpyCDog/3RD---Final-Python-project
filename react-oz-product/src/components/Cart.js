@@ -51,9 +51,9 @@ function Cart() {
         console.error("Error removing cart item:", error);
       });
   };
-  const handleRemoveCart = (cartId) => {
+  const handleRemoveCart = (Id) => {
     axios
-      .delete(`${HOST_URL}/delete_cart/${cartId}`)
+      .delete(`${HOST_URL}/delete_cart/${Id}`)
       .then(() => {
         setCart([]); // Clears the cart in the frontend state
         console.log("All cart items removed");
