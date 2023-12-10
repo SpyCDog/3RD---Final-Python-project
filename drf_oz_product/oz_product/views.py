@@ -132,6 +132,14 @@ def delete_from_cart(request, id):
     except CartItem.DoesNotExist:
             return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
         
+        
+@api_view(['DELETE'])
+def delete_cart(request):
+    # Assuming you have a way to identify the user's cart
+    # You might need to adjust this depending on how you're handling user carts
+    Cart.objects.filter(cart__user=request.user).delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+        
 
 @api_view(['POST', 'GET'])
 def register(request):

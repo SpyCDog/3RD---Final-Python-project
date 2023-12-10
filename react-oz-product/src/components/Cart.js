@@ -8,7 +8,11 @@ import {
   MDBCol,
   MDBContainer,
   MDBRow,
+  // MDBBtn,
+  // MDBIcon,
+  // MDBTypography,
 } from "mdb-react-ui-kit";
+
 import LoadingSpinner from "./LoadingSpinner";
 import { HOST_URL } from "../constants";
 
@@ -16,13 +20,10 @@ function Cart() {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(false); // Set a loading state
 
- 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(HOST_URL + "/cart", {
-     
-      })
+      .get(HOST_URL + "/cart", {})
       .then((response) => {
         setCart(response.data.items || []);
         console.log("CART:", response.data);
@@ -37,35 +38,30 @@ function Cart() {
 
   const handleRemoveItem = (itemId) => {
     axios
-      .delete(
-        HOST_URL+`/delete_from_cart/${itemId}`)        
-
+      .delete(HOST_URL + `/delete_from_cart/${itemId}`)
 
       .then(() => {
         setCart((currentItems) =>
-          currentItems.filter((item) => item.id !== itemId));
-
+          currentItems.filter((item) => item.id !== itemId),
+          console.log( "Cart-item has removed successfully!!!")
+        );
       })
-      
+
       .catch((error) => {
         console.error("Error removing cart item:", error);
       });
   };
-  // const handleRemovecart = (itemId) => {
-  //   axios
-  //     .delete(
-  //       HOST_URL+`/delete_cart`)        
-
-
-  //     .then(() => {
-       
-
-  //     })
-      
-  //     .catch((error) => {
-  //       console.error("Error removing cart item:", error);
-  //     });
-  // };
+  const handleRemoveCart = (cartId) => {
+    axios
+      .delete(`${HOST_URL}/delete_cart/${cartId}`)
+      .then(() => {
+        setCart([]); // Clears the cart in the frontend state
+        console.log("All cart items removed");
+      })
+      .catch((error) => {
+        console.error("Error removing cart:", error);
+      });
+  };
 
   const subtotal = cart.reduce((total, item) => {
     // Use optional chaining in case the product object is missing
@@ -100,9 +96,16 @@ function Cart() {
                       />
                     ))}
                   </MDBCol>
-                  <MDBCol lg="5">
-                    <CartSummary subtotal={subtotal} />
+                  <MDBCol lg="1">
+                   <div> <button
+                      className="btn btn-primary"
+                      onClick={() => handleRemoveCart(cart.Id)}
+                    >
+                      X
+                    </button></div>
+                   
                   </MDBCol>
+                  <CartSummary subtotal={subtotal} />
                 </MDBRow>
               </MDBCardBody>
             </MDBCard>

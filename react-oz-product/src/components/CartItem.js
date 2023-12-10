@@ -14,26 +14,8 @@ import { HOST_URL } from '../constants';
 
 
 function CartItem({ item, onRemoveItem }) {
-    // const [productDetails, setProductDetails] = useState(null);
+    
 
-
-    // useEffect(() => {
-    //     fetchProductDetails(item.product);
-    // }, [item.product]);
-
-    // const fetchProductDetails = async (productId) => {
-    //     try {
-    //         const response = await axios.get(`https://oz-products-web.onrender.com/product/${productId}/`);
-    //         console.log(response.data);
-    //         setProductDetails(response.data);
-    //         }
-    //      catch (error) {
-    //         console.error("Error fetching product details:", error);
-
-    //     }};
-
-   
-      
     return (
         <MDBCard className="mb-3">
             <MDBCardBody>
