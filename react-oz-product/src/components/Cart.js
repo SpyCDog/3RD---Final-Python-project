@@ -51,6 +51,21 @@ function Cart() {
         console.error("Error removing cart item:", error);
       });
   };
+  // const handleRemovecart = (itemId) => {
+  //   axios
+  //     .delete(
+  //       HOST_URL+`/delete_cart`)        
+
+
+  //     .then(() => {
+       
+
+  //     })
+      
+  //     .catch((error) => {
+  //       console.error("Error removing cart item:", error);
+  //     });
+  // };
 
   const subtotal = cart.reduce((total, item) => {
     // Use optional chaining in case the product object is missing

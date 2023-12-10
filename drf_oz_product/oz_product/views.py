@@ -133,8 +133,7 @@ def delete_from_cart(request, id):
             return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
         
 
-@api_view(['POST'])
-@permission_classes([AllowAny])
+@api_view(['POST', 'GET'])
 def register(request):
     try:
         username = request.data.get('username')

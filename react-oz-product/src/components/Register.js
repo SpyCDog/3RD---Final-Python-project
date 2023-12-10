@@ -16,7 +16,7 @@ function Register() {
         event.preventDefault();
         try {
             // Adjust the URL and data payload as per your API requirements
-            const response = await axios.post(HOST_URL + '/register/', {
+            const response = await axios.post(HOST_URL + '/register', {
                 username,
                 password,
                 email // Include any other required fields
