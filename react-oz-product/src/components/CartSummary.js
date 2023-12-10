@@ -6,7 +6,7 @@ import {
 import { TbCurrencyShekel } from "react-icons/tb";
 
 function CartSummary({ subtotal }) {
-  console.log("Subtotal in CartSummary:", subtotal);
+  console.log("Total in CartSummary:", subtotal);
 
   return (
     <div className="cart-summary">

@@ -1,11 +1,12 @@
 from rest_framework import status
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from .models import Cart, Category, Product, CartItem
 from .serializers import CartSerializer, ProductSerializer, CategorySerializer, CartItemSerializer
 # from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
@@ -86,6 +87,7 @@ def categories(request):
 def cart(request):
         try:
             cart = Cart.objects.get(user=request.user)
+            cart.save()
             serializer = CartSerializer(cart)
             return Response(serializer.data)
         except Cart.DoesNotExist:
@@ -110,6 +112,7 @@ def add_to_cart(request):
             else:
                 cart_item.quantity = int(quantity)
             cart_item.save()
+            cart.save()
             return Response(CartSerializer.data, status=status.HTTP_201_CREATED)
         except Product.DoesNotExist:
             return Response({'Product not found.(backend - add_to_cart)'}, status=status.HTTP_404_NOT_FOUND)
@@ -128,3 +131,35 @@ def delete_from_cart(request, id):
         return Response({'detail': 'Cart item removed.'}, status=status.HTTP_204_NO_CONTENT)
     except CartItem.DoesNotExist:
             return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
+        
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def register(request):
+    try:
+        username = request.data.get('username')
+        password = request.data.get('password')
+        email = request.data.get('email')
+        
+        # Validate the data, for instance:
+        if not username or not password or not email:
+            return Response({'error': 'Username, password, and email are required.'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        if User.objects.filter(username=username).exists():
+            return Response({'error': 'Username already exists.'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        if User.objects.filter(email=email).exists():
+            return Response({'error': 'Email already in use.'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Create the user
+        user = User.objects.create_user(username=username, email=email, password=password)
+        user.save()
+        
+        # You can now do any post-registration logic like sending a confirmation email, etc.
+
+        # Return a successful response
+        return Response(f"{user} just registered!!!",{'message': 'User registered successfully.'}, status=status.HTTP_201_CREATED)
+    
+    except Exception as e:
+        # Return a response with an error message
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

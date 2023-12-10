@@ -10,20 +10,18 @@ import {
   MDBRow,
 } from "mdb-react-ui-kit";
 import LoadingSpinner from "./LoadingSpinner";
+import { HOST_URL } from "../constants";
 
 function Cart() {
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(false); // Set a loading state
 
+ 
   useEffect(() => {
     setLoading(true);
-    const TKN = localStorage.getItem("accessToken");
-    // Retrieve the token again for this request
     axios
-      .get("https://oz-products-web.onrender.com/cart", {
-        headers: {
-          Authorization: `Bearer ${TKN}`,
-        },
+      .get(HOST_URL + "/cart", {
+     
       })
       .then((response) => {
         setCart(response.data.items || []);
@@ -38,22 +36,17 @@ function Cart() {
   }, []);
 
   const handleRemoveItem = (itemId) => {
-    const TKN = localStorage.getItem("accessToken");
     axios
       .delete(
-        `https://oz-products-web.onrender.com/delete_from_cart/${itemId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${TKN}`,
-          },
-        }
-      )
+        HOST_URL+`/delete_from_cart/${itemId}`)        
+
 
       .then(() => {
         setCart((currentItems) =>
-          currentItems.filter((item) => item.id !== itemId)
-        );
+          currentItems.filter((item) => item.id !== itemId));
+
       })
+      
       .catch((error) => {
         console.error("Error removing cart item:", error);
       });

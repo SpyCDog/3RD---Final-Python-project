@@ -102,15 +102,15 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
           </NavLink>
         </li>  
         {location.pathname === "/login" ? null : (
-          <li className="btn">
+          <NavLink className="btn">
             {user ? (
               <>
               
                 <div style={{ display: "flex", alignItems: "center" }}>
                   {getTimeBasedGreeting(user.username)}
-                  <button className="btn" onClick={logout}>
+                  <NavLink className="btn" onClick={logout}>
                     Logout
-                  </button>
+                  </NavLink>
                 </div>
               </>
             ) : (
@@ -118,7 +118,7 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
                 Login / Register
               </NavLink>
             )}
-          </li>
+          </NavLink>
         )}   
         
       </ul>

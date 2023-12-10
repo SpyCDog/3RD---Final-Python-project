@@ -11,12 +11,11 @@ function Product({ product }) {
 
   // Define handleAddToCart function
   const handleAddToCart = () => {
+    
     // Then show the animation
     setShowSuccessAnimation(true);
-    setTimeout(() => {
-      setShowSuccessAnimation(false);
-    }, 3000);
-    const tkn = localStorage.getItem("accessToken");
+    setTimeout(() => {setShowSuccessAnimation(false);}, 3000);
+
     console.log("retrived token....");
     axios
       .post(
@@ -25,13 +24,6 @@ function Product({ product }) {
         {
           product_id: product.id,
           quantity: 1,
-        },
-        {
-          headers: {
-            // Include the JWT token in the authorization header
-            // Ensure that userToken is passed down from the parent component or managed via context or redux
-            Authorization: `Bearer ${tkn}`,
-          },
         }
       )
       .then((response) => {

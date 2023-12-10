@@ -6,6 +6,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: #f8f9fa;
+    z-index: 10;
    
 
   }
@@ -38,8 +39,8 @@
     font-size: 1.18rem;
     padding: 0.5rem;
     width: 250px;
-    background-color: #ffffff;
-    color: #ffffff;
+    background-color: #f8f9fa;
+    color: #f8f9fa;
     z-index: 100000;
   
     
@@ -68,6 +69,7 @@ position:fixed;
     font-size: 1rem;
     padding: 0.5rem 1rem;
     margin-left: 0.5rem;
+    
   }
   
   .cart-icon {
@@ -96,16 +98,15 @@ position:fixed;
   }
   
 
-  
-
-
   /* Assuming the file is Navbar.css */
 
-.greeting-container {
+/* .greeting-container {
   display: flex;
   align-items: center;
   position: relative;
-}
+
+  
+} */
 
 .greeting-animation {
   
@@ -117,13 +118,17 @@ position:fixed;
 }
 
 .greeting-text {
+  color: #092237;
   z-index: 1;
   /* Add any additional styling for the text here */
   /* For example, if you want a nice font: */
   font-family: 'Open Sans', sans-serif;
-  font-size: 1.2em;
+  font-size: 2em;
   font-weight: bold;
   /* Adjust the font properties as needed */
+  font-family: 'Whisper', cursive;
+  
+
 }
 
 

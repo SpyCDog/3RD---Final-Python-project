@@ -7,6 +7,7 @@ import './styles/Login.css';
 import { UserContext } from './UserContext';
 import Lottie from 'lottie-react';
 import successAnimationData from './styles/lottie/check.json';
+import { HOST_URL } from '../constants';
 
 
 
@@ -18,6 +19,7 @@ function Login() {
     const navigate = useNavigate();
     const { login } = useContext(UserContext);
     const [showSuccessAnimation, setShowSuccessAnimation] = useState(false); // New state variable for controlling the animation
+            // localStorage.setItem('refreshToken', response.data.refresh); // Not in use but could be used for better security
 
 
 
@@ -25,22 +27,25 @@ function Login() {
         event.preventDefault();
         // Handle successful login
         try {
-            const response = await axios.post('https://oz-products-web.onrender.com/token/', {
+            const response = await axios.post(HOST_URL + '/token/', {
                 username,
                 password
             });
-            localStorage.setItem('accessToken', response.data.access);
-            localStorage.setItem('refreshToken', response.data.refresh);
-            localStorage.setItem('username', username);
-            login({ username: username, ...response.data });
-             // Show the success animation
+            login({
+                username: username,
+                accessToken: response.data.access, // Assuming this is the token
+                refreshToken: response.data.refresh // If you're using refresh tokens
+            });            
+            
+            
+            // Show the success animation
              setShowSuccessAnimation(true);
              // Set a timeout to navigate after the animation has had time to play
              setTimeout(() => {
                  navigate('/');
-             }, 2350); // Delay the navigation for 3 seconds
+             }, 2350); // Delay the navigation for 3 seconds for the ShowSuccessAnimation.
             
-            console.log('Logged in successfully:', response.data);
+            console.log(username, ': Logged in successfully + checkAnimation');
             
            // Handle login failed
         } catch (error) {

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Form, Button, Alert, Container, Row, Col, Card } from 'react-bootstrap';
+import { HOST_URL } from '../constants';
 // import './styles/Register.css'; // Adjust the path as needed
 
 function Register() {
@@ -15,7 +16,7 @@ function Register() {
         event.preventDefault();
         try {
             // Adjust the URL and data payload as per your API requirements
-            const response = await axios.post('https://oz-products-web.onrender.com/register/', {
+            const response = await axios.post(HOST_URL + '/register/', {
                 username,
                 password,
                 email // Include any other required fields

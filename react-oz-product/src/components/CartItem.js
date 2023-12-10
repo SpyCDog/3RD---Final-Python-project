@@ -9,6 +9,7 @@ import {
 } from 'mdb-react-ui-kit';
 import { TbCurrencyShekel } from "react-icons/tb";
 import { FaTrashAlt } from "react-icons/fa";
+import { HOST_URL } from '../constants';
 
 
 
@@ -39,7 +40,7 @@ function CartItem({ item, onRemoveItem }) {
                 <div className="d-flex justify-content-between">
                     <div className="d-flex flex-row align-items-center">
                         <MDBCardImage
-                            src={`https://oz-products-web.onrender.com${item.product.image}`} 
+                            src={HOST_URL+`${item.product.image}`} 
                             fluid className="rounded-3" style={{ width: "65px" }}
                             alt={item.product.name} />
                         <div className="ms-3">
