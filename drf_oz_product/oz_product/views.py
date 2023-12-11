@@ -138,7 +138,7 @@ def delete_from_cart(request, id):
 @permission_classes([IsAuthenticated])
 def delete_cart(request, id):
     try:    
-        current_cart = Cart.objects.get(id=id, cart__user=request.user)
+        current_cart = Cart.objects.get(id=id)
         current_cart.delete()
         return Response({'detail': 'Cart removed.'}, status=status.HTTP_204_NO_CONTENT)
     except Cart.DoesNotExist:
