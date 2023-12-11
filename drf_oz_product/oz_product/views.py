@@ -81,7 +81,7 @@ def categories(request):
     return Response(all_categories_json)
 
 
-
+@csrf_exempt
 @api_view()
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
@@ -181,7 +181,7 @@ def increase_quantity(request, id):
         return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 
-# @csrf_exempt
+@csrf_exempt
 @api_view(['POST'])
 def decrease_quantity(request, id):
     try:
