@@ -25,7 +25,7 @@ function CartItem({ item, onRemoveItem, onIncreaseQuantity, onDecreaseQuantity }
               style={{ width: "65px" }}
               alt={item.product.name}
             />
-            <div className="ms-3"></div>
+            <div className="ms-3">
               <MDBTypography tag="h5">{item.product.name}</MDBTypography>
               <p className="small mb-0">{item.product.description}</p>
             </div>
