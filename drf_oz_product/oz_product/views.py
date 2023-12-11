@@ -136,7 +136,7 @@ def delete_from_cart(request, id):
 @api_view(['DELETE'])
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
-def delete_cart(request):
+def delete_cart(request, id):
     try:    
         current_cart = Cart.objects.get(id=id, cart__user=request.user)
         current_cart.delete()

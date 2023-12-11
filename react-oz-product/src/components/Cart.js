@@ -54,9 +54,12 @@ function Cart() {
         console.error("Error removing cart item:", error);
       });
   };
-  const handleRemoveCart = (Id) => {
+  
+  const handleRemoveCart = (id) => {
+    console.log("CART ID:",id)
+    // console.log("AXTKN:",accessToken)
     axios
-      .delete(`${HOST_URL}/delete_cart/${Id}`)
+      .delete(`${HOST_URL}/delete_cart/${id}`)
       .then(() => {
         setCart({});
         setCartItems([]);
