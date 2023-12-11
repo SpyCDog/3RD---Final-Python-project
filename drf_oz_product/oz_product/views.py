@@ -42,7 +42,7 @@ def products(request):
         # if not valid. return errors.
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+@csrf_exempt
 @api_view(['GET', 'PUT', 'DELETE'])
 def product_detail(request, id):
     # get object from db by id
@@ -96,7 +96,7 @@ def cart(request):
             return Response({'detail': 'Cart not found.'}, status=status.HTTP_404_NOT_FOUND)
     
     
-    
+@csrf_exempt    
 @api_view(['POST'])
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
@@ -121,7 +121,7 @@ def add_to_cart(request):
             return Response({'Product not found.(backend - add_to_cart)'}, status=status.HTTP_404_NOT_FOUND)
         
         
-        
+@csrf_exempt        
 @api_view(['DELETE'])
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
@@ -134,7 +134,7 @@ def delete_from_cart(request, id):
     except CartItem.DoesNotExist:
             return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
         
-        
+@csrf_exempt
 @api_view(['DELETE'])
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
@@ -146,7 +146,7 @@ def delete_cart(request, id):
     except Cart.DoesNotExist:
             return Response({'detail': 'Cart not found.'}, status=status.HTTP_404_NOT_FOUND)
         
-
+@csrf_exempt
 @api_view(['POST'])
 def register(request):
     try:
