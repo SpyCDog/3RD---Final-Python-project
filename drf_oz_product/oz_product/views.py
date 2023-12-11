@@ -154,7 +154,7 @@ def register(request):
         
         user_exist = MyUser.objects.filter(email=email).exists()
         if user_exist:
-            return Response({'error': 'Email already in use.'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Email already in use.'})
         else:
             # Create the new user
             new_user = MyUser.objects.create_user(username=username, email=email, password=password)

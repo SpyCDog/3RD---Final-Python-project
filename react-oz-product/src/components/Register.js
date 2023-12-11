@@ -36,9 +36,7 @@ function Register() {
     } catch (error) {
       console.error("REGISTRATION FAILED:", error);
       const errorMessage =
-        error.response && error.response.data && error.response.data.message
-          ? error.response.data.message
-          : "Registration failed. Please try again.";
+      "Registration failed. Please try again.";
       setErrorMessage(errorMessage);
     }
   };
