@@ -33,9 +33,9 @@ function CartItem({ item, onRemoveItem, onIncreaseQuantity, onDecreaseQuantity }
           <div className="d-flex flex-row align-items-center">
             <div style={{ width: "88px" }}>
               <MDBTypography  tag="h" className="fw-normal mb-0">
-              <p><a href="#!" className="btn btn-primary" style={{ backgroundColor: "#157cb8", color:"#dbe5e9", borderColor: "#157cb8" }} onClick={onIncreaseQuantity(item.id)}>+</a></p>
+              <p><a href="#!" className="btn btn-primary" style={{ backgroundColor: "#157cb8", color:"#dbe5e9", borderColor: "#157cb8" }} onClick={()=>onIncreaseQuantity(item.id)}>+</a></p>
                  <p>Qty: {item.quantity}</p>
-                <p><a href="#!" className="btn btn-primary" style={{ backgroundColor: "#157cb8", color:"#dbe5e9", borderColor: "#157cb8" }}  onClick={onDecreaseQuantity(item.id)}>-</a></p>
+                <p><a href="#!" className="btn btn-primary" style={{ backgroundColor: "#157cb8", color:"#dbe5e9", borderColor: "#157cb8" }}  onClick={()=>onDecreaseQuantity(item.id)}>-</a></p>
             </MDBTypography>
             </div>
             <div style={{ width: "90px" }}>
