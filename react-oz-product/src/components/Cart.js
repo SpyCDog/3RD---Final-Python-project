@@ -17,6 +17,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import { HOST_URL } from "../constants";
 
 function Cart() {
+  const [cartItems, setCartItems] = useState([]);
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(false); // Set a loading state
 
@@ -25,7 +26,9 @@ function Cart() {
     axios
       .get(HOST_URL + "/cart", {})
       .then((response) => {
-        setCart(response.data.items || []);
+        setCart(response.data);
+
+        setCartItems(response.data.items || []);
         console.log("CART:", response.data);
       })
       .catch((error) => {
@@ -41,9 +44,9 @@ function Cart() {
       .delete(HOST_URL + `/delete_from_cart/${itemId}`)
 
       .then(() => {
-        setCart((currentItems) =>
-          currentItems.filter((item) => item.id !== itemId),
-          console.log( "Cart-item has removed successfully!!!")
+        setCartItems(
+          (Items) => Items.filter((item) => item.id !== itemId),
+          console.log("Cart-item has removed successfully!!!")
         );
       })
 
@@ -55,7 +58,8 @@ function Cart() {
     axios
       .delete(`${HOST_URL}/delete_cart/${Id}`)
       .then(() => {
-        setCart([]); // Clears the cart in the frontend state
+        setCart({});
+        setCartItems([]);
         console.log("All cart items removed");
       })
       .catch((error) => {
@@ -63,7 +67,7 @@ function Cart() {
       });
   };
 
-  const subtotal = cart.reduce((total, item) => {
+  const subtotal = cartItems.reduce((total, item) => {
     // Use optional chaining in case the product object is missing
     const quantity = item.quantity || 0;
     // The product is now a nested object thanks to the updated serializer
@@ -88,7 +92,7 @@ function Cart() {
                 <MDBRow>
                   <MDBCol lg="7">
                     {/* Cart Items */}
-                    {cart.map((item) => (
+                    {cartItems.map((item) => (
                       <CartItem
                         key={item.id}
                         item={item}
@@ -97,13 +101,16 @@ function Cart() {
                     ))}
                   </MDBCol>
                   <MDBCol lg="1">
-                   <div> <button
-                      className="btn btn-primary"
-                      onClick={() => handleRemoveCart(cart.Id)}
-                    >
-                      X
-                    </button></div>
-                   
+                    <div>
+                      {" "}
+                      <button
+                        
+                        className="btn btn-primary"
+                        onClick={() => handleRemoveCart(cart.id)}
+                      >
+                        X
+                      </button>
+                    </div>
                   </MDBCol>
                   <CartSummary subtotal={subtotal} />
                 </MDBRow>

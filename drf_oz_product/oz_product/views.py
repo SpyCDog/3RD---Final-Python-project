@@ -133,7 +133,7 @@ def delete_from_cart(request, id):
             return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
         
         
-@api_view(['DELETE', 'GET'])
+@api_view(['DELETE'])
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
 def delete_cart(request):
