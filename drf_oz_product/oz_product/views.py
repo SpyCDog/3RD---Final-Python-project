@@ -134,11 +134,15 @@ def delete_from_cart(request, id):
         
         
 @api_view(['DELETE', 'GET'])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 def delete_cart(request):
-    # Assuming you have a way to identify the user's cart
-    # You might need to adjust this depending on how you're handling user carts
-    Cart.objects.filter(cart__user=request.user).delete()
-    return Response(status=status.HTTP_204_NO_CONTENT)
+    try:    
+        current_cart = Cart.objects.get(id=id, cart__user=request.user)
+        current_cart.delete()
+        return Response({'detail': 'Cart removed.'}, status=status.HTTP_204_NO_CONTENT)
+    except Cart.DoesNotExist:
+            return Response({'detail': 'Cart not found.'}, status=status.HTTP_404_NOT_FOUND)
         
 
 @api_view(['POST', 'GET'])
