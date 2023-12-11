@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import "./styles/Product.css";
 import { TbCurrencyShekel } from "react-icons/tb";
@@ -12,15 +12,31 @@ function Product({ product }) {
   const [showSuccessAnimation, setShowSuccessAnimation] = useState(false);
   const { user } = useContext(UserContext);
   const [errorMessage, setErrorMessage] = useState("");
+  const [showError, setShowError] = useState(false); // State to control the visibility of the error message
+
+
+  useEffect(() => {
+    let timer;
+    if (showError) {
+      timer = setTimeout(() => {
+        setShowError(false); // Hide the error message after 2 seconds
+        setErrorMessage(''); // Clear the error message
+      }, 2000);
+    }
+
+    // Clean up the timer when the component is unmounted or the showError changes
+    return () => clearTimeout(timer);
+  }, [showError]);
 
 
   // Define handleAddToCart function
   const handleAddToCart = () => {
     if (!user) {
       console.log("USER NOT LOGGED IN!!!")
-      const message = "You must be logged in to add items to the cart.";
+      const message = "To Add To Cart Please Login";
       console.log(message);
       setErrorMessage(message);
+      setShowError(true);
       return
         }
     // Then show the animation

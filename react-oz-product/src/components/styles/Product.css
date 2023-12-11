@@ -34,5 +34,33 @@
   line-height: 1.2; /* Adjust line height to ensure text fits and is readable */
   margin-bottom: 0.5rem; /* Add some margin to the bottom */
   height: calc(1.2em * 4); /* Calculate height based on line-height and number of lines */
+  z-index: 1000;
 }
 
+
+.error-message {
+  color: #ba3939;
+  background: rgba(255, 224, 224, 0.9); /* This will add transparency */
+  border: 1px solid #ffe0e0;
+  border-radius: 8px; /* This will make the edges round */
+  position: absolute; /* This positions the element absolutely relative to its positioned ancestor */
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto; /* This will help to center the element */
+  width: 80%; /* You can adjust the width as needed */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow for better visibility */
+  padding: 10px; /* Add padding to ensure the text doesn't touch the edges */
+  box-sizing: border-box; 
+  animation: fadeOut 2s ease-in-out 2s forwards; /* Animation will start after 2 seconds and last for 2 seconds */
+  }
+
+ 
+
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
