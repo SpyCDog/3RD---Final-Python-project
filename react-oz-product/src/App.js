@@ -10,13 +10,10 @@ import LoadingSpinner from "./components/LoadingSpinner";
 import { UserProvider } from "./components/UserContext";
 import { HOST_URL } from "./constants.js";
 
-
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Alert } from "react-bootstrap";
-
-
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -31,13 +28,13 @@ function App() {
   useEffect(() => {
     // Set a timeout
     const timer = setTimeout(() => {
-        // Refresh the page
-        window.location.reload();
+      // Refresh the page
+      window.location.reload();
     }, 10 * 60 * 1000); // 10 minutes in milliseconds
 
     // Cleanup the timer on component unmount
     return () => clearTimeout(timer);
-}, []); // The empty dependency array ensures this effect runs only once after the initial render
+  }, []); // The empty dependency array ensures this effect runs only once after the initial render
 
   // when category is clicked
 
@@ -106,16 +103,10 @@ function App() {
     setCurrentCategory("stamsadgfsadhgdshrfdrah"); // setting the category so that the last category will work if clicked again.
   }
 
-
-
   return (
     <>
-     
-        <UserProvider>
-     
-
+      <UserProvider>
         <BrowserRouter basename="/3RD---Final-Python-project">
-
           {showAlert && (
             <Alert
               variant="success"
@@ -125,13 +116,13 @@ function App() {
               {message}
             </Alert>
           )}
- 
+
           <Navbar
             categories={categories}
             navClickButtom={navClickButtom}
             searchProduct={searchProduct}
           />
-          
+
           <Routes>
             <Route
               path="/"
@@ -165,9 +156,7 @@ function App() {
             <Route path="*" element={<NoPage />} />
           </Routes>
           <Footer />
-          
         </BrowserRouter>
-       
       </UserProvider>
     </>
   );

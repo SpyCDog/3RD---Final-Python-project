@@ -28,7 +28,7 @@ function getTimeBasedGreeting(username) {
   return (
     <div className="greeting-container">
       <div className="greeting-animation">
-        <Lottie animationData={animationData} play loop />
+        <Lottie animationData={animationData} />
       </div>
       <p className="greeting-text">
         {greetingText}, {username}
@@ -71,9 +71,7 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
             </NavLink>
           </li>
         ))}
-        
-        
-      
+
         <li className="search-input">
           <input
             type="text"
@@ -81,16 +79,15 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
-            
-            <NavLink
+
+          <NavLink
             to="/"
             className="search-button"
             onClick={() => searchProduct(searchText)}
           >
             <FaMagnifyingGlass />
           </NavLink>
-          
-        </li>   
+        </li>
         {/* <li className="nav-item">
           <NavLink className="mx-1 nav-Navlink" to="/add_product">
             Add Product
@@ -100,12 +97,11 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
           <NavLink to="/cart">
             <MdShoppingCart />
           </NavLink>
-        </li>  
+        </li>
         {location.pathname === "/login" ? null : (
           <NavLink className="btn">
             {user ? (
               <>
-              
                 <div style={{ display: "flex", alignItems: "center" }}>
                   {getTimeBasedGreeting(user.username)}
                   <NavLink className="btn" onClick={logout}>
@@ -119,11 +115,8 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
               </NavLink>
             )}
           </NavLink>
-        )}   
-        
+        )}
       </ul>
-      
-       
     </>
   );
 }

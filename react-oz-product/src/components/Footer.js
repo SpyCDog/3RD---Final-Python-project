@@ -35,7 +35,6 @@ function Footer() {
               className="logo-footer"
             />
             <p className="text-center text-muted">©OZ PRODUCTS INC.</p>
-            
           </div>
         </footer>
       </div>

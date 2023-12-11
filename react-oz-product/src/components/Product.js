@@ -11,10 +11,11 @@ function Product({ product }) {
 
   // Define handleAddToCart function
   const handleAddToCart = () => {
-    
     // Then show the animation
     setShowSuccessAnimation(true);
-    setTimeout(() => {setShowSuccessAnimation(false);}, 3000);
+    setTimeout(() => {
+      setShowSuccessAnimation(false);
+    }, 3000);
 
     console.log("retrived token....");
     axios
@@ -29,29 +30,25 @@ function Product({ product }) {
       .then((response) => {
         // Handle the success
         console.log("Product added to cart:", response.data.detail);
-        // Optionally, trigger any UI update or notification
+        console.log("PRODUCT ID --- ", product.id);
       })
       .catch((error) => {
         // Handle the error
         console.error("Error adding product to cart:", error);
-        // Optionally, display an error message to the user
       });
   };
 
   const imageUrl = product.image
-    ? `${HOST_URL}${product.image}`
+    ? `${HOST_URL}/${product.image}`
     : "default-fallback-image-url";
 
-  // const productDetailUrl = `/product/${product.id}`; // Adjust this URL as needed
-
-  // Render the product card with an "Add to Cart" button
   return (
     <div className="card product-card" style={{ width: "20rem" }}>
       <img src={imageUrl} className="card-img-top" alt={product.name} />
       <div className="card-body">
         <h5 className="card-title">
           {product.name} <br></br>
-          {parseFloat(product.price).toLocaleString()}
+          {product.price}
           <TbCurrencyShekel />
         </h5>
         <p className="card-text">{product.description}</p>

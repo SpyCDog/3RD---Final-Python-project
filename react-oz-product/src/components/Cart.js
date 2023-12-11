@@ -54,9 +54,9 @@ function Cart() {
         console.error("Error removing cart item:", error);
       });
   };
-  
+
   const handleRemoveCart = (id) => {
-    console.log("CART ID:",id)
+    console.log("CART ID:", id);
     // console.log("AXTKN:",accessToken)
     axios
       .delete(`${HOST_URL}/delete_cart/${id}`)
@@ -107,7 +107,6 @@ function Cart() {
                     <div>
                       {" "}
                       <button
-                        
                         className="btn btn-primary"
                         onClick={() => handleRemoveCart(cart.id)}
                       >
