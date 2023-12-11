@@ -126,7 +126,6 @@ def add_to_cart(request):
 @permission_classes([IsAuthenticated])
 
 def delete_from_cart(request, id):
-    # item_id = request.data.get(id)  # Or get this from the URL path
     try:
         cart_item = CartItem.objects.get(id=id, cart__user=request.user)
         cart_item.delete()
@@ -171,15 +170,24 @@ def register(request):
     
     
 @api_view(['POST'])
-def increase_quantity(request, item_id):
-    cart_item = get_object_or_404(CartItem, id=item_id)
-    cart_item.quantity += 1
-    cart_item.save()
-    return Response({'message': 'Quantity increased successfully'}, status=status.HTTP_200_OK)
+def increase_quantity(request, id):
+    try:
+        cart_item = CartItem.objects.get(id=id, cart__user=request.user)
+        cart_item.quantity += 1 
+        cart_item.save()
+        return Response({'detail': 'Quantity increased successfully'}, status=status.HTTP_200_OK)
+    except CartItem.DoesNotExist:
+        return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+
 
 @api_view(['POST'])
-def decrease_quantity(request, item_id):
-    cart_item = get_object_or_404(CartItem, id=item_id)
-    cart_item.quantity = max(0, cart_item.quantity - 1)  # Prevent negative quantities
-    cart_item.save()
-    return Response({'message': 'Quantity decreased successfully'}, status=status.HTTP_200_OK)
+def decrease_quantity(request, id):
+    try:
+        cart_item = CartItem.objects.get(id=id, cart__user=request.user)
+        cart_item.quantity = max(1, cart_item.quantity - 1)  # Prevent negative quantities
+        cart_item.save()
+        return Response({'detail': 'Quantity decreased successfully'}, status=status.HTTP_200_OK)
+    except CartItem.DoesNotExist:
+        return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
+
