@@ -6,8 +6,10 @@ from .serializers import CartSerializer, ProductSerializer, CategorySerializer, 
 # from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from django.shortcuts import get_object_or_404
+
 
 
 @api_view(['GET', 'POST'])
@@ -166,3 +168,18 @@ def register(request):
     except Exception as e:
         # Return a response with an error message
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    
+@api_view(['POST'])
+def increase_quantity(request, item_id):
+    cart_item = get_object_or_404(CartItem, id=item_id)
+    cart_item.quantity += 1
+    cart_item.save()
+    return Response({'message': 'Quantity increased successfully'}, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def decrease_quantity(request, item_id):
+    cart_item = get_object_or_404(CartItem, id=item_id)
+    cart_item.quantity = max(0, cart_item.quantity - 1)  # Prevent negative quantities
+    cart_item.save()
+    return Response({'message': 'Quantity decreased successfully'}, status=status.HTTP_200_OK)

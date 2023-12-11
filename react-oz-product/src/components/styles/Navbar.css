@@ -5,8 +5,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f8f9fa;
-    z-index: 10;
+    background-color: #ffffff;
+    z-index: 10000000;
    
 
   }
@@ -18,7 +18,7 @@
   
   .nav-link {
     font-size: 1.1rem;
-    color: #092237;
+    color: #09253b;
     transition: 0.3s ease;
   }
   
@@ -39,8 +39,6 @@
     font-size: 1.18rem;
     padding: 0.5rem;
     width: 250px;
-    background-color: #f8f9fa;
-    color: #f8f9fa;
     z-index: 100000;
   
     
@@ -73,7 +71,7 @@ position:fixed;
   }
   
   .cart-icon {
-    color: #092237;
+    color: #09253b;
     margin-left: 1rem;
     font-size: 2.5em;
     transition: transform 0.3s ease;
@@ -118,7 +116,7 @@ position:fixed;
 }
 
 .greeting-text {
-  color: #092237;
+  color: #09253b;
   z-index: 1;
   /* Add any additional styling for the text here */
   /* For example, if you want a nice font: */

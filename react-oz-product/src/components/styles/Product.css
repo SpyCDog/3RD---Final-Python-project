@@ -1,11 +1,3 @@
-/* Add a transition effect for smooth scaling */
-.product-card {
-  transition: transform 0.8s ease, box-shadow 0.8s ease;
-  background-color: #f8f9fa;
-
-  
-  /* Rest of your styles */
-}
 
 /* Scale up card and increase z-index when hovered */
 .product-card:hover {

@@ -8,7 +8,7 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     border-radius: 5px; 
-    background-color: #f8f9fa;
+    background-color: #ffffff;
 }
 
 .card:hover {
@@ -26,7 +26,7 @@
 .form-control {
     margin-bottom: 15px;
     border-radius: 5px;
-    border: 1px solid #ced4da;
+    border: 1px solid #cfd9dd;
 }
 /* #dbe5e9
 #09253b
@@ -34,7 +34,9 @@
 #157cb8
 #2f6082
 #4b5c63
-#8c8c94 */
+#8c8c94 
+#cfd9dd*/
+
 
 .btn-primary {
     background-color: #40a5d7;

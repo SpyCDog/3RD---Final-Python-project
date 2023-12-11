@@ -43,7 +43,7 @@ function Product({ product }) {
     : "default-fallback-image-url";
 
   return (
-    <div className="card product-card" style={{ width: "20rem" }}>
+    <div className="card product-card" style={{ width: "20rem", backgroundColor: "white"}}>
       <img src={imageUrl} className="card-img-top" alt={product.name} />
       <div className="card-body">
         <h5 className="card-title">

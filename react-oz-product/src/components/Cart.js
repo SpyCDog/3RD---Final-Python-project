@@ -70,6 +70,37 @@ function Cart() {
       });
   };
 
+   const handleIncreaseQuantity = (itemId) => {
+    // Send request to backend to increase quantity
+    axios.post(`${HOST_URL}/increase_item_quantity/${itemId}`)
+        .then((response) => {
+            // Update the cartItems state to reflect the new quantity
+            setCartItems((currentItems) => 
+                currentItems.map((item) =>
+                    item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+                )
+            );
+        })
+        .catch((error) => {
+            console.error("Error increasing quantity:", error);
+        });
+};
+
+const handleDecreaseQuantity = (itemId) => {
+  // Send request to backend to decrease quantity
+  axios.post(`${HOST_URL}/decrease_item_quantity/${itemId}`)
+      .then((response) => {
+          // Update the cartItems state to reflect the new quantity
+          setCartItems((currentItems) => 
+              currentItems.map((item) =>
+                  item.id === itemId ? { ...item, quantity: Math.max(0, item.quantity - 1) } : item
+              )
+          );
+      })
+      .catch((error) => {
+          console.error("Error decreasing quantity:", error);
+      });
+};
   const subtotal = cartItems.reduce((total, item) => {
     // Use optional chaining in case the product object is missing
     const quantity = item.quantity || 0;
@@ -86,7 +117,7 @@ function Cart() {
     );
   }
   return (
-    <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
+    <section className="h-100 h-custom" >
       <MDBContainer className="py-5 h-100">
         <MDBRow className="justify-content-center align-items-center h-100">
           <MDBCol>
@@ -99,6 +130,8 @@ function Cart() {
                       <CartItem
                         key={item.id}
                         item={item}
+                        onIncreaseQuantity={() => handleIncreaseQuantity(item.id)}
+                        onDecreaseQuantity={() => handleDecreaseQuantity(item.id)}
                         onRemoveItem={() => handleRemoveItem(item.id)}
                       />
                     ))}
@@ -108,6 +141,7 @@ function Cart() {
                       {" "}
                       <button
                         className="btn btn-primary"
+                        style={{ backgroundColor: "#4b5c63",borderColor: "#4b5c63" ,color: "#dbe5e9"}}
                         onClick={() => handleRemoveCart(cart.id)}
                       >
                         X

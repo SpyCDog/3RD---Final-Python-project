@@ -94,27 +94,27 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
           </NavLink>
           </li> */}
         <li className="cart-icon">
-          <NavLink to="/cart">
+          <NavLink to="/cart" style={{color:"#09253b"}}>
             <MdShoppingCart />
           </NavLink>
         </li>
         {location.pathname === "/login" ? null : (
-          <NavLink className="btn">
+          <li>
             {user ? (
               <>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   {getTimeBasedGreeting(user.username)}
-                  <NavLink className="btn" onClick={logout}>
+                  <button className="btn btn-primary" onClick={logout}>
                     Logout
-                  </NavLink>
+                  </button>
                 </div>
               </>
             ) : (
-              <NavLink className="btn" to="/login">
+              <NavLink className="btn btn-primary" to="/login">
                 Login / Register
               </NavLink>
             )}
-          </NavLink>
+          </li>
         )}
       </ul>
     </>

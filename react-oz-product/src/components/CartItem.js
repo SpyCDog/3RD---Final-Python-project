@@ -1,6 +1,7 @@
 // import React ,{ useState, useEffect } from 'react';
 // import axios from 'axios';
 import {
+  // MDBBtn,
   MDBCard,
   MDBCardBody,
   MDBCardImage,
@@ -13,13 +14,13 @@ import { HOST_URL } from "../constants";
 
 function CartItem({ item, onRemoveItem }) {
   return (
-    <MDBCard className="mb-3">
-      <MDBCardBody>
+    <MDBCard className="mb-3" >
+      <MDBCardBody >
         <div className="d-flex justify-content-between">
           <div className="d-flex flex-row align-items-center">
             <MDBCardImage
               src={HOST_URL + `${item.product.image}`}
-              fluid
+              fluid 
               className="rounded-3"
               style={{ width: "65px" }}
               alt={item.product.name}
@@ -29,21 +30,38 @@ function CartItem({ item, onRemoveItem }) {
               <p className="small mb-0">{item.product.description}</p>
             </div>
           </div>
+          
+          {/* {
+                        <div style={{ width: "80px" }}>
+                          <MDBTypography tag="h5" className="mb-0">
+                            $900
+                          </MDBTypography>
+                        </div>
+                        <a href="#!" style={{ color: "#8c8c94" }}>
+                          <MDBIcon fas icon="trash-alt" />
+                        </a>
+                      </div>
+           */} 
+
+
           <div className="d-flex flex-row align-items-center">
-            <div style={{ width: "50px" }}>
-              <MDBTypography tag="h" className="fw-normal mb-0"></MDBTypography>
+            <div style={{ width: "88px" }}>
+              <MDBTypography  tag="h" className="fw-normal mb-0">
+              <p><button className="btn btn-primary" style={{ backgroundColor: "#157cb8", color:"#dbe5e9", borderColor: "#157cb8" }} onClick={item.onIncreaseQuantity}>+</button></p>
+                 <p>Qty: {item.quantity}</p>
+                <p><button className="btn btn-primary" style={{ backgroundColor: "#157cb8", color:"#dbe5e9", borderColor: "#157cb8" }}  onClick={item.onIncreaseQuantity}>-</button></p>
+            </MDBTypography>
             </div>
-            <div style={{ width: "80px" }}>
-              <MDBTypography tag="h" className="mb-0">
-                <TbCurrencyShekel />
+            <div style={{ width: "90px" }}>
                 {parseFloat(item.product.price).toLocaleString()}
-                <p className="small mb-0">Qty: {item.quantity}</p>
+                <MDBTypography tag="h" className="mb-0">
+                <TbCurrencyShekel />
               </MDBTypography>
             </div>
 
             <a
               href="#!"
-              style={{ color: "#cecece", fontSize: "2em" }}
+              style={{ color: "#8c8c94", fontSize: "2em" }}
               onClick={onRemoveItem}
             >
               <FaTrashAlt />
