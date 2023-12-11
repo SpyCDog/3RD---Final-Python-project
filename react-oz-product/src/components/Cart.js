@@ -46,7 +46,7 @@ function Cart() {
       .then(() => {
         setCartItems(
           (Items) => Items.filter((item) => item.id !== itemId),
-          console.log("Cart-item has removed successfully!!!")
+          console.log("Cart-item", itemId , "has removed successfully!!!")
         );
       })
 
@@ -57,7 +57,6 @@ function Cart() {
 
   const handleRemoveCart = (id) => {
     console.log("CART ID:", id);
-    // console.log("AXTKN:",accessToken)
     axios
       .delete(`${HOST_URL}/delete_cart/${id}`)
       .then(() => {
@@ -72,14 +71,18 @@ function Cart() {
 
    const handleIncreaseQuantity = (itemId) => {
     // Send request to backend to increase quantity
+    console.log("Cart's item ID-----",itemId)
     axios.post(`${HOST_URL}/increase_item_quantity/${itemId}`)
-        .then((response) => {
+        .then(() => {
             // Update the cartItems state to reflect the new quantity
+            console.log("setCartItems-----",setCartItems)
             setCartItems((currentItems) => 
                 currentItems.map((item) =>
-                    item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
-                )
-            );
+                
+                    item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item),
+            
+
+                    );
         })
         .catch((error) => {
             console.error("Error increasing quantity:", error);
@@ -89,7 +92,7 @@ function Cart() {
 const handleDecreaseQuantity = (itemId) => {
   // Send request to backend to decrease quantity
   axios.post(`${HOST_URL}/decrease_item_quantity/${itemId}`)
-      .then((response) => {
+      .then(() => {
           // Update the cartItems state to reflect the new quantity
           setCartItems((currentItems) => 
               currentItems.map((item) =>
@@ -138,17 +141,27 @@ const handleDecreaseQuantity = (itemId) => {
                   </MDBCol>
                   <MDBCol lg="1">
                     <div>
+                      {cartItems.length > 0 ?(<div>
                       {" "}
+                      <p>
                       <button
                         className="btn btn-primary"
                         style={{ backgroundColor: "#4b5c63",borderColor: "#4b5c63" ,color: "#dbe5e9"}}
                         onClick={() => handleRemoveCart(cart.id)}
                       >
                         X
-                      </button>
+                      </button></p>
+                      <br></br>
+                    <p>
+                      <CartSummary subtotal={subtotal}/>
+                      </p></div>) : (
+
+                      <div className="h1" style={{whiteSpace: "nowrap",   fontFamily: "Whisper", fontSize: "100px"
+                    }}> Cart is empty</div>
+                      )}
                     </div>
-                  </MDBCol>
-                  <CartSummary subtotal={subtotal} />
+                  </MDBCol> 
+                  
                 </MDBRow>
               </MDBCardBody>
             </MDBCard>

@@ -16,8 +16,6 @@ function Product({ product }) {
     setTimeout(() => {
       setShowSuccessAnimation(false);
     }, 3000);
-
-    console.log("retrived token....");
     axios
       .post(
         `${HOST_URL}/add_to_cart`,

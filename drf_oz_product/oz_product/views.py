@@ -169,7 +169,7 @@ def register(request):
         # Return a response with an error message
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
-# @csrf_exempt
+@csrf_exempt
 @api_view(['POST'])
 def increase_quantity(request, id):
     try:

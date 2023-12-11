@@ -11,8 +11,3 @@ admin.site.register(Cart)
 admin.site.register(CartItem)
 
 
-class CartAdmin(admin.ModelAdmin):
-    list_display = ['user', 'created_at']  # Add any other fields you want to display in the admin list view
-
-class CartItemAdmin(admin.ModelAdmin):
-    list_display = ['cart', 'product', 'quantity']  # Customize as needed

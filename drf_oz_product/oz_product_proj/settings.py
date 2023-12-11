@@ -86,11 +86,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
-
-
-CSRF_COOKIE_SECURE = True
-
 ROOT_URLCONF = "oz_product_proj.urls"
 
 TEMPLATES = [
