@@ -11,7 +11,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 # from django.shortcuts import get_object_or_404
 
 
-
+@csrf_exempt
 @api_view(['GET', 'POST'])
 def products(request):
     if request.method == 'GET':
@@ -70,7 +70,7 @@ def product_detail(request, id):
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-
+@csrf_exempt
 @api_view(['GET', 'POST'])
 def categories(request):
     search = request.GET.get('search')
