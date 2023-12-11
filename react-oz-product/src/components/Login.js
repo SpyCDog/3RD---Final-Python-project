@@ -41,7 +41,7 @@ function Login() {
       });
 
       // Show the success animation
-      setShowSuccessAnimation();
+      setShowSuccessAnimation(true);
       // Set a timeout to navigate after the animation has had time to play
       setTimeout(() => {
         navigate("/");
@@ -66,7 +66,7 @@ function Login() {
       <div className="animation-container">
         <Lottie
           animationData={successAnimationData}
-          play
+          play 
           className="lottie-animation" // Apply the CSS class here
         />
       </div>

@@ -163,3 +163,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+AUTH_USER_MODEL = 'oz_product.MyUser'
+
+
