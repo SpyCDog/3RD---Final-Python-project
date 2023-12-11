@@ -161,7 +161,7 @@ def register(request):
             new_user.save()
 
         # Return a successful response
-        return Response({'messege':f"USER: {new_user} registered successfully!!!"},{'message': 'User registered successfully.'}, status=status.HTTP_201_CREATED)
+        return Response({'messege':f"USER: {username} registered successfully!!!"},{'message': 'User registered successfully.'}, status=status.HTTP_201_CREATED)
     
     except Exception as e:
         # Return a response with an error message
