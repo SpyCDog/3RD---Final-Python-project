@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import "./styles/Product.css";
 import { TbCurrencyShekel } from "react-icons/tb";
 import Lottie from "lottie-react";
 import seccessAnimation from "./styles/lottie/success.json";
 import { HOST_URL } from "../constants.js";
+import { UserContext } from './UserContext';
+
 
 function Product({ product }) {
   const [showSuccessAnimation, setShowSuccessAnimation] = useState(false);
+  const { user } = useContext(UserContext);
+  const [errorMessage, setErrorMessage] = useState("");
+
 
   // Define handleAddToCart function
   const handleAddToCart = () => {
+    if (!user) {
+      console.log("USER NOT LOGGED IN!!!")
+      const message = "You must be logged in to add items to the cart.";
+      console.log(message);
+      setErrorMessage(message);
+      return
+        }
     // Then show the animation
     setShowSuccessAnimation(true);
     setTimeout(() => {
@@ -31,8 +43,11 @@ function Product({ product }) {
         console.log("PRODUCT ID --- ", product.id);
       })
       .catch((error) => {
-        // Handle the error
         console.error("Error adding product to cart:", error);
+        const errorMessage = error.response && error.response.data && error.response.data.message
+            ? error.response.data.message
+            : "Error adding product to cart. Please try again.";
+          setErrorMessage(errorMessage);
       });
   };
 
@@ -41,7 +56,9 @@ function Product({ product }) {
     : "default-fallback-image-url";
 
   return (
+    
     <div className="card product-card" style={{ width: "20rem", backgroundColor: "white"}}>
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
       <img src={imageUrl} className="card-img-top" alt={product.name} />
       <div className="card-body">
         <h5 className="card-title">

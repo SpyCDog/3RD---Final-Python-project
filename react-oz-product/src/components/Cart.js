@@ -16,6 +16,7 @@ import {
 import LoadingSpinner from "./LoadingSpinner";
 import { HOST_URL } from "../constants";
 
+
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [cart, setCart] = useState([]);

@@ -83,9 +83,6 @@ def categories(request):
 
 @csrf_exempt
 @api_view()
-@authentication_classes([JWTAuthentication])
-@permission_classes([IsAuthenticated])
-
 def cart(request):
         try:
             cart = Cart.objects.get(user=request.user)
@@ -144,6 +141,7 @@ def delete_cart(request, id):
     try:    
         current_cart = Cart.objects.get(id=id)
         current_cart.delete()
+        print(request)
         return Response({'detail': 'Cart removed.'}, status=status.HTTP_204_NO_CONTENT)
     except Cart.DoesNotExist:
             return Response({'detail': 'Cart not found.'}, status=status.HTTP_404_NOT_FOUND)
