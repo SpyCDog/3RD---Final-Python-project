@@ -135,6 +135,8 @@ def delete_from_cart(request, id):
             return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
         
 @csrf_exempt
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 @api_view(['DELETE'])
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
@@ -170,6 +172,8 @@ def register(request):
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
 @csrf_exempt
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 @api_view(['POST'])
 def increase_quantity(request, id):
     try:
@@ -182,6 +186,8 @@ def increase_quantity(request, id):
 
 
 @csrf_exempt
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 @api_view(['POST'])
 def decrease_quantity(request, id):
     try:
