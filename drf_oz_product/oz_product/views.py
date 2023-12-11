@@ -3,12 +3,12 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from .models import Cart, Category, Product, CartItem, MyUser
 from .serializers import CartSerializer, ProductSerializer, CategorySerializer, CartItemSerializer
-# from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from django.shortcuts import get_object_or_404
+# from django.shortcuts import get_object_or_404
 
 
 
@@ -168,7 +168,7 @@ def register(request):
         # Return a response with an error message
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
-    
+@csrf_exempt
 @api_view(['POST'])
 def increase_quantity(request, id):
     try:
@@ -180,7 +180,7 @@ def increase_quantity(request, id):
         return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 
-
+@csrf_exempt
 @api_view(['POST'])
 def decrease_quantity(request, id):
     try:
