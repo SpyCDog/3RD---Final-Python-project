@@ -145,24 +145,23 @@ def delete_cart(request, id):
             return Response({'detail': 'Cart not found.'}, status=status.HTTP_404_NOT_FOUND)
         
 
-@api_view(['POST', 'GET'])
+@api_view(['POST'])
 def register(request):
     try:
         username = request.data.get('username')
         password = request.data.get('password')
         email = request.data.get('email')
         
-        MyUser.objects.get("email")
-        # Validate the data, for instance:
-        if  not email:
+        user_exist = MyUser.objects.filter(email=email).exists()
+        if user_exist:
             return Response({'error': 'Email already in use.'}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            # Create the user
+            # Create the new user
             new_user = MyUser.objects.create_user(username=username, email=email, password=password)
             new_user.save()
 
         # Return a successful response
-        return Response(f"{new_user} just registered!!!",{'message': 'User registered successfully.'}, status=status.HTTP_201_CREATED)
+        return Response({'messege':f"USER: {new_user} registered successfully!!!"},{'message': 'User registered successfully.'}, status=status.HTTP_201_CREATED)
     
     except Exception as e:
         # Return a response with an error message
