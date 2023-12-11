@@ -6,6 +6,9 @@ from django.conf import settings
 class MyUser(AbstractUser):
     pass
 
+    def __str__(self):
+        return f'{self.username}, {self.email}'
+
 class Product(models.Model):
     image = models.ImageField(upload_to='product_images/', blank=True, null=True)
     category = models.ForeignKey('Category',on_delete=models.CASCADE, related_name='products')
