@@ -1,7 +1,7 @@
 from rest_framework import status
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .models import Cart, Category, Product, CartItem
+from .models import Cart, Category, Product, CartItem, MyUser
 from .serializers import CartSerializer, ProductSerializer, CategorySerializer, CartItemSerializer
 # from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
@@ -163,7 +163,7 @@ def register(request):
             return Response({'error': 'Email already in use.'}, status=status.HTTP_400_BAD_REQUEST)
         
         # Create the user
-        user = User.objects.create_user(username=username, email=email, password=password)
+        user = MyUser.objects.create_user(username=username, email=email, password=password)
         user.save()
         
         # You can now do any post-registration logic like sending a confirmation email, etc.
