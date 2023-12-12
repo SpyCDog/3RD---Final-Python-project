@@ -34,6 +34,9 @@ class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     
+    @property
+    def image(self):
+        return self.product.image
     
     def __str__(self):
         return f'{self.product, self.quantity}'

@@ -14,34 +14,34 @@ import { HOST_URL } from "../constants";
 // import axios from 'axios';
 
 function CartItem({ item, onRemoveItem, onIncreaseQuantity, onDecreaseQuantity }) {
-  
+  console.log('CartItem data:', item);
   return (
     <MDBCard className="mb-3" >
       <MDBCardBody >
         <div className="d-flex justify-content-between">
           <div className="d-flex flex-row align-items-center">
             <MDBCardImage
-              src={`${HOST_URL}${item.product.image}`} 
+              src={HOST_URL + `${item.product.image}`}
               fluid 
               className="rounded-3"
               style={{ width: "65px" }}
-              alt={item.name}
+              alt={item.product.name}
             />
             <div className="ms-3">
-              <MDBTypography tag="h5">{item.name}</MDBTypography>
-              <p className="small mb-0">{item.description}</p>
+              <MDBTypography tag="h5">{item.product.name}</MDBTypography>
+              <p className="small mb-0">{item.product.description}</p>
             </div>
           </div>
           <div className="d-flex flex-row align-items-center">
             <div style={{ width: "88px" }}>
               <MDBTypography  tag="h" className="fw-normal mb-0">
-              <p><a href="#!" className="btn btn-primary" style={{ backgroundColor: "#157cb8", color:"#dbe5e9", borderColor: "#157cb8" }} onClick={()=>onIncreaseQuantity(item.id)}>+</a></p>
+              <p><a href="#!" className="btn btn-primary" style={{ backgroundColor: "#157cb8", color:"#dbe5e9", borderColor: "#157cb8" }} onClick={()=>onIncreaseQuantity(item.product.id)}>+</a></p>
                  <p>Qty: {item.quantity}</p>
-                <p><a href="#!" className="btn btn-primary" style={{ backgroundColor: "#157cb8", color:"#dbe5e9", borderColor: "#157cb8" }}  onClick={()=>onDecreaseQuantity(item.id)}>-</a></p>
+                <p><a href="#!" className="btn btn-primary" style={{ backgroundColor: "#157cb8", color:"#dbe5e9", borderColor: "#157cb8" }}  onClick={()=>onDecreaseQuantity(item.product.id)}>-</a></p>
             </MDBTypography>
             </div>
             <div style={{ width: "90px" }}>
-                {parseFloat(item.price).toLocaleString()}
+                {parseFloat(item.product.price).toLocaleString()}
                 <MDBTypography tag="h" className="mb-0">
                 <TbCurrencyShekel />
               </MDBTypography>

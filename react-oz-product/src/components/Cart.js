@@ -136,7 +136,7 @@ const handleDecreaseQuantity = (itemId) => {
                     {cartItems.map((item) => (
                       <CartItem
                         key={item.id}
-                        cartitem={item}
+                        item={item}
                         onIncreaseQuantity={() => handleIncreaseQuantity(item.id)}
                         onDecreaseQuantity={() => handleDecreaseQuantity(item.id)}
                         onRemoveItem={() => handleRemoveItem(item.id)}
