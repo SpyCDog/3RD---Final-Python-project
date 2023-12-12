@@ -32,8 +32,8 @@ function CartItem({ item, onRemoveItem, onIncreaseQuantity, onDecreaseQuantity }
   
     });
   
-    const imageUrl = cartitem.image
-    ? `${HOST_URL}/${cartitem.image}`
+    const imageUrl = cartitem.product.image
+    ? `${HOST_URL}/${cartitem.product.image}`
     : "default-fallback-image-url";
 
   return (

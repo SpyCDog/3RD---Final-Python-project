@@ -25,8 +25,8 @@ def products(request):
         if category:
             all_products = all_products.filter(category__id=category)
 
-        all_products_json = ProductSerializer(all_products, many=True).data
-        return Response(all_products_json)
+        serializer = ProductSerializer(all_products, many=True).data
+        return Response(serializer)
     elif request.method == 'POST':
         # this line creates a serializer object from json data
         serializer = ProductSerializer(data=request.data)
@@ -47,8 +47,8 @@ def categories(request):
     all_categories = Category.objects.all()
     if search:
         all_categories = all_categories.filter(name__contains=search)
-    all_categories_json = CategorySerializer(all_categories, many=True).data
-    return Response(all_categories_json)
+    serializer = CategorySerializer(all_categories, many=True).data
+    return Response(serializer)
 
 
 
