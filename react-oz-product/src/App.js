@@ -5,21 +5,18 @@ import NoPage from "./components/NoPage";
 import Footer from "./components/Footer";
 import Register from "./components/Register";
 import Cart from "./components/Cart";
-import AddProduct from "./components/AddProduct";
 import LoadingSpinner from "./components/LoadingSpinner";
 import { UserProvider } from "./components/UserContext";
 import { HOST_URL } from "./constants.js";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Alert } from "react-bootstrap";
+import ProductPage from "./components/ProductPage.js";
 
 function App() {
   const [categories, setCategories] = useState([]);
   const [currentCategory, setCurrentCategory] = useState(1);
   const [products, setProducts] = useState([]);
-  const [message, setMessage] = useState("Default massege!!!");
-  const [showAlert, setShowAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(getProducts, [currentCategory]); // when loading the page for the first time - getProducts()
@@ -35,14 +32,6 @@ function App() {
     return () => clearTimeout(timer);
   }, []); // The empty dependency array ensures this effect runs only once after the initial render
 
-  // when category is clicked
-
-  function productAdded() {
-    setCurrentCategory("asgasgasg");
-    setCurrentCategory("");
-    setMessage("Product Added Succesfuly");
-    setShowAlert(true);
-  }
 
   function navClickButtom(name) {
     console.log("click!", name);
@@ -53,7 +42,7 @@ function App() {
     axios
       .get(HOST_URL + "/category")
       .then((response) => {
-        console.log("categories are:", response.data);
+        console.log("Categories:", response.data);
         setCategories(response.data);
       })
       .catch((error) => {
@@ -66,16 +55,16 @@ function App() {
 
   function getProducts(searchText = null) {
     setIsLoading(true); // Start loading-spinner
-    console.log("get products 'app.js' function", searchText);
+    console.log("Get products 'app.js' function");
     let url = HOST_URL + "/product?category=" + currentCategory;
     if (searchText) {
       url = HOST_URL + "/product?search=" + searchText;
-      console.log("URL-serach:", url); // Add this line to check the URL
+      console.log("Searching for:",searchText, url); // Add this line to check the URL
     }
     axios
       .get(url)
       .then((response) => {
-        console.log(response.data);
+        console.log("Products:",response.data);
         setProducts(response.data);
       })
       .catch((error) => {
@@ -87,15 +76,7 @@ function App() {
       });
   }
 
-  // example of filter in client
-  // function searchProduct(searchText) {
-
-  //   const filteredProducts = products.filter((product) =>
-  //   product.name.toLowerCase().includes(searchText.toLowerCase())
-  // );
-  // setProducts(filteredProducts);
-  // }
-
+  
   function searchProduct(searchText) {
     console.log("searching for product", searchText);
     getProducts(searchText);
@@ -106,16 +87,6 @@ function App() {
     <>
       <UserProvider>
         <BrowserRouter basename="/3RD---Final-Python-project">
-          {showAlert && (
-            <Alert
-              variant="success"
-              onClose={() => setShowAlert(false)}
-              dismissible
-            >
-              {message}
-            </Alert>
-          )}
-
           <Navbar
             categories={categories}
             navClickButtom={navClickButtom}
@@ -148,10 +119,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/cart" element={<Cart />} />
-            <Route
-              path="/add_product"
-              element={<AddProduct productAdded={productAdded} />}
-            />
+            <Route path="/productpage" element={<ProductPage />} />
+            {/* <Route path="/add_product" element={<AddProduct productAdded={productAdded}/>}/> */}
             <Route path="*" element={<NoPage />} />
           </Routes>
           <Footer />

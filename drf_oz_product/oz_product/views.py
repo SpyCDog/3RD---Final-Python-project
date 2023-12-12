@@ -11,7 +11,6 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 # from django.shortcuts import get_object_or_404
 
 
-# @csrf_exempt
 @api_view(['GET', 'POST'])
 def products(request):
     if request.method == 'GET':
@@ -42,7 +41,6 @@ def products(request):
         # if not valid. return errors.
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @csrf_exempt
 @api_view(['GET', 'PUT', 'DELETE'])
 def product_detail(request, id):
     # get object from db by id
@@ -70,7 +68,7 @@ def product_detail(request, id):
         product.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-# @csrf_exempt
+
 @api_view(['GET', 'POST'])
 def categories(request):
     search = request.GET.get('search')
@@ -81,7 +79,6 @@ def categories(request):
     return Response(all_categories_json)
 
 
-# @csrf_exempt
 @api_view()
 def cart(request):
         try:
@@ -93,10 +90,10 @@ def cart(request):
             return Response({'detail': 'Cart not found.'}, status=status.HTTP_404_NOT_FOUND)
     
     
-# @csrf_exempt    
+@csrf_exempt    
 @api_view(['POST'])
-# @authentication_classes([JWTAuthentication])
-# @permission_classes([IsAuthenticated])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 
 def add_to_cart(request):
     product_id = request.data.get('product_id')
@@ -118,10 +115,10 @@ def add_to_cart(request):
             return Response({'Product not found.(backend - add_to_cart)'}, status=status.HTTP_404_NOT_FOUND)
         
         
-# @csrf_exempt        
+@csrf_exempt        
 @api_view(['DELETE'])
-# @authentication_classes([JWTAuthentication])
-# @permission_classes([IsAuthenticated])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 
 def delete_from_cart(request, id):
     try:
@@ -132,8 +129,8 @@ def delete_from_cart(request, id):
             return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
         
 @csrf_exempt
-# @authentication_classes([JWTAuthentication])
-# @permission_classes([IsAuthenticated])
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 @api_view(['DELETE'])
 def delete_cart(request, id):
     try:    
@@ -144,7 +141,7 @@ def delete_cart(request, id):
     except Cart.DoesNotExist:
             return Response({'detail': 'Cart not found.'}, status=status.HTTP_404_NOT_FOUND)
         
-# @csrf_exempt
+@csrf_exempt
 @api_view(['POST'])
 def register(request):
     try:
@@ -167,9 +164,9 @@ def register(request):
         # Return a response with an error message
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
-# @csrf_exempt
-# @authentication_classes([JWTAuthentication])
-# @permission_classes([IsAuthenticated])
+@csrf_exempt
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 @api_view(['POST'])
 def increase_quantity(request, id):
     try:
@@ -181,9 +178,9 @@ def increase_quantity(request, id):
         return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 
-# @csrf_exempt
-# @authentication_classes([JWTAuthentication])
-# @permission_classes([IsAuthenticated])
+@csrf_exempt
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 @api_view(['POST'])
 def decrease_quantity(request, id):
     try:

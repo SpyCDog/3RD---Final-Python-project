@@ -6,6 +6,7 @@ import Lottie from "lottie-react";
 import seccessAnimation from "./styles/lottie/success.json";
 import { HOST_URL } from "../constants.js";
 import { UserContext } from './UserContext';
+// import { useLocation } from "react-router-dom";
 
 
 function Product({ product }) {
@@ -13,6 +14,7 @@ function Product({ product }) {
   const { user } = useContext(UserContext);
   const [errorMessage, setErrorMessage] = useState("");
   const [showError, setShowError] = useState(false); // State to control the visibility of the error message
+
 
 
   useEffect(() => {
@@ -83,7 +85,7 @@ function Product({ product }) {
           <TbCurrencyShekel />
         </h5>
         <p className="card-text">{product.description}</p>
-        <button style={{ marginRight: "8px" }} className="btn btn-primary">
+        <button style={{ marginRight: "8px" }} className="btn btn-primary" to= "/productpage">
           Details
         </button>
 

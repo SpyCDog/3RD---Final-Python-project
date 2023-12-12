@@ -41,7 +41,7 @@ function Login() {
       });
 
       // Show the success animation
-      setShowSuccessAnimation(true);
+      setShowSuccessAnimation();
       // Set a timeout to navigate after the animation has had time to play
       setTimeout(() => {
         navigate("/");
