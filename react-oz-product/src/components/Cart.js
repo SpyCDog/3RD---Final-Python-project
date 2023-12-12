@@ -140,6 +140,7 @@ const handleDecreaseQuantity = (itemId) => {
                         onIncreaseQuantity={() => handleIncreaseQuantity(item.id)}
                         onDecreaseQuantity={() => handleDecreaseQuantity(item.id)}
                         onRemoveItem={() => handleRemoveItem(item.id)}
+                        
                       />
                     ))}
                   </MDBCol>

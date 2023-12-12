@@ -15,6 +15,7 @@ class ProductSerializer(serializers.ModelSerializer):
     
         
 class CartItemSerializer(serializers.ModelSerializer):
+    image = serializers.ImageField(source='product.image', read_only=True)
     product = ProductSerializer(many=False, read_only=True)
     class Meta:
         model = CartItem
@@ -23,8 +24,7 @@ class CartItemSerializer(serializers.ModelSerializer):
         
 class CartSerializer(serializers.ModelSerializer):
     items = CartItemSerializer(many=True, read_only=True)
-    image = ProductSerializer(many=True, read_only=True)
     class Meta:
         model = Cart
-        fields = ['id', 'user', 'items', 'image']
+        fields = ['id', 'user', 'items']
 
