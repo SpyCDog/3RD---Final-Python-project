@@ -87,7 +87,7 @@ function Cart() {
             setCartItems((currentItems) => 
                 currentItems.map((item) =>
                 
-                    item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item),
+                    item.id === itemId ? { quantity: item.quantity + 1 } : item),
             
 
                     );
@@ -110,7 +110,7 @@ const handleDecreaseQuantity = (itemId) => {
           // Update the cartItems state to reflect the new quantity
           setCartItems((currentItems) => 
               currentItems.map((item) =>
-                  item.id === itemId ? { ...item, quantity: Math.max(0, item.quantity - 1) } : item
+                  item.id === itemId ? {quantity: Math.max(0, item.quantity - 1) } : item
               )
           );
       })

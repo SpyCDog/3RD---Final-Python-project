@@ -118,10 +118,10 @@ def add_to_cart(request):
             return Response({'Product not found.(backend - add_to_cart)'}, status=status.HTTP_404_NOT_FOUND)
         
         
-# @csrf_exempt        
+@csrf_exempt        
 @api_view(['DELETE'])
-@authentication_classes([JWTAuthentication])
-@permission_classes([IsAuthenticated])
+# @authentication_classes([JWTAuthentication])
+# @permission_classes([IsAuthenticated])
 
 def delete_from_cart(request, id):
     try:
@@ -131,12 +131,10 @@ def delete_from_cart(request, id):
     except CartItem.DoesNotExist:
             return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
         
-# @csrf_exempt
-@authentication_classes([JWTAuthentication])
-@permission_classes([IsAuthenticated])
+@csrf_exempt
+# @authentication_classes([JWTAuthentication])
+# @permission_classes([IsAuthenticated])
 @api_view(['DELETE'])
-@authentication_classes([JWTAuthentication])
-@permission_classes([IsAuthenticated])
 def delete_cart(request, id):
     try:    
         current_cart = Cart.objects.get(id=id)
@@ -146,7 +144,7 @@ def delete_cart(request, id):
     except Cart.DoesNotExist:
             return Response({'detail': 'Cart not found.'}, status=status.HTTP_404_NOT_FOUND)
         
-# @csrf_exempt
+@csrf_exempt
 @api_view(['POST'])
 def register(request):
     try:
@@ -169,9 +167,9 @@ def register(request):
         # Return a response with an error message
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
-# @csrf_exempt
-@authentication_classes([JWTAuthentication])
-@permission_classes([IsAuthenticated])
+@csrf_exempt
+# @authentication_classes([JWTAuthentication])
+# @permission_classes([IsAuthenticated])
 @api_view(['POST'])
 def increase_quantity(request, id):
     try:
@@ -183,14 +181,14 @@ def increase_quantity(request, id):
         return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 
-# @csrf_exempt
-@authentication_classes([JWTAuthentication])
-@permission_classes([IsAuthenticated])
+@csrf_exempt
+# @authentication_classes([JWTAuthentication])
+# @permission_classes([IsAuthenticated])
 @api_view(['POST'])
 def decrease_quantity(request, id):
     try:
         cart_item = CartItem.objects.get(id=id, cart__user=request.user)
-        cart_item.quantity = max(1, cart_item.quantity - 1)  # Prevent negative quantities
+        cart_item.quantity = max(1, cart_item.quantity - 1)  
         cart_item.save()
         return Response({'detail': 'Quantity decreased successfully'}, status=status.HTTP_200_OK)
     except CartItem.DoesNotExist:
