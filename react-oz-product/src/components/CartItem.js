@@ -18,7 +18,7 @@ function CartItem({ item, onRemoveItem, onIncreaseQuantity, onDecreaseQuantity }
 
   useEffect(() => {
     axios
-      .get(HOST_URL + "/cart_item", {})
+      .get(HOST_URL + `/cart_item/${cartitem.id}`)
       .then((response) => {
         setCartItem(response.data);
 
