@@ -30,7 +30,7 @@ function CartItem({ item, onRemoveItem, onIncreaseQuantity, onDecreaseQuantity }
       });
       
   
-    }, []);
+    });
   
   return (
     <MDBCard className="mb-3" >
