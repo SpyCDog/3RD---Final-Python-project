@@ -14,33 +14,14 @@ import { HOST_URL } from "../constants";
 // import axios from 'axios';
 
 function CartItem({ item, onRemoveItem, onIncreaseQuantity, onDecreaseQuantity }) {
-  // const [cartitem, setCartItem] = useState(item);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(HOST_URL + `/cart_item/${cartitem.id}`)
-  //     .then((response) => {
-  //       setCartItem(response.data);
-
-  //       setCartItem(response.data || []);
-  //       console.log("CART ITEM:", response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching cart item data:", error);
-  //     });
-      
   
-  //   });
-  
- 
-
   return (
     <MDBCard className="mb-3" >
       <MDBCardBody >
         <div className="d-flex justify-content-between">
           <div className="d-flex flex-row align-items-center">
             <MDBCardImage
-              src={`${HOST_URL}/${item.image}`} 
+              src={`${HOST_URL}${item.product.image}`} 
               fluid 
               className="rounded-3"
               style={{ width: "65px" }}
