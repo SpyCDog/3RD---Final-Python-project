@@ -188,7 +188,7 @@ def increase_quantity(request, id):
 def decrease_quantity(request, id):
     try:
         cart_item = CartItem.objects.get(id=id, cart__user=request.user)
-        cart_item.quantity = max(1, cart_item.quantity - 1)  
+        cart_item.quantity -= 1 
         cart_item.save()
         return Response({'detail': 'Quantity decreased successfully'}, status=status.HTTP_200_OK)
     except CartItem.DoesNotExist:
