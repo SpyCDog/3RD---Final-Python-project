@@ -106,10 +106,10 @@ def add_to_cart(request):
                 cart_item.quantity = int(quantity)
             cart_item.save()
             cart.save()
-            cart_item_serializer = CartItemSerializer(cart_item)
-            # cart_serializer = CartSerializer(cart)
+            # cart_item_serializer = CartItemSerializer(cart_item)
+            cserializer = CartSerializer(cart)
             # serailizers = [cart_item_serializer, cart_serializer]
-            return Response(cart_item_serializer.data, status=status.HTTP_201_CREATED)
+            return Response(cserializer.data, status=status.HTTP_201_CREATED)
         except Product.DoesNotExist:
             return Response({'Product not found.(backend - add_to_cart)'}, status=status.HTTP_404_NOT_FOUND)
         
@@ -168,7 +168,8 @@ def increase_quantity(request, id):
     try:
         cart_item = CartItem.objects.get(id=id)
         cart_item.save()
-        return Response({'detail': 'Quantity increased successfully'}, status=status.HTTP_200_OK)
+        serialezer = CartItemSerializer(cart_item)
+        return Response(serialezer.data, status=status.HTTP_200_OK)
     except CartItem.DoesNotExist:
         return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -182,7 +183,8 @@ def decrease_quantity(request, id):
         cart_item = CartItem.objects.get(id=id)
         cart_item.quantity -= 1 
         cart_item.save()
-        return Response({'detail': 'Quantity decreased successfully'}, status=status.HTTP_200_OK)
+        serialezer = CartItemSerializer(cart_item)
+        return Response(serialezer.data, status=status.HTTP_200_OK)
     except CartItem.DoesNotExist:
         return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
 
