@@ -40,7 +40,7 @@ function CartItem({ item, onRemoveItem, onIncreaseQuantity, onDecreaseQuantity }
         <div className="d-flex justify-content-between">
           <div className="d-flex flex-row align-items-center">
             <MDBCardImage
-              src={HOST_URL `${item.image}`}
+              src={`${HOST_URL}/${item.image}`} 
               fluid 
               className="rounded-3"
               style={{ width: "65px" }}

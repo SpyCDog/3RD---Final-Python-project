@@ -63,15 +63,15 @@ def cart(request):
             return Response({'detail': 'Cart not found.'}, status=status.HTTP_404_NOT_FOUND)
         
         
-@api_view()
-def cart_item(request):
-        try:
-            cart = CartItem.objects.get(user=request.user)
-            cart.save()
-            serializer = CartItemSerializer(cart)
-            return Response(serializer.data)
-        except Cart.DoesNotExist:
-            return Response({'detail': 'Cart Item not found.'}, status=status.HTTP_404_NOT_FOUND)
+# @api_view()
+# def cart_item(request):
+#         try:
+#             cart = CartItem.objects.get(user=request.user)
+#             cart.save()
+#             serializer = CartItemSerializer(cart)
+#             return Response(serializer.data)
+#         except Cart.DoesNotExist:
+#             return Response({'detail': 'Cart Item not found.'}, status=status.HTTP_404_NOT_FOUND)
     
     
 @api_view(['POST'])
