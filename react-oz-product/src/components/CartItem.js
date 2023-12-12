@@ -32,21 +32,25 @@ function CartItem({ item, onRemoveItem, onIncreaseQuantity, onDecreaseQuantity }
   
     });
   
+    const imageUrl = cartitem.image
+    ? `${HOST_URL}/${cartitem.image}`
+    : "default-fallback-image-url";
+
   return (
     <MDBCard className="mb-3" >
       <MDBCardBody >
         <div className="d-flex justify-content-between">
           <div className="d-flex flex-row align-items-center">
             <MDBCardImage
-              src={HOST_URL `${cartitem.product.image}`}
+              src={imageUrl}
               fluid 
               className="rounded-3"
               style={{ width: "65px" }}
-              alt={cartitem.product.name}
+              alt={cartitem.name}
             />
             <div className="ms-3">
-              <MDBTypography tag="h5">{cartitem.product.name}</MDBTypography>
-              <p className="small mb-0">{cartitem.product.description}</p>
+              <MDBTypography tag="h5">{cartitem.name}</MDBTypography>
+              <p className="small mb-0">{cartitem.description}</p>
             </div>
           </div>
           <div className="d-flex flex-row align-items-center">
@@ -58,7 +62,7 @@ function CartItem({ item, onRemoveItem, onIncreaseQuantity, onDecreaseQuantity }
             </MDBTypography>
             </div>
             <div style={{ width: "90px" }}>
-                {parseFloat(item.product.price).toLocaleString()}
+                {parseFloat(item.price).toLocaleString()}
                 <MDBTypography tag="h" className="mb-0">
                 <TbCurrencyShekel />
               </MDBTypography>
