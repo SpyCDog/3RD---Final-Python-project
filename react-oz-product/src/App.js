@@ -1,7 +1,6 @@
 import Product from "./components/Product";
 import Navbar from "./components/Navbar";
 import Login from "./components/Login";
-import NoPage from "./components/NoPage";
 import Footer from "./components/Footer";
 import Register from "./components/Register";
 import Cart from "./components/Cart";
@@ -11,7 +10,6 @@ import { HOST_URL } from "./constants.js";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ProductPage from "./components/ProductPage.js";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -119,9 +117,6 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/productpage" element={<ProductPage />} />
-            {/* <Route path="/add_product" element={<AddProduct productAdded={productAdded}/>}/> */}
-            <Route path="*" element={<NoPage />} />
           </Routes>
           <Footer />
         </BrowserRouter>

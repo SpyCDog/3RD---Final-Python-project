@@ -122,7 +122,7 @@ const handleDecreaseQuantity = (itemId) => {
         <LoadingSpinner />
       </div>
     );
-  }
+   }
   return (
     <section className="h-100 h-custom" >
       <MDBContainer className="py-5 h-100">
@@ -136,7 +136,7 @@ const handleDecreaseQuantity = (itemId) => {
                     {cartItems.map((item) => (
                       <CartItem
                         key={item.id}
-                        item={item}
+                        cartitem={item}
                         onIncreaseQuantity={() => handleIncreaseQuantity(item.id)}
                         onDecreaseQuantity={() => handleDecreaseQuantity(item.id)}
                         onRemoveItem={() => handleRemoveItem(item.id)}

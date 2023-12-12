@@ -39,32 +39,6 @@ def products(request):
         # if not valid. return errors.
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['GET', 'PUT', 'DELETE'])
-def product_detail(request, id):
-    # get object from db by id
-    try:
-        product = Product.objects.get(pk=id)
-    except Product.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-    # GET
-    if request.method == 'GET':
-        # create serializer from object
-        serializer = ProductSerializer(product)
-        # return json using serializer
-        return Response(serializer.data)
-    # PUT
-    elif request.method == 'PUT':
-        serializer = ProductSerializer(product, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    # DELETE
-    elif request.method == 'DELETE':
-        # product.is_active = False
-        # product.save()
-        product.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 @api_view(['GET', 'POST'])
@@ -76,6 +50,15 @@ def categories(request):
     all_categories_json = CategorySerializer(all_categories, many=True).data
     return Response(all_categories_json)
 
+@api_view()
+def cart_item(request):
+        try:
+            cart = Cart.objects.get(user=request.user)
+            cart.save()
+            serializer = CartSerializer(cart)
+            return Response(serializer.data)
+        except Cart.DoesNotExist:
+            return Response({'detail': 'Cart not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 @api_view()
 def cart(request):

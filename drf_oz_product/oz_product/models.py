@@ -10,7 +10,7 @@ class MyUser(AbstractUser):
         return f'{self.username}, {self.email}'
 
 class Product(models.Model):
-    image = models.ImageField(upload_to='product_images/', blank=True, null=True)
+    image = models.ImageField(upload_to='.product_images/', blank=True, null=True)
     category = models.ForeignKey('Category',on_delete=models.CASCADE, related_name='products')
     name = models.CharField(max_length=100, null=False)
     description = models.CharField(max_length=200)
