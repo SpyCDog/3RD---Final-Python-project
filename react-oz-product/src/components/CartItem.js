@@ -32,9 +32,7 @@ function CartItem({ item, onRemoveItem, onIncreaseQuantity, onDecreaseQuantity }
   
     });
   
-    const imageUrl = cartitem.product.image
-    ? `${HOST_URL}/${cartitem.product.image}`
-    : "default-fallback-image-url";
+ 
 
   return (
     <MDBCard className="mb-3" >
@@ -42,7 +40,7 @@ function CartItem({ item, onRemoveItem, onIncreaseQuantity, onDecreaseQuantity }
         <div className="d-flex justify-content-between">
           <div className="d-flex flex-row align-items-center">
             <MDBCardImage
-              src={imageUrl}
+              src={HOST_URL `${cartitem.product.image}`}
               fluid 
               className="rounded-3"
               style={{ width: "65px" }}
