@@ -1,4 +1,4 @@
-import React ,{ useState, useEffect } from 'react';
+// import React ,{ useState, useEffect } from 'react';
 // import axios from 'axios';
 import {
   // MDBBtn,
@@ -11,26 +11,26 @@ import {
 import { TbCurrencyShekel } from "react-icons/tb";
 import { FaTrashAlt } from "react-icons/fa";
 import { HOST_URL } from "../constants";
-import axios from 'axios';
+// import axios from 'axios';
 
 function CartItem({ item, onRemoveItem, onIncreaseQuantity, onDecreaseQuantity }) {
-  const [cartitem, setCartItem] = useState(item);
+  // const [cartitem, setCartItem] = useState(item);
 
-  useEffect(() => {
-    axios
-      .get(HOST_URL + `/cart_item/${cartitem.id}`)
-      .then((response) => {
-        setCartItem(response.data);
+  // useEffect(() => {
+  //   axios
+  //     .get(HOST_URL + `/cart_item/${cartitem.id}`)
+  //     .then((response) => {
+  //       setCartItem(response.data);
 
-        setCartItem(response.data || []);
-        console.log("CART ITEM:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching cart item data:", error);
-      });
+  //       setCartItem(response.data || []);
+  //       console.log("CART ITEM:", response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching cart item data:", error);
+  //     });
       
   
-    });
+  //   });
   
  
 
@@ -40,23 +40,23 @@ function CartItem({ item, onRemoveItem, onIncreaseQuantity, onDecreaseQuantity }
         <div className="d-flex justify-content-between">
           <div className="d-flex flex-row align-items-center">
             <MDBCardImage
-              src={HOST_URL `${cartitem.product.image}`}
+              src={HOST_URL `${item.image}`}
               fluid 
               className="rounded-3"
               style={{ width: "65px" }}
-              alt={cartitem.name}
+              alt={item.name}
             />
             <div className="ms-3">
-              <MDBTypography tag="h5">{cartitem.name}</MDBTypography>
-              <p className="small mb-0">{cartitem.description}</p>
+              <MDBTypography tag="h5">{item.name}</MDBTypography>
+              <p className="small mb-0">{item.description}</p>
             </div>
           </div>
           <div className="d-flex flex-row align-items-center">
             <div style={{ width: "88px" }}>
               <MDBTypography  tag="h" className="fw-normal mb-0">
-              <p><a href="#!" className="btn btn-primary" style={{ backgroundColor: "#157cb8", color:"#dbe5e9", borderColor: "#157cb8" }} onClick={()=>onIncreaseQuantity(cartitem.id)}>+</a></p>
-                 <p>Qty: {cartitem.quantity}</p>
-                <p><a href="#!" className="btn btn-primary" style={{ backgroundColor: "#157cb8", color:"#dbe5e9", borderColor: "#157cb8" }}  onClick={()=>onDecreaseQuantity(cartitem.id)}>-</a></p>
+              <p><a href="#!" className="btn btn-primary" style={{ backgroundColor: "#157cb8", color:"#dbe5e9", borderColor: "#157cb8" }} onClick={()=>onIncreaseQuantity(item.id)}>+</a></p>
+                 <p>Qty: {item.quantity}</p>
+                <p><a href="#!" className="btn btn-primary" style={{ backgroundColor: "#157cb8", color:"#dbe5e9", borderColor: "#157cb8" }}  onClick={()=>onDecreaseQuantity(item.id)}>-</a></p>
             </MDBTypography>
             </div>
             <div style={{ width: "90px" }}>

@@ -23,7 +23,8 @@ class CartItemSerializer(serializers.ModelSerializer):
         
 class CartSerializer(serializers.ModelSerializer):
     items = CartItemSerializer(many=True, read_only=True)
+    image = ProductSerializer(many=True, read_only=True)
     class Meta:
         model = Cart
-        fields = ['id', 'user', 'items']
+        fields = ['id', 'user', 'items', 'image']
 
