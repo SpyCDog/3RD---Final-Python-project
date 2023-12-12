@@ -9,7 +9,6 @@ import AddProduct from "./components/AddProduct";
 import LoadingSpinner from "./components/LoadingSpinner";
 import { UserProvider } from "./components/UserContext";
 import { HOST_URL } from "./constants.js";
-
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";

@@ -171,5 +171,4 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 CSRF_TRUSTED_ORIGINS = [
     "https://spycdog.github.io",
     'https://oz-products-web.onrender.com',
-    'http://localhost:3000/3RD---Final-Python-project'
 ]

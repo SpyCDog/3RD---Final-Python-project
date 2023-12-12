@@ -1,7 +1,12 @@
 import axios from 'axios';
 import React, { createContext, useState } from 'react';
+import Cookies from 'js-cookie';
 
 
+// Function to get CSRF token from cookies
+export const getCsrfToken = () => {
+    return Cookies.get('csrftoken'); // Replace with your actual CSRF cookie name if different
+  };
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
