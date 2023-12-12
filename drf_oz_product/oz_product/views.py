@@ -95,8 +95,8 @@ def cart(request):
     
 # @csrf_exempt    
 @api_view(['POST'])
-@authentication_classes([JWTAuthentication])
-@permission_classes([IsAuthenticated])
+# @authentication_classes([JWTAuthentication])
+# @permission_classes([IsAuthenticated])
 
 def add_to_cart(request):
     product_id = request.data.get('product_id')
@@ -118,7 +118,7 @@ def add_to_cart(request):
             return Response({'Product not found.(backend - add_to_cart)'}, status=status.HTTP_404_NOT_FOUND)
         
         
-@csrf_exempt        
+# @csrf_exempt        
 @api_view(['DELETE'])
 # @authentication_classes([JWTAuthentication])
 # @permission_classes([IsAuthenticated])
@@ -144,7 +144,7 @@ def delete_cart(request, id):
     except Cart.DoesNotExist:
             return Response({'detail': 'Cart not found.'}, status=status.HTTP_404_NOT_FOUND)
         
-@csrf_exempt
+# @csrf_exempt
 @api_view(['POST'])
 def register(request):
     try:
@@ -167,7 +167,7 @@ def register(request):
         # Return a response with an error message
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
-@csrf_exempt
+# @csrf_exempt
 # @authentication_classes([JWTAuthentication])
 # @permission_classes([IsAuthenticated])
 @api_view(['POST'])
@@ -181,7 +181,7 @@ def increase_quantity(request, id):
         return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 
-@csrf_exempt
+# @csrf_exempt
 # @authentication_classes([JWTAuthentication])
 # @permission_classes([IsAuthenticated])
 @api_view(['POST'])
