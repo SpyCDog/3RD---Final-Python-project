@@ -109,7 +109,7 @@ def add_to_cart(request):
             # cart_item_serializer = CartItemSerializer(cart_item)
             cart_serializer = CartSerializer(cart)
             # serailizers = [cart_item_serializer, cart_serializer]
-            return Response(cart_serializer, status=status.HTTP_201_CREATED)
+            return Response(cart_serializer.data, status=status.HTTP_201_CREATED)
         except Product.DoesNotExist:
             return Response({'Product not found.(backend - add_to_cart)'}, status=status.HTTP_404_NOT_FOUND)
         
