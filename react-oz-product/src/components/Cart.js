@@ -15,7 +15,6 @@ import {
 
 import LoadingSpinner from "./LoadingSpinner";
 import { HOST_URL } from "../constants";
-import { getCsrfToken } from "./UserContext"; // Import getCsrfToken
 
 
 function Cart() {
@@ -75,12 +74,7 @@ function Cart() {
    
     // Send request to backend to increase quantity
     console.log("Cart's item ID-----",itemId)
-    const csrfToken = getCsrfToken();
-    axios.post(`${HOST_URL}/increase_item_quantity/${itemId}`,{},{
-      'X-CSRFToken': csrfToken
-
-    }
-    )
+    axios.post(`${HOST_URL}/increase_item_quantity/${itemId}`)
         .then(() => {
             // Update the cartItems state to reflect the new quantity
             console.log("setCartItems-----",setCartItems)
@@ -100,12 +94,7 @@ function Cart() {
 const handleDecreaseQuantity = (itemId) => {
  
   // Send request to backend to decrease quantity
-  const csrfToken = getCsrfToken();
-  axios.post(`${HOST_URL}/decrease_item_quantity/${itemId}`, {}, {
-    headers: {
-      'X-CSRFToken': csrfToken,
-    }
-  })
+  axios.post(`${HOST_URL}/decrease_item_quantity/${itemId}`)
       .then(() => {
           // Update the cartItems state to reflect the new quantity
           setCartItems((currentItems) => 

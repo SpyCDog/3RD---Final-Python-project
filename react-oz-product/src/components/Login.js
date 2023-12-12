@@ -41,13 +41,13 @@ function Login() {
       });
 
       // Show the success animation
-      setShowSuccessAnimation();
+      setShowSuccessAnimation(true);
       // Set a timeout to navigate after the animation has had time to play
       setTimeout(() => {
         navigate("/");
       }, 2350); // Delay the navigation for 3 seconds for the ShowSuccessAnimation.
 
-      console.log(username, ": Logged in successfully + checkAnimation");
+      console.log(username, ": Logged in successfully");
 
       // Handle login failed
     } catch (error) {
@@ -66,7 +66,7 @@ function Login() {
       <div className="animation-container">
         <Lottie
           animationData={successAnimationData}
-          play 
+          play = "true"
           className="lottie-animation" // Apply the CSS class here
         />
       </div>

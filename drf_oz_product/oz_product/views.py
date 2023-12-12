@@ -169,9 +169,9 @@ def register(request):
 @permission_classes([IsAuthenticated])
 @api_view(['POST'])
 def increase_quantity(request, id):
+    print(request)
     try:
-        cart_item = CartItem.objects.get(id=id, cart__user=request.user)
-        cart_item.quantity += 1 
+        cart_item = CartItem.objects.get(id=id)
         cart_item.save()
         return Response({'detail': 'Quantity increased successfully'}, status=status.HTTP_200_OK)
     except CartItem.DoesNotExist:
@@ -183,8 +183,9 @@ def increase_quantity(request, id):
 @permission_classes([IsAuthenticated])
 @api_view(['POST'])
 def decrease_quantity(request, id):
+    print(request)
     try:
-        cart_item = CartItem.objects.get(id=id, cart__user=request.user)
+        cart_item = CartItem.objects.get(id=id)
         cart_item.quantity -= 1 
         cart_item.save()
         return Response({'detail': 'Quantity decreased successfully'}, status=status.HTTP_200_OK)
