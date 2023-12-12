@@ -102,14 +102,15 @@ def add_to_cart(request):
             cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
             if not created:
                 cart_item.quantity += int(quantity)
+                serializer = CartItemSerializer(cart_item)
             else:
+                serializer = CartSerializer(cart)
                 cart_item.quantity = int(quantity)
             cart_item.save()
             cart.save()
             # cart_item_serializer = CartItemSerializer(cart_item)
-            cserializer = CartSerializer(cart)
             # serailizers = [cart_item_serializer, cart_serializer]
-            return Response(cserializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         except Product.DoesNotExist:
             return Response({'Product not found.(backend - add_to_cart)'}, status=status.HTTP_404_NOT_FOUND)
         
@@ -122,7 +123,8 @@ def delete_from_cart(request, id):
     try:
         cart_item = CartItem.objects.get(id=id, cart__user=request.user)
         cart_item.delete()
-        return Response({'detail': 'Cart item removed.'}, status=status.HTTP_204_NO_CONTENT)
+        serialezer = CartItemSerializer(cart_item)
+        return Response(serialezer.data, status=status.HTTP_200_OK)
     except CartItem.DoesNotExist:
             return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
         
