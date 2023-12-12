@@ -1,9 +1,7 @@
 from rest_framework import status
-from django.shortcuts import render
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from .models import Cart, Category, Product, CartItem, MyUser
 from .serializers import CartSerializer, ProductSerializer, CategorySerializer, CartItemSerializer
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -90,7 +88,6 @@ def cart(request):
             return Response({'detail': 'Cart not found.'}, status=status.HTTP_404_NOT_FOUND)
     
     
-@csrf_exempt    
 @api_view(['POST'])
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
@@ -109,13 +106,13 @@ def add_to_cart(request):
                 cart_item.quantity = int(quantity)
             cart_item.save()
             cart.save()
+            cart_item_serializer = CartItemSerializer(cart_item)
             cart_serializer = CartSerializer(cart)
-            return Response(cart_serializer.data, status=status.HTTP_201_CREATED)
+            return Response(cart_serializer.data, cart_item_serializer, status=status.HTTP_201_CREATED)
         except Product.DoesNotExist:
             return Response({'Product not found.(backend - add_to_cart)'}, status=status.HTTP_404_NOT_FOUND)
         
         
-@csrf_exempt        
 @api_view(['DELETE'])
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
@@ -128,7 +125,6 @@ def delete_from_cart(request, id):
     except CartItem.DoesNotExist:
             return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
         
-@csrf_exempt
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['DELETE'])
@@ -141,7 +137,6 @@ def delete_cart(request, id):
     except Cart.DoesNotExist:
             return Response({'detail': 'Cart not found.'}, status=status.HTTP_404_NOT_FOUND)
         
-@csrf_exempt
 @api_view(['POST'])
 def register(request):
     try:
@@ -164,7 +159,6 @@ def register(request):
         # Return a response with an error message
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
-@csrf_exempt
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['POST'])
@@ -178,7 +172,6 @@ def increase_quantity(request, id):
         return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 
-@csrf_exempt
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['POST'])
