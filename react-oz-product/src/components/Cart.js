@@ -82,6 +82,7 @@ function Cart() {
                 currentItems.map((item) =>
                 
                     item.id === itemId ? { quantity: item.quantity + 1 } : item),
+                    console.log("Cartitem:", itemId ,"Increased")
             
 
                     );

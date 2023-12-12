@@ -66,6 +66,7 @@ function Product({ product }) {
             ? error.response.data.message
             : "Error adding product to cart. Please try again.";
           setErrorMessage(errorMessage);
+          console.log(errorMessage)
       });
   };
 
