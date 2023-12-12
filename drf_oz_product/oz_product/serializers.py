@@ -15,7 +15,7 @@ class ProductSerializer(serializers.ModelSerializer):
     
         
 class CartItemSerializer(serializers.ModelSerializer):
-    product = ProductSerializer(many=False, read_only=True)
+    # product = ProductSerializer(many=False, read_only=True)
     image = serializers.ImageField(source='product.image', read_only=True)
     class Meta:
         model = CartItem
