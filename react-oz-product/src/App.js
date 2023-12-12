@@ -30,7 +30,6 @@ function App() {
     return () => clearTimeout(timer);
   }, []); // The empty dependency array ensures this effect runs only once after the initial render
 
-
   function navClickButtom(name) {
     console.log("click!", name);
     setCurrentCategory(name);
@@ -57,12 +56,12 @@ function App() {
     let url = HOST_URL + "/product?category=" + currentCategory;
     if (searchText) {
       url = HOST_URL + "/product?search=" + searchText;
-      console.log("Searching for:",searchText, url); // Add this line to check the URL
+      console.log("Searching for:", searchText, url); // Add this line to check the URL
     }
     axios
       .get(url)
       .then((response) => {
-        console.log("Products:",response.data);
+        console.log("Products:", response.data);
         setProducts(response.data);
       })
       .catch((error) => {
@@ -74,7 +73,6 @@ function App() {
       });
   }
 
-  
   function searchProduct(searchText) {
     console.log("searching for product", searchText);
     getProducts(searchText);

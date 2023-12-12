@@ -16,7 +16,6 @@ import {
 import LoadingSpinner from "./LoadingSpinner";
 import { HOST_URL } from "../constants";
 
-
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [cart, setCart] = useState([]);
@@ -47,7 +46,7 @@ function Cart() {
       .then(() => {
         setCartItems(
           (Items) => Items.filter((item) => item.id !== itemId),
-          console.log("Cart-item", itemId , "has removed successfully!!!")
+          console.log("Cart-item", itemId, "has removed successfully!!!")
         );
       })
 
@@ -70,44 +69,45 @@ function Cart() {
       });
   };
 
-   const handleIncreaseQuantity = (itemId) => {
-   
+  const handleIncreaseQuantity = (itemId) => {
     // Send request to backend to increase quantity
-    console.log("Cart's item ID-----",itemId)
-    axios.post(`${HOST_URL}/increase_item_quantity/${itemId}`)
-        .then(() => {
-            // Update the cartItems state to reflect the new quantity
-            console.log("setCartItems-----",setCartItems)
-            setCartItems((currentItems) => 
-                currentItems.map((item) =>
-                
-                    item.id === itemId ? { quantity: item.quantity + 1 } : item),
-                    console.log("Cartitem:", itemId ,"Increased")
-            
-
-                    );
-        })
-        .catch((error) => {
-            console.error("Error increasing quantity:", error);
-        });
-;}
-
-const handleDecreaseQuantity = (itemId) => {
- 
-  // Send request to backend to decrease quantity
-  axios.post(`${HOST_URL}/decrease_item_quantity/${itemId}`)
+    console.log("Cart's item ID-----", itemId);
+    axios
+      .post(`${HOST_URL}/increase_item_quantity/${itemId}`)
       .then(() => {
-          // Update the cartItems state to reflect the new quantity
-          setCartItems((currentItems) => 
-              currentItems.map((item) =>
-                  item.id === itemId ? {quantity: Math.max(0, item.quantity - 1) } : item
-              )
-          );
+        // Update the cartItems state to reflect the new quantity
+        console.log("setCartItems-----", setCartItems);
+        setCartItems(
+          (currentItems) =>
+            currentItems.map((item) =>
+              item.id === itemId ? { quantity: item.quantity + 1 } : item
+            ),
+          console.log("Cartitem:", itemId, "Increased")
+        );
       })
       .catch((error) => {
-          console.error("Error decreasing quantity:", error);
+        console.error("Error increasing quantity:", error);
       });
-;}
+  };
+
+  const handleDecreaseQuantity = (itemId) => {
+    // Send request to backend to decrease quantity
+    axios
+      .post(`${HOST_URL}/decrease_item_quantity/${itemId}`)
+      .then(() => {
+        // Update the cartItems state to reflect the new quantity
+        setCartItems((currentItems) =>
+          currentItems.map((item) =>
+            item.id === itemId
+              ? { quantity: Math.max(0, item.quantity - 1) }
+              : item
+          )
+        );
+      })
+      .catch((error) => {
+        console.error("Error decreasing quantity:", error);
+      });
+  };
   const subtotal = cartItems.reduce((total, item) => {
     // Use optional chaining in case the product object is missing
     const quantity = item.quantity || 0;
@@ -122,9 +122,9 @@ const handleDecreaseQuantity = (itemId) => {
         <LoadingSpinner />
       </div>
     );
-   }
+  }
   return (
-    <section className="h-100 h-custom" >
+    <section className="h-100 h-custom">
       <MDBContainer className="py-5 h-100">
         <MDBRow className="justify-content-center align-items-center h-100">
           <MDBCol>
@@ -137,36 +137,54 @@ const handleDecreaseQuantity = (itemId) => {
                       <CartItem
                         key={item.id}
                         item={item}
-                        onIncreaseQuantity={() => handleIncreaseQuantity(item.id)}
-                        onDecreaseQuantity={() => handleDecreaseQuantity(item.id)}
+                        onIncreaseQuantity={() =>
+                          handleIncreaseQuantity(item.id)
+                        }
+                        onDecreaseQuantity={() =>
+                          handleDecreaseQuantity(item.id)
+                        }
                         onRemoveItem={() => handleRemoveItem(item.id)}
-                        
                       />
                     ))}
                   </MDBCol>
                   <MDBCol lg="1">
                     <div>
-                      {cartItems.length > 0 ?(<div>
-                      {" "}
-                      <p>
-                      <button
-                        className="btn btn-primary"
-                        style={{ backgroundColor: "#4b5c63",borderColor: "#4b5c63" ,color: "#dbe5e9"}}
-                        onClick={() => handleRemoveCart(cart.id)}
-                      >
-                        X
-                      </button></p>
-                      <br></br>
-                    <p>
-                      <CartSummary subtotal={subtotal}/>
-                      </p></div>) : (
-
-                      <div className="h1" style={{whiteSpace: "nowrap",   fontFamily: "Whisper", fontSize: "100px"
-                    }}> Cart is empty</div>
+                      {cartItems.length > 0 ? (
+                        <div>
+                          {" "}
+                          <p>
+                            <button
+                              className="btn btn-primary"
+                              style={{
+                                backgroundColor: "#4b5c63",
+                                borderColor: "#4b5c63",
+                                color: "#dbe5e9",
+                              }}
+                              onClick={() => handleRemoveCart(cart.id)}
+                            >
+                              X
+                            </button>
+                          </p>
+                          <br></br>
+                          <p>
+                            <CartSummary subtotal={subtotal} />
+                          </p>
+                        </div>
+                      ) : (
+                        <div
+                          className="h1"
+                          style={{
+                            whiteSpace: "nowrap",
+                            fontFamily: "Whisper",
+                            fontSize: "100px",
+                          }}
+                        >
+                          {" "}
+                          Cart is empty
+                        </div>
                       )}
                     </div>
-                  </MDBCol> 
-                  
+                  </MDBCol>
                 </MDBRow>
               </MDBCardBody>
             </MDBCard>

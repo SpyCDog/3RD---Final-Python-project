@@ -88,9 +88,9 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
             <FaMagnifyingGlass />
           </NavLink>
         </li>
-      
+
         <li className="cart-icon">
-          <NavLink to="/cart" style={{color:"#09253b"}}>
+          <NavLink to="/cart" style={{ color: "#09253b" }}>
             <MdShoppingCart />
           </NavLink>
         </li>

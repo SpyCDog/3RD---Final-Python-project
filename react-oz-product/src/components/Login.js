@@ -66,7 +66,7 @@ function Login() {
       <div className="animation-container">
         <Lottie
           animationData={successAnimationData}
-          play = "true"
+          play="true"
           className="lottie-animation" // Apply the CSS class here
         />
       </div>

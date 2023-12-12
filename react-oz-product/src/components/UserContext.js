@@ -1,37 +1,38 @@
-import axios from 'axios';
-import React, { createContext, useState } from 'react';
-
+import axios from "axios";
+import React, { createContext, useState } from "react";
 
 // Function to get CSRF token from cookies
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
 
-    const login = (userData) => {
-        localStorage.setItem('accessToken', userData.accessToken);
-         // Set default Axios Authorization header
-        axios.defaults.headers.common['Authorization'] = `Bearer ${userData.accessToken}`;
-        localStorage.setItem('refreshToken', userData.refreshToken);
-        localStorage.setItem('username', userData.username);
-        setUser(userData);
-        console.log('UserContext login:', userData);
-    };
+  const login = (userData) => {
+    localStorage.setItem("accessToken", userData.accessToken);
+    // Set default Axios Authorization header
+    axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${userData.accessToken}`;
+    localStorage.setItem("refreshToken", userData.refreshToken);
+    localStorage.setItem("username", userData.username);
+    setUser(userData);
+    console.log("UserContext login:", userData);
+  };
 
-    const logout = () => {
-        localStorage.removeItem('username');
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
-        window.location.reload();
-        setUser(null);
-    };
+  const logout = () => {
+    localStorage.removeItem("username");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    window.location.reload();
+    setUser(null);
+  };
 
-    return (
-        <UserContext.Provider value={{ user, login, logout }}>
-            {children}
-        </UserContext.Provider>
-    );
+  return (
+    <UserContext.Provider value={{ user, login, logout }}>
+      {children}
+    </UserContext.Provider>
+  );
 };
 
 export default UserContext;
