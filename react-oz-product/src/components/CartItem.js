@@ -25,13 +25,15 @@ function CartItem({
       <MDBCardBody>
         <div className="d-flex justify-content-between">
           <div className="d-flex flex-row align-items-center">
+            <div>
             <MDBCardImage
               src={HOST_URL + `${item.product.image}`}
               fluid
               className="rounded-3"
               style={{ width: "65px" }}
-              alt={item.name}
+              alt={item.product.name}
             />
+            </div>
             <div className="ms-3">
               <MDBTypography tag="h5">{item.product.name}</MDBTypography>
               <p className="small mb-0">{item.product.description}</p>
@@ -39,30 +41,28 @@ function CartItem({
           </div>
           <div className="d-flex flex-row align-items-center">
             <div style={{ width: "88px" }}>
-              <MDBTypography tag="h" className="fw-normal mb-0">
+              
                 <p>
                   <a
                     href="#!"
-                    className="btn btn-primary"
                     style={{
-                      backgroundColor: "#157cb8",
-                      color: "#dbe5e9",
-                      borderColor: "#157cb8",
+                      color: "black",
+                      fontSize: "1.5em"
                     }}
                     onClick={() => onIncreaseQuantity(item.product.id)}
                   >
                     +
                   </a>
                 </p>
+                <MDBTypography tag="h5" className="fw-normal mb-0">
                 <p>Qty: {item.quantity}</p>
                 <p>
                   <a
                     href="#!"
-                    className="btn btn-primary"
                     style={{
-                      backgroundColor: "#157cb8",
-                      color: "#dbe5e9",
-                      borderColor: "#157cb8",
+                      color: "black",
+                      fontSize: "1.5em"
+
                     }}
                     onClick={() => onDecreaseQuantity(item.product.id)}
                   >
@@ -72,8 +72,8 @@ function CartItem({
               </MDBTypography>
             </div>
             <div style={{ width: "90px" }}>
+            <MDBTypography tag="h5" className="mb-0">
               {parseFloat(item.product.price).toLocaleString()}
-              <MDBTypography tag="h" className="mb-0">
                 <TbCurrencyShekel />
               </MDBTypography>
             </div>
@@ -88,6 +88,7 @@ function CartItem({
         </div>
       </MDBCardBody>
     </MDBCard>
+
   );
 }
 

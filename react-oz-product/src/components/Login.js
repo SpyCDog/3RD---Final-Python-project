@@ -106,7 +106,6 @@ function Login() {
                 <Button variant="primary" type="submit" className="w-100 mt-3">
                   Login
                 </Button>
-
                 <div className="text-center mt-4">
                   <p>
                     Don't have an account?{" "}

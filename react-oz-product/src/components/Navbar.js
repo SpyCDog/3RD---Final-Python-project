@@ -4,17 +4,18 @@ import { UserContext } from "./UserContext";
 import Lottie from "lottie-react";
 import { MdShoppingCart } from "react-icons/md";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-
 import morningAnimationData from "./styles/lottie/morning.json";
 import afternoonAnimationData from "./styles/lottie/noon.json";
 import eveningAnimationData from "./styles/lottie/evening.json";
 import "./styles/Navbar.css";
 
+
 function getTimeBasedGreeting(username) {
   const hour = new Date().getHours(); // Get the current hour
-  let greetingText = "Welcome";
-  let animationData = morningAnimationData; // Default to morning animation
-
+  
+  let greetingText = "Good morning";
+  let animationData = morningAnimationData;//default values
+  
   if (hour < 12) {
     greetingText = "Good morning";
     animationData = morningAnimationData;
@@ -33,13 +34,12 @@ function getTimeBasedGreeting(username) {
       <p className="greeting-text">
         {greetingText}, {username}
       </p>
-      {/* Applied the CSS class for styling */}
     </div>
   );
 }
 
-function Navbar({ categories, navClickButtom, searchProduct }) {
-  const [searchText, setSearchText] = useState(""); // this is the value of the search field
+function Navbar({ categories, navClickButtom, searchProduct, cartAnimation }) {
+  const [searchText, setSearchText] = useState(""); 
   const location = useLocation();
   const { user, logout } = useContext(UserContext);
 
@@ -89,31 +89,53 @@ function Navbar({ categories, navClickButtom, searchProduct }) {
           </NavLink>
         </li>
 
+       {(!cartAnimation) ? (
+       
         <li className="cart-icon">
-          <NavLink to="/cart" style={{ color: "#09253b" }}>
-            <MdShoppingCart />
+           <NavLink to="/cart">
+            <MdShoppingCart /> 
           </NavLink>
-        </li>
-        {location.pathname === "/login" ? null : (
-          <li>
+          </li>
+             ) : (  <div>
+               <li className="cart-icon-animation">
+           <NavLink to="/cart">
+            <MdShoppingCart /> 
+          </NavLink>
+          </li>
+              </div> )}
+
+        
+     
+        {location.pathname === "/login" ? null : ( 
+          <div>
             {user ? (
               <>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  {getTimeBasedGreeting(user.username)}
-                  <button className="btn btn-primary" onClick={logout}>
-                    Logout
-                  </button>
-                </div>
-              </>
+              <li>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      {getTimeBasedGreeting(user.username)}
+                    </div>
+              </li>    
+              <li>
+
+              
+                  <div>
+                    <NavLink className="btn btn-danger" onClick={logout} >
+                      Logout
+                    </NavLink>
+                  </div>
+              </li>
+            </>
+
             ) : (
+            <li>
               <NavLink className="btn btn-primary" to="/login">
                 Login / Register
               </NavLink>
-            )}
-          </li>
-        )}
+            </li>
+           
+           )}</div>)}
       </ul>
-    </>
+      </>
   );
 }
 

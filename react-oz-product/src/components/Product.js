@@ -3,13 +3,15 @@ import axios from "axios";
 import "./styles/Product.css";
 import { TbCurrencyShekel } from "react-icons/tb";
 import Lottie from "lottie-react";
-import seccessAnimation from "./styles/lottie/success.json";
+import successAnimation from "./styles/lottie/success.json";
 import { HOST_URL } from "../constants.js";
 import { UserContext } from "./UserContext";
+import { MDBBtn } from "mdb-react-ui-kit";
 // import { useLocation } from "react-router-dom";
 
-function Product({ product }) {
+function Product({ product, onAddToCart }) {
   const [showSuccessAnimation, setShowSuccessAnimation] = useState(false);
+
   const { user } = useContext(UserContext);
   const [errorMessage, setErrorMessage] = useState("");
   const [showError, setShowError] = useState(false); // State to control the visibility of the error message
@@ -22,7 +24,6 @@ function Product({ product }) {
         setErrorMessage(""); // Clear the error message
       }, 2000);
     }
-
     // Clean up the timer when the component is unmounted or the showError changes
     return () => clearTimeout(timer);
   }, [showError]);
@@ -35,6 +36,7 @@ function Product({ product }) {
       console.log(message);
       setErrorMessage(message);
       setShowError(true);
+      onAddToCart()
       return;
     }
     // Then show the animation
@@ -42,6 +44,7 @@ function Product({ product }) {
     setTimeout(() => {
       setShowSuccessAnimation(false);
     }, 3000);
+    onAddToCart()
     axios
       .post(
         `${HOST_URL}/add_to_cart`,
@@ -58,12 +61,8 @@ function Product({ product }) {
       })
       .catch((error) => {
         console.error("Error adding product to cart:", error);
-        const errorMessage =
-          error.response && error.response.data && error.response.data.message
-            ? error.response.data.message
-            : "Error adding product to cart. Please try again.";
-        setErrorMessage(errorMessage);
-        console.log(errorMessage);
+    
+        
       });
   };
 
@@ -74,7 +73,7 @@ function Product({ product }) {
   return (
     <div
       className="card product-card"
-      style={{ width: "20rem", backgroundColor: "white" }}
+      style={{ width: "20rem" }}
     >
       {errorMessage && <div className="error-message">{errorMessage}</div>}
       <img src={imageUrl} className="card-img-top" alt={product.name} />
@@ -87,18 +86,20 @@ function Product({ product }) {
         <p className="card-text">{product.description}</p>
         <button
           style={{ marginRight: "8px" }}
-          className="btn btn-primary"
+          className="btn btn-info"
           to="/productpage"
         >
           Details
         </button>
 
-        <button className="btn btn-primary" onClick={() => handleAddToCart()}>
+        <MDBBtn  className="btn btn-info " rippleColor='info'  onClick={() =>
+          handleAddToCart()
+          }>
           Add to cart
-        </button>
+        </MDBBtn>
         {showSuccessAnimation && (
           <Lottie
-            animationData={seccessAnimation}
+            animationData={successAnimation}
             play={showSuccessAnimation}
             onComplete={showSuccessAnimation}
             style={{

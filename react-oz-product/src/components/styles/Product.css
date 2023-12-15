@@ -64,3 +64,17 @@
         visibility: hidden;
     }
 }
+
+
+.mdb-primary {
+  background-color: #40a5d7;
+  border-color: #40a5d7
+  
+;
+}
+
+.btn-primary:hover {
+  background-color: #2f6082
+  ;
+  border-color: #2f6082;
+}

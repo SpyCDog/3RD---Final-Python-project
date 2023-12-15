@@ -51,7 +51,8 @@ def categories(request):
     return Response(serializer)
 
 
-
+@authentication_classes([JWTAuthentication])
+@permission_classes([IsAuthenticated])
 @api_view()
 def cart(request):
         try:

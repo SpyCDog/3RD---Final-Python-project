@@ -13,16 +13,22 @@ function Footer() {
                   ABOUT
                 </a>
               </li>
+              <hr className="hr hr-blurry" />
+
               <li className="nav-item">
                 <Link to="/" className="nav-link px-2 text-muted">
                   FACEBOOK
                 </Link>
               </li>
+              <hr className="hr hr-blurry" />
+
               <li className="nav-item">
                 <Link to="/login" className="nav-link px-2 text-muted">
                   INSTGRAM
                 </Link>
               </li>
+              <hr className="hr hr-blurry" />
+
               <li className="nav-item">
                 <Link to="/register" className="nav-link px-2 text-muted">
                   REGISTER
@@ -34,7 +40,7 @@ function Footer() {
               alt="footerLogo"
               className="logo-footer"
             />
-            <p className="text-center text-muted">©OZ PRODUCTS INC.</p>
+            <p className="text-center text-muted" >©OZ PRODUCTS INC.</p>
           </div>
         </footer>
       </div>

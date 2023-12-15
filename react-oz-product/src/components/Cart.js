@@ -2,16 +2,21 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CartItem from "./CartItem";
 import CartSummary from "./CartSummary";
+import "./styles/Cart.css";
+
 import {
   MDBCard,
   MDBCardBody,
   MDBCol,
   MDBContainer,
+  MDBIcon,
   MDBRow,
+  MDBTypography,
   // MDBBtn,
-  // MDBIcon,
   // MDBTypography,
 } from "mdb-react-ui-kit";
+
+
 
 import LoadingSpinner from "./LoadingSpinner";
 import { HOST_URL } from "../constants";
@@ -108,10 +113,10 @@ function Cart() {
         console.error("Error decreasing quantity:", error);
       });
   };
+
+  // TOTAL PRICE SUMMARY 
   const subtotal = cartItems.reduce((total, item) => {
-    // Use optional chaining in case the product object is missing
     const quantity = item.quantity || 0;
-    // The product is now a nested object thanks to the updated serializer
     const price = item.product?.price || 0;
     return total + quantity * price;
   }, 0);
@@ -124,7 +129,7 @@ function Cart() {
     );
   }
   return (
-    <section className="h-100 h-custom">
+<section className="h-100 h-custom">
       <MDBContainer className="py-5 h-100">
         <MDBRow className="justify-content-center align-items-center h-100">
           <MDBCol>
@@ -132,6 +137,29 @@ function Cart() {
               <MDBCardBody className="p-4">
                 <MDBRow>
                   <MDBCol lg="7">
+                  <MDBTypography tag="h5">
+                  <a href="/3RD---Final-Python-project" className="text-body">
+                    <MDBIcon fas icon="long-arrow-alt-left me-2" /> Continue
+                    shopping
+                  </a>
+                </MDBTypography>
+                <hr />
+
+                <div className="d-flex justify-content-between align-items-center mb-4">
+                  <div>
+                    <p className="mb-1">Shopping cart</p>
+                    <p className="mb-0">You have {cartItems.length} items in your cart</p>
+                  </div>
+                  <div>
+                    <p>
+                      <span className="text-muted">Sort by:</span>
+                      <a href="#!" className="text-body">
+                        price
+                        <MDBIcon fas icon="angle-down mt-1" />
+                      </a>
+                    </p>
+                  </div>
+                </div>
                     {/* Cart Items */}
                     {cartItems.map((item) => (
                       <CartItem
@@ -147,11 +175,11 @@ function Cart() {
                       />
                     ))}
                   </MDBCol>
-                  <MDBCol lg="1">
+
+                  <MDBCol lg="5">
                     <div>
                       {cartItems.length > 0 ? (
                         <div>
-                          {" "}
                           <p>
                             <button
                               className="btn btn-primary"
@@ -166,25 +194,17 @@ function Cart() {
                             </button>
                           </p>
                           <br></br>
-                          <p>
                             <CartSummary subtotal={subtotal} />
-                          </p>
                         </div>
                       ) : (
                         <div
-                          className="h1"
-                          style={{
-                            whiteSpace: "nowrap",
-                            fontFamily: "Whisper",
-                            fontSize: "100px",
-                          }}
-                        >
+                          className="h5">
                           {" "}
-                          Cart is empty
+                          Cart is empty . . .
                         </div>
                       )}
                     </div>
-                  </MDBCol>
+                   </MDBCol>
                 </MDBRow>
               </MDBCardBody>
             </MDBCard>

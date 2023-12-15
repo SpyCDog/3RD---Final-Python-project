@@ -1,5 +1,5 @@
 .navbar {
-    position: sticky;
+    position: static;
     position: -webkit-sticky;
     top: 0;
     display: flex;
@@ -72,6 +72,7 @@ position:fixed;
   
   .cart-icon {
     color: #09253b;
+    position: sticky;
     margin-left: 1rem;
     font-size: 2.5em;
     transition: transform 0.3s ease;
@@ -79,16 +80,34 @@ position:fixed;
   }
   .cart-icon:hover {
     transform: scale(1.25);
-    position: sticky;
+    
   }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px); /* Adjust the intensity of the bounce */
+    }
+  }
+  
+  .cart-icon-animation {
+    color: #09253b;
+    margin-left: 1rem;
+    font-size: 2.5em;
+    transition: transform 0.2s ease;
+    animation: bounce 0.5s ease-in-out infinite; /* Adjust timing as needed */
+  }
+  
   
   /* Responsiveness */
   @media (max-width: 768px) {
     .navbar-nav {
-      display: none; /* or convert to a dropdown for smaller screens */
+      display: none;
     }
     .search-input {
-      width: 100%; /* Adjust search bar width for small screens */
+      width: 100%;
     }
     .search-button {
       width: 100%;
@@ -96,33 +115,21 @@ position:fixed;
   }
   
 
-  /* Assuming the file is Navbar.css */
-
-/* .greeting-container {
-  display: flex;
-  align-items: center;
-  position: relative;
-
-  
-} */
 
 .greeting-animation {
   
   position: absolute;
-  /* right: 1; */
   z-index: -1;
-  width: 100px; /* Adjust width as needed */
-  height: 100px; /* Adjust height as needed */
+  
+  width: 100px;
+  height: 100px; 
 }
 
 .greeting-text {
   color: #09253b;
   z-index: 1;
-  /* Add any additional styling for the text here */
-  /* For example, if you want a nice font: */
   font-size: 2em;
   font-weight: bold;
-  /* Adjust the font properties as needed */
   font-family: 'Whisper', cursive;
   
 

@@ -11,11 +11,21 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+
 function App() {
+  const [cartAnimation, setCartAnimation] = useState(false);
   const [categories, setCategories] = useState([]);
   const [currentCategory, setCurrentCategory] = useState(1);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const triggerCartAnimation = () => {
+    setCartAnimation(true);
+    // Optionally, reset the animation after a certain period
+    setTimeout(() => setCartAnimation(false), 1000); // Adjust the time as needed
+  }
+  
+
 
   useEffect(getProducts, [currentCategory]); // when loading the page for the first time - getProducts()
   useEffect(getCategories, []); // when loading the page for the first time - getCategories()
@@ -84,6 +94,7 @@ function App() {
       <UserProvider>
         <BrowserRouter basename="/3RD---Final-Python-project">
           <Navbar
+          cartAnimation={cartAnimation}
             categories={categories}
             navClickButtom={navClickButtom}
             searchProduct={searchProduct}
@@ -102,7 +113,8 @@ function App() {
                     <div className="row row-cols-1 row-cols-md-3 row-cols-lg-6 g-4">
                       {products.map((product) => (
                         <div key={product.id} className="col">
-                          <Product product={product} />
+                          <Product product={product}
+                          onAddToCart={triggerCartAnimation} />
                         </div>
                       ))}
                     </div>
