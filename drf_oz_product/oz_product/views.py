@@ -146,6 +146,7 @@ def increase_quantity(request, id):
     print(request)
     try:
         cart_item = CartItem.objects.get(id=id)
+        cart_item.quantity += 1 
         cart_item.save()
         serialezer = CartItemSerializer(cart_item)
         return Response(serialezer.data, status=status.HTTP_200_OK)
