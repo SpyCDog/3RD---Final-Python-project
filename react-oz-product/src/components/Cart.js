@@ -74,20 +74,20 @@ function Cart() {
       });
   };
 
-  const handleIncreaseQuantity = (itemId) => {
+  const handleIncreaseQuantity = (itempId) => {
     // Send request to backend to increase quantity
-    console.log("Cart's item ID-----", itemId);
+    console.log("Cart's item ID-----", itempId);
     axios
-      .post(`${HOST_URL}/increase_item_quantity/${itemId}`)
+      .put(`${HOST_URL}/increase_item_quantity/${itempId}`)
       .then(() => {
         // Update the cartItems state to reflect the new quantity
         console.log("setCartItems-----", setCartItems);
         setCartItems(
           (currentItems) =>
             currentItems.map((item) =>
-              item.id === itemId ? { quantity: item.quantity + 1 } : item
+              item.id === itempId ? { quantity: item.quantity + 1 } : item
             ),
-          console.log("Cartitem:", itemId, "Increased")
+          console.log("Cartitem:", itempId, "Increased")
         );
       })
       .catch((error) => {
@@ -98,7 +98,7 @@ function Cart() {
   const handleDecreaseQuantity = (itemId) => {
     // Send request to backend to decrease quantity
     axios
-      .post(`${HOST_URL}/decrease_item_quantity/${itemId}`)
+      .put(`${HOST_URL}/decrease_item_quantity/${itemId}`)
       .then(() => {
         // Update the cartItems state to reflect the new quantity
         setCartItems((currentItems) =>

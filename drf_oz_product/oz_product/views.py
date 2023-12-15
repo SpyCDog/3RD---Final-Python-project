@@ -141,7 +141,7 @@ def register(request):
     
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
-@api_view(['POST'])
+@api_view(['PUT'])
 def increase_quantity(request, id):
     print(request)
     try:
@@ -156,7 +156,7 @@ def increase_quantity(request, id):
 
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
-@api_view(['POST'])
+@api_view(['PUT'])
 def decrease_quantity(request, id):
     print(request)
     try:

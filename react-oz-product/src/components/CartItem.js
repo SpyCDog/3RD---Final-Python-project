@@ -64,7 +64,7 @@ function CartItem({
                       fontSize: "1.5em"
 
                     }}
-                    onClick={() => onDecreaseQuantity(item.product.id)}
+                    onClick={onDecreaseQuantity}
                   >
                     -
                   </a>
