@@ -69,27 +69,27 @@ def cart(request):
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
 
-def add_to_cart(request):
-    product_id = request.data.get('product_id')
-    quantity = request.data.get('quantity', 1)
-    if request.method == 'POST':
-        try:
-            product = Product.objects.get(pk=product_id)
-            cart, _ = Cart.objects.get_or_create(user=request.user)
-            cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
-            if not created:
-                cart_item.quantity += int(quantity)
-                serializer = CartItemSerializer(cart_item)
-            else:
-                serializer = CartSerializer(cart)
-                cart_item.quantity = int(quantity)
-            cart_item.save()
-            cart.save()
-            # cart_item_serializer = CartItemSerializer(cart_item)
-            # serailizers = [cart_item_serializer, cart_serializer]
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        except Product.DoesNotExist:
-            return Response({'Product not found.(backend - add_to_cart)'}, status=status.HTTP_404_NOT_FOUND)
+# def add_to_cart(request):
+#     product_id = request.data.get('product_id')
+#     quantity = request.data.get('quantity', 1)
+#     if request.method == 'POST':
+#         try:
+#             product = Product.objects.get(pk=product_id)
+#             cart, _ = Cart.objects.get_or_create(user=request.user)
+#             cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+#             if not created:
+#                 cart_item.quantity += int(quantity)
+#                 serializer = CartItemSerializer(cart_item)
+#             else:
+#                 serializer = CartSerializer(cart)
+#                 cart_item.quantity = int(quantity)
+#             cart_item.save()
+#             cart.save()
+#             # cart_item_serializer = CartItemSerializer(cart_item)
+#             # serailizers = [cart_item_serializer, cart_serializer]
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         except Product.DoesNotExist:
+#             return Response({'Product not found.(backend - add_to_cart)'}, status=status.HTTP_404_NOT_FOUND)
         
         
 @api_view(['DELETE'])
@@ -104,6 +104,8 @@ def delete_from_cart(request, id):
         return Response(serialezer.data, status=status.HTTP_200_OK)
     except CartItem.DoesNotExist:
             return Response({'detail': 'Cart item not found.'}, status=status.HTTP_404_NOT_FOUND)
+        
+        
         
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
