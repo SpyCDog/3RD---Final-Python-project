@@ -10,28 +10,24 @@ import {
   Col,
   Card,
 } from "react-bootstrap";
-import { HOST_URL } from "../constants";
-// import './styles/Register.css'; // Adjust the path as needed
 
-function Register() {
+function Register({ HOST_URL }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState(""); // Assuming email is part of the registration
+  const [email, setEmail] = useState(""); 
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // Adjust the URL and data payload as per your API requirements
       const response = await axios.post(HOST_URL + "/register", {
         username,
         password,
-        email, // Include any other required fields
+        email, 
       });
 
       console.log("Registered successfully:", response.data);
-      // Redirect user to login page or any other page as needed
       navigate("/login");
     } catch (error) {
       console.error("REGISTRATION FAILED:", error);

@@ -1,8 +1,8 @@
 /* Footer.css */
 
 .logo-footer {
-  width: 100px; /* Adjust the width as needed */
-  height: auto; /* This will maintain the aspect ratio */
+  width: 100px; 
+  height: auto; /* aspect ratio */
 }
 
 .footer {

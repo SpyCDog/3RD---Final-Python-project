@@ -6,7 +6,6 @@ import Register from "./components/Register";
 import Cart from "./components/Cart";
 import LoadingSpinner from "./components/LoadingSpinner";
 import { UserProvider } from "./components/UserContext";
-import { HOST_URL } from "./constants.js";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -18,6 +17,7 @@ function App() {
   const [currentCategory, setCurrentCategory] = useState(1);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const HOST_URL = 'http://127.0.0.1:8000/';
 
   const triggerCartAnimation = () => {
     setCartAnimation(true);
@@ -94,6 +94,7 @@ function App() {
       <UserProvider>
         <BrowserRouter basename="/3RD---Final-Python-project">
           <Navbar
+          HOST_URL={HOST_URL}
           cartAnimation={cartAnimation}
             categories={categories}
             navClickButtom={navClickButtom}
@@ -113,20 +114,19 @@ function App() {
                     <div className="row row-cols-1 row-cols-md-3 row-cols-lg-6 g-4">
                       {products.map((product) => (
                         <div key={product.id} className="col">
-                          <Product product={product}
+                          <Product 
+                          product={product}
+                          HOST_URL={HOST_URL}
                           onAddToCart={triggerCartAnimation} />
                         </div>
-                      ))}
-                    </div>
-                  )}
-                  <br />
-                </>
-              }
-            />
+                      ))} </div> )} <br /></> } />
 
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/login" element={<Login 
+                      HOST_URL={HOST_URL} />} />
+            <Route path="/register" element={<Register
+                      HOST_URL={HOST_URL}/>} />
+            <Route path="/cart" element={<Cart 
+                      HOST_URL={HOST_URL}/>} />
           </Routes>
           <Footer />
         </BrowserRouter>

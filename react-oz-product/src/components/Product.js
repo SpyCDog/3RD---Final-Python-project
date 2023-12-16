@@ -4,12 +4,11 @@ import "./styles/Product.css";
 import { TbCurrencyShekel } from "react-icons/tb";
 import Lottie from "lottie-react";
 import successAnimation from "./styles/lottie/success.json";
-import { HOST_URL } from "../constants.js";
 import { UserContext } from "./UserContext";
 import { MDBBtn } from "mdb-react-ui-kit";
 // import { useLocation } from "react-router-dom";
 
-function Product({ product, onAddToCart }) {
+function Product({ product, onAddToCart , HOST_URL}) {
   const [showSuccessAnimation, setShowSuccessAnimation] = useState(false);
 
   const { user } = useContext(UserContext);

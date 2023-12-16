@@ -1,12 +1,12 @@
 .navbar {
-    position: static;
+    position: relative;
     position: -webkit-sticky;
     top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #ffffff;
-    z-index: 10000000;
+    z-index: 10000;
    
 
   }
@@ -26,37 +26,25 @@
     transform: scale(1.1);
     ;
   }
-  
-  .search-form {
-    position: relative;
-    
-    
-  }
-  
+ 
   .search-input {
-    
+    position: relative;
     right: 0;
     font-size: 1.18rem;
     padding: 0.5rem;
-    width: 250px;
-    z-index: 100000;
-  
-    
-    
+    width: 250px;   
   }
  
   .search-button {
-position:fixed;
+    position: absolute;
+    top:  50%;  
+    right: -10px; 
     color: #8c8c94;
-    /* font-size: 1rem; */
     transition: transform 0.3s ease;
-   
-    
+    transform: translateY(-50%);
+
   }
-  
-  .search-button:hover {
-    transform: scale(1.25);
-  }
+
   
   .navbar-buttons {
     display: flex;
@@ -88,7 +76,7 @@ position:fixed;
       transform: translateY(0);
     }
     50% {
-      transform: translateY(-10px); /* Adjust the intensity of the bounce */
+      transform: translateY(-10px); /*intensity of the bounce */
     }
   }
   
@@ -97,12 +85,10 @@ position:fixed;
     margin-left: 1rem;
     font-size: 2.5em;
     transition: transform 0.2s ease;
-    animation: bounce 0.5s ease-in-out infinite; /* Adjust timing as needed */
+    animation: bounce 0.5s ease-in-out infinite; 
   }
   
-  
-  /* Responsiveness */
-  @media (max-width: 768px) {
+    @media (max-width: 768px) {
     .navbar-nav {
       display: none;
     }
@@ -131,17 +117,13 @@ position:fixed;
   font-size: 2em;
   font-weight: bold;
   font-family: 'Whisper', cursive;
-  
-
 }
 
-
-
 .logo-navbar {
-  width: 100px; /* Adjust the width as needed */
-  height: auto; /* This will maintain the aspect ratio */
+  width: 100px;
+  height: auto; 
   transition: transform 0.4s ease-in-out;
-  display: inline-block; /* necessary for transform to work */
+  display: inline-block; 
   animation: swing-and-spin 2s ease-in-out 1;
   
 }
@@ -155,15 +137,15 @@ position:fixed;
     transform: rotate(0deg);
   }
   50% {
-    transform: rotate(-45deg); /* Swing to the left by 45 degrees */
+    transform: rotate(-45deg); 
   }
   80% {
-    transform: rotate(360deg); /* Spin right 360 degrees */
+    transform: rotate(360deg); 
   }
 }
 
 
 
 ul {
-  list-style-type: none; /* This removes the bullet points */
+  list-style-type: none; 
 }

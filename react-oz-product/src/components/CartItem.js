@@ -1,23 +1,19 @@
-// import React ,{ useState, useEffect } from 'react';
-// import axios from 'axios';
 import {
-  // MDBBtn,
   MDBCard,
   MDBCardBody,
   MDBCardImage,
   MDBTypography,
-  //   MDBIcon
 } from "mdb-react-ui-kit";
 import { TbCurrencyShekel } from "react-icons/tb";
 import { FaTrashAlt } from "react-icons/fa";
-import { HOST_URL } from "../constants";
-// import axios from 'axios';
+
 
 function CartItem({
   item,
   onRemoveItem,
   onIncreaseQuantity,
   onDecreaseQuantity,
+  HOST_URL
 }) {
   console.log("CartItem data:", item);
   return (

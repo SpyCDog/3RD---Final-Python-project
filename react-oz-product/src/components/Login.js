@@ -15,16 +15,14 @@ import "./styles/Login.css";
 import { UserContext } from "./UserContext";
 import Lottie from "lottie-react";
 import successAnimationData from "./styles/lottie/check.json";
-import { HOST_URL } from "../constants";
 
-function Login() {
+function Login({HOST_URL}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const { login } = useContext(UserContext);
   const [showSuccessAnimation, setShowSuccessAnimation] = useState(false); // New state variable for controlling the animation
-  // localStorage.setItem('refreshToken', response.data.refresh); // Not in use but could be used for better security
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -67,8 +65,7 @@ function Login() {
         <Lottie
           animationData={successAnimationData}
           play="true"
-          className="lottie-animation" // Apply the CSS class here
-        />
+          className="lottie-animation" />
       </div>
     );
   }

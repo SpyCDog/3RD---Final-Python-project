@@ -12,16 +12,13 @@ import {
   MDBIcon,
   MDBRow,
   MDBTypography,
-  // MDBBtn,
-  // MDBTypography,
 } from "mdb-react-ui-kit";
 
 
 
 import LoadingSpinner from "./LoadingSpinner";
-import { HOST_URL } from "../constants";
 
-function Cart() {
+function Cart({ HOST_URL }) {
   const [cartItems, setCartItems] = useState([]);
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(false); // Set a loading state
@@ -42,7 +39,7 @@ function Cart() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [HOST_URL]);
 
   const handleRemoveItem = (itemId) => {
     axios
@@ -75,12 +72,10 @@ function Cart() {
   };
 
   const handleIncreaseQuantity = (itemId) => {
-    // Send request to backend to increase quantity
     console.log("Cart's item ID-----", itemId);
     axios
       .put(`${HOST_URL}/increase_item_quantity/${itemId}`)
       .then(() => {
-        // Update the cartItems state to reflect the new quantity
         setCartItems(
           (currentItems) =>
             currentItems.map((item) =>
@@ -95,12 +90,10 @@ function Cart() {
   };
 
   const handleDecreaseQuantity = (itemId) => {
-    // Send request to backend to decrease quantity
     console.log("Cart's item ID-----", itemId);
     axios
       .put(`${HOST_URL}/decrease_item_quantity/${itemId}`)
       .then(() => {
-        // Update the cartItems state to reflect the new quantity
         setCartItems((currentItems) =>
           currentItems.map((item) =>
             item.id === itemId 
@@ -155,6 +148,7 @@ function Cart() {
                     {/* Cart Items */}
                     {cartItems.map((item) => (
                       <CartItem
+                        HOST_URL ={HOST_URL}
                         key={item.id}
                         item={item}
                         onIncreaseQuantity={() =>

@@ -38,7 +38,7 @@ function getTimeBasedGreeting(username) {
   );
 }
 
-function Navbar({ categories, navClickButtom, searchProduct, cartAnimation }) {
+function Navbar({ categories, navClickButtom, searchProduct, cartAnimation, HOST_URL }) {
   const [searchText, setSearchText] = useState(""); 
   const location = useLocation();
   const { user, logout } = useContext(UserContext);
@@ -79,7 +79,7 @@ function Navbar({ categories, navClickButtom, searchProduct, cartAnimation }) {
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
-
+         
           <NavLink
             to="/"
             className="search-button"
@@ -87,7 +87,8 @@ function Navbar({ categories, navClickButtom, searchProduct, cartAnimation }) {
           >
             <FaMagnifyingGlass />
           </NavLink>
-        </li>
+          </li>
+        
 
        {(!cartAnimation) ? (
        
