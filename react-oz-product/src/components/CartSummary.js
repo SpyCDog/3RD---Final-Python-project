@@ -5,15 +5,21 @@ import {
   MDBCol,
   MDBRow,
   MDBCard,
-  MDBCardImage,
+  // MDBCardImage,
   MDBIcon,
   MDBInput,
   MDBBtn,
 } from "mdb-react-ui-kit";
+import { FaLock } from "react-icons/fa";
 import { TbCurrencyShekel } from "react-icons/tb";
 
 function CartSummary({ subtotal }) {
   console.log("Total in CartSummary:", subtotal);
+
+  const niceSubtotal = parseFloat(subtotal.toFixed(2)).toLocaleString()
+  const shipping = 20
+  const niceTotal  = parseFloat((subtotal+shipping).toFixed(2)).toLocaleString()
+
 
   return (
                 <MDBCard className="bg-primary text-white rounded-3">
@@ -22,8 +28,8 @@ function CartSummary({ subtotal }) {
                       <MDBTypography tag="h5" className="mb-0">
                         Card details
                       </MDBTypography>
-                      <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                        fluid className="rounded-3" style={{ width: "45px" }} alt="Avatar" />
+                      <FaLock />
+
                     </div>
 
                     <p className="small">Card type</p>
@@ -63,27 +69,22 @@ function CartSummary({ subtotal }) {
 
                     <div className="d-flex justify-content-between">
                       <p className="mb-2">Subtotal</p>
-                      <p className="mb-2">$4798.00</p>
+                      <p className="mb-2"><TbCurrencyShekel/>{niceSubtotal}</p>
                     </div>
 
                     <div className="d-flex justify-content-between">
                       <p className="mb-2">Shipping</p>
-                      <p className="mb-2">$20.00</p>
+                      <p className="mb-2"><TbCurrencyShekel/>{shipping}</p>
                     </div>
 
                     <div className="d-flex justify-content-between">
-                      <p className="mb-2">Total(Incl. taxes)</p>
-                      <p className="mb-2">$4818.00</p>
+                      <p className="mb-2">Total</p>
+                      <p className="mb-2"><TbCurrencyShekel/>{niceTotal}</p>
                     </div>
 
                     <MDBBtn color="info" block size="lg">
                       <div className="d-flex justify-content-between">
-                        <span>  
-                          <MDBTypography tag="h5">
-                            Total: <TbCurrencyShekel />{" "}
-                            {parseFloat(subtotal.toFixed(2)).toLocaleString()}{" "}
-                          </MDBTypography>
-                        </span>
+                      <span><TbCurrencyShekel/>{niceTotal}</span>
                         <span>
                           Checkout{" "}
                           <i className="fas fa-long-arrow-alt-right ms-2"></i>

@@ -27,16 +27,16 @@ function CartItem({
           <div className="d-flex flex-row align-items-center">
             <div>
             <MDBCardImage
-              src={HOST_URL + `${item.product.image}`}
+              src={HOST_URL + `${item.product?.image}`}
               fluid
               className="rounded-3"
               style={{ width: "65px" }}
-              alt={item.product.name}
+              alt={item.product?.name}
             />
             </div>
             <div className="ms-3">
-              <MDBTypography tag="h5">{item.product.name}</MDBTypography>
-              <p className="small mb-0">{item.product.description}</p>
+              <MDBTypography tag="h5">{item.product?.name}</MDBTypography>
+              <p className="small mb-0">{item.product?.description}</p>
             </div>
           </div>
           <div className="d-flex flex-row align-items-center">
@@ -49,13 +49,15 @@ function CartItem({
                       color: "black",
                       fontSize: "1.5em"
                     }}
-                    onClick={() => onIncreaseQuantity(item.product.id)}
+                    onClick={() => onIncreaseQuantity(item.id)}
                   >
                     +
                   </a>
                 </p>
+
                 <MDBTypography tag="h5" className="fw-normal mb-0">
-                <p>Qty: {item.quantity}</p>
+                <p>{item.quantity}</p>
+               
                 <p>
                   <a
                     href="#!"
@@ -64,7 +66,7 @@ function CartItem({
                       fontSize: "1.5em"
 
                     }}
-                    onClick={onDecreaseQuantity}
+                    onClick={()=>onDecreaseQuantity(item.id)}
                   >
                     -
                   </a>
@@ -73,7 +75,7 @@ function CartItem({
             </div>
             <div style={{ width: "90px" }}>
             <MDBTypography tag="h5" className="mb-0">
-              {parseFloat(item.product.price).toLocaleString()}
+              {parseFloat(item.product?.price).toLocaleString()}
                 <TbCurrencyShekel />
               </MDBTypography>
             </div>

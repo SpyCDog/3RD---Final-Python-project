@@ -9,8 +9,8 @@ urlpatterns = [
     path('delete_from_cart/<id>', views.delete_from_cart, name="delete_from_cart"),
     path('delete_cart/<id>', views.delete_cart, name='delete_cart'),
     path('register', views.register, name="register"),
-    path('increase_item_quantity/<id>', views.increase_quantity, name="increase_item_quantity"),
-    path('decrease_item_quantity/<id>', views.decrease_quantity, name="decrease_item_quantity"),
+    path('increase_item_quantity/<int:id>', views.increase_quantity, name="increase_item_quantity"),
+    path('decrease_item_quantity/<int:id>', views.decrease_quantity, name="decrease_item_quantity"),
     
     
         

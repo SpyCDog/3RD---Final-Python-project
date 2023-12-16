@@ -150,6 +150,7 @@ def increase_quantity(request, id):
         cart_item = CartItem.objects.get(id=id)
         cart_item.quantity += 1 
         cart_item.save()
+        # current_cart = Cart.objects.get(id=cart_item.cart.id)
         serialezer = CartItemSerializer(cart_item)
         return Response(serialezer.data, status=status.HTTP_200_OK)
     except CartItem.DoesNotExist:
@@ -161,9 +162,12 @@ def increase_quantity(request, id):
 @api_view(['PUT'])
 def decrease_quantity(request, id):
     print(request)
-    try:
+    try: 
         cart_item = CartItem.objects.get(id=id)
-        cart_item.quantity -= 1 
+        if cart_item.quantity == 1:
+            cart_item.quantity = 1
+        else:
+            cart_item.quantity -= 1
         cart_item.save()
         serialezer = CartItemSerializer(cart_item)
         return Response(serialezer.data, status=status.HTTP_200_OK)

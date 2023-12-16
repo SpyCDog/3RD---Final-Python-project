@@ -74,20 +74,19 @@ function Cart() {
       });
   };
 
-  const handleIncreaseQuantity = (itempId) => {
+  const handleIncreaseQuantity = (itemId) => {
     // Send request to backend to increase quantity
-    console.log("Cart's item ID-----", itempId);
+    console.log("Cart's item ID-----", itemId);
     axios
-      .put(`${HOST_URL}/increase_item_quantity/${itempId}`)
+      .put(`${HOST_URL}/increase_item_quantity/${itemId}`)
       .then(() => {
         // Update the cartItems state to reflect the new quantity
-        console.log("setCartItems-----", setCartItems);
         setCartItems(
           (currentItems) =>
             currentItems.map((item) =>
-              item.id === itempId ? { quantity: item.quantity + 1 } : item
+              item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
             ),
-          console.log("Cartitem:", itempId, "Increased")
+          console.log("Cartitem:", itemId, "Increased")
         );
       })
       .catch((error) => {
@@ -97,16 +96,18 @@ function Cart() {
 
   const handleDecreaseQuantity = (itemId) => {
     // Send request to backend to decrease quantity
+    console.log("Cart's item ID-----", itemId);
     axios
       .put(`${HOST_URL}/decrease_item_quantity/${itemId}`)
       .then(() => {
         // Update the cartItems state to reflect the new quantity
         setCartItems((currentItems) =>
           currentItems.map((item) =>
-            item.id === itemId
-              ? { quantity: Math.max(0, item.quantity - 1) }
+            item.id === itemId 
+              ? {...item, quantity: Math.max( 1, item.quantity - 1) }
               : item
-          )
+          ),
+          console.log("Cartitem:", itemId, "Deccreased")
         );
       })
       .catch((error) => {
@@ -150,15 +151,6 @@ function Cart() {
                     <p className="mb-1">Shopping cart</p>
                     <p className="mb-0">You have {cartItems.length} items in your cart</p>
                   </div>
-                  <div>
-                    <p>
-                      <span className="text-muted">Sort by:</span>
-                      <a href="#!" className="text-body">
-                        price
-                        <MDBIcon fas icon="angle-down mt-1" />
-                      </a>
-                    </p>
-                  </div>
                 </div>
                     {/* Cart Items */}
                     {cartItems.map((item) => (
@@ -190,7 +182,7 @@ function Cart() {
                               }}
                               onClick={() => handleRemoveCart(cart.id)}
                             >
-                              X
+                              Deleate cart
                             </button>
                           </p>
                           <br></br>
