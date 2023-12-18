@@ -25,11 +25,11 @@ Clone the repository:
 
 bash
 Copy code
-git clone https://github.com/<your-github-username>/<your-repo-name>.git
+git clone [https://github.com/<your-github-username>/<your-repo-name>.git](https://github.com/SpyCDog/3RD---Final-Python-project.git)
 Front-end Setup:
 
 Navigate to the front-end directory:
-arduino
+
 Copy code
 cd <front-end-directory>
 Install dependencies:
