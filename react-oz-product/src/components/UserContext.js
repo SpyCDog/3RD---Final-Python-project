@@ -1,8 +1,6 @@
 import axios from "axios";
 import React, { createContext, useState } from "react";
 
-// Function to get CSRF token from cookies
-
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
@@ -10,7 +8,6 @@ export const UserProvider = ({ children }) => {
 
   const login = (userData) => {
     localStorage.setItem("accessToken", userData.accessToken);
-    // Set default Axios Authorization header
     axios.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${userData.accessToken}`;

@@ -1,12 +1,10 @@
 from rest_framework import status
-# from django.contrib.auth.models import User
 from .models import Cart, Category, Product, CartItem, MyUser
 from .serializers import CartSerializer, ProductSerializer, CategorySerializer, CartItemSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
-# from django.shortcuts import get_object_or_404
 
 
 @api_view(['GET', 'POST'])
@@ -85,8 +83,6 @@ def add_to_cart(request):
                 cart_item.quantity = int(quantity)
             cart_item.save()
             cart.save()
-            # cart_item_serializer = CartItemSerializer(cart_item)
-            # serailizers = [cart_item_serializer, cart_serializer]
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except Product.DoesNotExist:
             return Response({'Product not found.(backend - add_to_cart)'}, status=status.HTTP_404_NOT_FOUND)
@@ -150,7 +146,6 @@ def increase_quantity(request, id):
         cart_item = CartItem.objects.get(id=id)
         cart_item.quantity += 1 
         cart_item.save()
-        # current_cart = Cart.objects.get(id=cart_item.cart.id)
         serialezer = CartItemSerializer(cart_item)
         return Response(serialezer.data, status=status.HTTP_200_OK)
     except CartItem.DoesNotExist:

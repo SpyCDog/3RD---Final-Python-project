@@ -6,7 +6,6 @@ import Lottie from "lottie-react";
 import successAnimation from "./styles/lottie/success.json";
 import { UserContext } from "./UserContext";
 import { MDBBtn } from "mdb-react-ui-kit";
-// import { useLocation } from "react-router-dom";
 
 function Product({ product, onAddToCart , HOST_URL}) {
   const [showSuccessAnimation, setShowSuccessAnimation] = useState(false);
@@ -23,11 +22,9 @@ function Product({ product, onAddToCart , HOST_URL}) {
         setErrorMessage(""); // Clear the error message
       }, 2000);
     }
-    // Clean up the timer when the component is unmounted or the showError changes
     return () => clearTimeout(timer);
   }, [showError]);
 
-  // Define handleAddToCart function
   const handleAddToCart = () => {
     if (!user) {
       console.log("USER NOT LOGGED IN!!!");
@@ -38,7 +35,6 @@ function Product({ product, onAddToCart , HOST_URL}) {
       onAddToCart()
       return;
     }
-    // Then show the animation
     setShowSuccessAnimation(true);
     setTimeout(() => {
       setShowSuccessAnimation(false);

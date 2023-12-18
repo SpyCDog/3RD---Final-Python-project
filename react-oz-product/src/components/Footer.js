@@ -9,21 +9,21 @@ function Footer() {
           <div className="footer-content">
             <ul className="nav justify-content-center border-bottom pb-3 mb-3">
               <li className="nav-item">
-                <a href="/" className="nav-link px-2 text-muted">
-                  ABOUT
-                </a>
+                <Link to="/login" className="nav-link px-2 text-muted">
+                  LOGIN
+                </Link>
               </li>
               <hr className="hr hr-blurry" />
 
               <li className="nav-item">
-                <Link to="/" className="nav-link px-2 text-muted">
+                <Link to="https://www.facebook.com/" className="nav-link px-2 text-muted">
                   FACEBOOK
                 </Link>
               </li>
               <hr className="hr hr-blurry" />
 
               <li className="nav-item">
-                <Link to="/login" className="nav-link px-2 text-muted">
+                <Link to="https://www.instagram.com/" className="nav-link px-2 text-muted">
                   INSTGRAM
                 </Link>
               </li>

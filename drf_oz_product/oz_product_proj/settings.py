@@ -67,9 +67,8 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
      'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-     'REFRESH_TOKEN_LIFETIME': timedelta(days=8),
-     'ROTATE_REFRESH_TOKENS': True,
-     'BLACKLIST_AFTER_ROTATION': True
+     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+
 }
 
 
@@ -158,9 +157,6 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
-# At the bottom of settings.py
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'media')
 

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { UserContext } from "./UserContext";
 import Lottie from "lottie-react";
@@ -11,7 +11,7 @@ import "./styles/Navbar.css";
 
 
 function getTimeBasedGreeting(username) {
-  const hour = new Date().getHours(); // Get the current hour
+  const hour = new Date().getHours(); 
   
   let greetingText = "Good morning";
   let animationData = morningAnimationData;//default values
@@ -41,7 +41,15 @@ function getTimeBasedGreeting(username) {
 function Navbar({ categories, navClickButtom, searchProduct, cartAnimation, HOST_URL }) {
   const [searchText, setSearchText] = useState(""); 
   const location = useLocation();
-  const { user, logout } = useContext(UserContext);
+  const { setUser, user, logout } = useContext(UserContext);
+
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, [setUser]);
 
   return (
     <>

@@ -21,7 +21,7 @@ import LoadingSpinner from "./LoadingSpinner";
 function Cart({ HOST_URL }) {
   const [cartItems, setCartItems] = useState([]);
   const [cart, setCart] = useState([]);
-  const [loading, setLoading] = useState(false); // Set a loading state
+  const [loading, setLoading] = useState(false); 
 
   useEffect(() => {
     setLoading(true);

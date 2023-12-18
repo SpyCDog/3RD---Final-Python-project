@@ -17,7 +17,7 @@ function App() {
   const [currentCategory, setCurrentCategory] = useState(1);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const HOST_URL = 'http://127.0.0.1:8000/';
+  const HOST_URL = 'https://oz-products-web.onrender.com';
 
   const triggerCartAnimation = () => {
     setCartAnimation(true);
@@ -29,16 +29,6 @@ function App() {
 
   useEffect(getProducts, [currentCategory]); // when loading the page for the first time - getProducts()
   useEffect(getCategories, []); // when loading the page for the first time - getCategories()
-  useEffect(() => {
-    // Set a timeout
-    const timer = setTimeout(() => {
-      // Refresh the page
-      window.location.reload();
-    }, 10 * 60 * 1000); // 10 minutes in milliseconds
-
-    // Cleanup the timer on component unmount
-    return () => clearTimeout(timer);
-  }, []); // The empty dependency array ensures this effect runs only once after the initial render
 
   function navClickButtom(name) {
     console.log("click!", name);
