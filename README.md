@@ -1,4 +1,4 @@
-Online Store - OZ Products
+Online Tech Store
 Overview
 This project is an online store specializing in the sale of iPhones, MacBooks, and insurance for these products. It features a sleek, user-friendly interface built with React, and a robust, secure back-end powered by Django REST Framework. The store is hosted using Render.com services, with the front-end deployed at GitHub Pages.
 
@@ -25,13 +25,13 @@ Clone the repository:
 
 bash
 Copy code
-git clone [https://github.com/<your-github-username>/<your-repo-name>.git](https://github.com/SpyCDog/3RD---Final-Python-project.git)
+git clone https://github.com/SpyCDog/3RD---Final-Python-project.git
 Front-end Setup:
 
 Navigate to the front-end directory:
-
+arduino
 Copy code
-cd <front-end-directory>
+cd <react-oz-product>
 Install dependencies:
 Copy code
 npm install
@@ -44,7 +44,7 @@ Back-end Setup:
 Navigate to the back-end directory:
 arduino
 Copy code
-cd <back-end-directory>
+cd <drf_oz_product>
 Set up a Python virtual environment and activate it.
 Install dependencies:
 Copy code
@@ -54,4 +54,3 @@ Copy code
 python manage.py runserver
 Contributing
 Contributions to this project are welcome. Please fork the repository and submit a pull request with your proposed changes.
-
